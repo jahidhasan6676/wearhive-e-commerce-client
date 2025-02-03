@@ -1,74 +1,37 @@
-import coverImg from '../../../assets/cover.jpg'
-import framer1 from '../../../assets/framerMotion/framer1.jpg'
-import framer2 from '../../../assets/framerMotion/framer2.jpg'
-import framer3 from '../../../assets/framerMotion/framer3.jpg'
-import { motion } from "motion/react"
-import { easeOut } from 'motion';
-
+import hand_icon from "../../../assets/Assets/hand_icon.png"
+import arrow_icon from "../../../assets/Assets/arrow.png"
+import hero_image from "../../../assets/Assets/hero_image.png"
 const Banner = () => {
     return (
         <div
-            className="hero h-[600px]"
-            style={{
-                backgroundImage: `url(${coverImg})`,
-            }}>
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="flex w-9/12 mx-auto   text-white">
-                {/* left side text */}
-                <div className='space-y-6 flex-1'>
-                    <h1 className='text-4xl font-semibold leading-[50px]'>Your Best Medical <br /> Help Center</h1>
-                    <p className='text-sm font-medium'>We always provide better service to patients. Our mission is to <br /> heal our patients through service. Our help center is <br /> always open. You can contact us anytime
-                    </p>
-                    <button className='bg-[#F7A582] px-3 py-2 rounded-md'>All Service</button>
+            style={{ background: "linear-gradient(180deg, #fde1ff, #e1ffea22)" }}
+            className="h-[550px] "
+        >
+            <div className="w-11/12 mx-auto flex">
+                {/* left side */}
+                <div className="flex-1 flex flex-col justify-center gap-3">
+                    <h2 className="text-[20px] font-semibold text-text_primary">NEW ARRIVALS ONLY</h2>
+                    <div className="">
+                        <div className="flex items-center gap-3">
+                            <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">new</p>
+                            <img src={hand_icon} alt="" className="w-[60px]" />
+                        </div>
+                        <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">Collections</p>
+                        <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">for everyone</p>
+                    </div>
+                    <div className=" flex justify-center items-center bg-secondary text-white gap-2 w-fit px-6 py-2 rounded-xl cursor-pointer hover:bg-primary">
+                        <div className="">Latest Collections</div>
+                        <img src={arrow_icon} alt="" className="w-[20px]" />
+                    </div>
                 </div>
-
-
                 {/* right side */}
-                <div className='flex space-x-4'>
-                    <motion.img
-                        src={framer1}
-                        animate={{ y: [0, -30, 30, 0], rotate: [0, 10, -10, 0] }}
-                        transition={{
-                            duration: 18,
-                            delay: 4,
-                            repeat: Infinity,
-                            repeatType: 'mirror',
-                            ease: 'easeInOut',
-                        }}
-                        className='w-[200px] border-[6px] border-white shadow-2xl'
-                        alt="Animation 1"
-                    />
-
-                    <motion.img
-                        src={framer2}
-                        animate={{ x: [0, 20, -20, 0], scale: [1, 1.1, 1, 1.1] }}
-                        transition={{
-                            duration: 16,
-                            delay: 3,
-                            repeat: Infinity,
-                            repeatType: 'loop',
-                            ease: 'easeInOut',
-                        }}
-                        className='w-[200px] border-[6px] border-white shadow-2xl'
-                        alt="Animation 2"
-                    />
-
-                    <motion.img
-                        src={framer3}
-                        animate={{ y: [0, -50, 50, -25, 0], opacity: [1, 0.8, 1] }}
-                        transition={{
-                            duration: 20,
-                            delay: 5,
-                            repeat: Infinity,
-                            repeatType: 'reverse',
-                            ease: 'easeInOut',
-                        }}
-                        className='w-[200px] border-[6px] border-white shadow-2xl'
-                        alt="Animation 3"
-                    />
+                <div className="flex-1 flex justify-center items-center ">
+                    <img src={hero_image} alt="" className="h-[500px]" />
                 </div>
             </div>
         </div>
+
+
     );
 };
 

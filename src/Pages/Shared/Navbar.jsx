@@ -1,23 +1,22 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { FaDumbbell } from "react-icons/fa6";
 import { MdMenu } from "react-icons/md";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
-
+import logo from "../../assets/Assets/logo.png";
 
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     return (
         <>
-            <nav>
-                <div className="w-11/12 mx-auto flex justify-between items-center py-2">
+            <nav className="border-b">
+                <div className="w-11/12 mx-auto flex justify-between items-center py-4 ">
                     {/* logo section */}
-                    <div className="text-xl flex items-center gap-2 font-bold uppercase">
-                        <FaDumbbell />
-                        <p>Coders</p>
-                        <p className="text-secondary">Gym</p>
+                    <div className=" flex items-center gap-2 ">
+                        <img className="w-[30px]" src={logo} alt="" />
+                        <p className="text-[24px] font-bold uppercase">Shop<span className="text-secondary">Per</span></p>
+
                     </div>
                     {/* menu section */}
                     <div className="hidden md:block">
@@ -26,13 +25,16 @@ const Navbar = () => {
                                 <NavLink to="/" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Home</NavLink>
                             </li>
                             <li className=" ">
-                                <NavLink to="/ss" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Trainer</NavLink>
+                                <NavLink to="/ss" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Shop</NavLink>
                             </li>
                             <li className=" ">
-                                <NavLink to="/sg" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Program</NavLink>
+                                <NavLink to="/sg" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >About</NavLink>
                             </li>
                             <li className=" ">
-                                <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Blogs</NavLink>
+                                <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Contact</NavLink>
+                            </li>
+                            <li className=" ">
+                                <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
                             </li>
 
                         </ul>
@@ -61,12 +63,12 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -100 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -100 }}
-                        transition={{duration: 0.3}}
+                        transition={{ duration: 0.3 }}
                         className="absolute to-20 left-0 w-full h-screen z-20"
                     >
                         <div className=" font-semibold py-10 rounded-3xl bg-secondary text-white w-11/12 mx-auto">
                             <ul className="flex flex-col justify-center items-center gap-3">
-                                
+
                                 <li className=" ">
                                     <NavLink to="/ss" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Home</NavLink>
                                 </li>
