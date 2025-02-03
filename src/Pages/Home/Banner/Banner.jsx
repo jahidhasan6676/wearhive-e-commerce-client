@@ -5,19 +5,19 @@ const Banner = () => {
     return (
         <div
             style={{ background: "linear-gradient(180deg, #fde1ff, #e1ffea22)" }}
-            className="h-[550px] "
+            className="md:h-[550px] "
         >
-            <div className="w-11/12 mx-auto flex">
+            <div className="w-11/12 mx-auto md:flex py-10 md:py-0">
                 {/* left side */}
                 <div className="flex-1 flex flex-col justify-center gap-3">
                     <h2 className="text-[20px] font-semibold text-text_primary">NEW ARRIVALS ONLY</h2>
                     <div className="">
                         <div className="flex items-center gap-3">
-                            <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">new</p>
+                            <p className="text-[40px] md:text-[60px] font-semibold text-text_secondary leading-[50px] md:leading-[70px]">new</p>
                             <img src={hand_icon} alt="" className="w-[60px]" />
                         </div>
-                        <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">Collections</p>
-                        <p className="text-[60px] font-semibold text-text_secondary leading-[70px]">for everyone</p>
+                        <p className="text-[40px] md:text-[60px] font-semibold text-text_secondary leading-[50px] md:leading-[70px]">Collections</p>
+                        <p className="text-[40px] md:text-[60px] font-semibold text-text_secondary leading-[50px] md:leading-[70px]">for everyone</p>
                     </div>
                     <div className=" flex justify-center items-center bg-secondary text-white gap-2 w-fit px-6 py-2 rounded-xl cursor-pointer hover:bg-primary">
                         <div className="">Latest Collections</div>

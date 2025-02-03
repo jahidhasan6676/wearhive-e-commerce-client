@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { PiShoppingCartThin } from "react-icons/pi";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/Assets/logo.png";
 
 
@@ -10,7 +10,7 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
     return (
         <>
-            <nav className="border-b">
+            <nav className="border-b sticky top-0 backdrop:blur-sm bg-white">
                 <div className="w-11/12 mx-auto flex justify-between items-center py-4 ">
                     {/* logo section */}
                     <div className=" flex items-center gap-2 ">
@@ -44,7 +44,9 @@ const Navbar = () => {
                         <button className="text-xl hover:bg-secondary p-1 rounded-full hover:text-white duration-200">
                             <PiShoppingCartThin />
                         </button>
-                        <button className="font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white hidden md:block">Login</button>
+                        <Link to="/login">
+                            <button className="font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white hidden md:block">Login</button>
+                        </Link>
 
                         {/* mobile hamburger menu section */}
                         <div className="md:hidden" onClick={() => setOpen(!open)}>
@@ -84,7 +86,9 @@ const Navbar = () => {
                             </ul>
                             <hr className="w-8/12 mx-auto my-4" />
                             <div className="text-center">
-                                <button className="font-semibold hover:bg-white hover:text-secondary  rounded-md border-2 px-3 py-1  ">Login</button>
+                                <Link to="/login">
+                                    <button className="font-semibold hover:bg-white hover:text-secondary  rounded-md border-2 px-3 py-1  ">Login</button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
