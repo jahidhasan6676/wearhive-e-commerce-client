@@ -2,28 +2,35 @@ import { Link, useNavigate } from "react-router-dom";
 import google_icon from "../../assets/social_icon/google.png"
 import SocialLogin from "../Shared/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
+import { photoUpload } from "../../utilities/imageUpload";
 
 
 const Register = () => {
-    const {createUser,setUser} = useAuth();
+    const { createUser, setUser,updateUserProfile } = useAuth();
     const navigate = useNavigate();
-    const handleRegisterUser = (e) => {
+    const handleRegisterUser =async (e) => {
         e.preventDefault();
 
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const image = form.image.files[0];
+        const photo = await photoUpload(image);
 
-        // create user
-        createUser(email,password)
-        .then(result =>{
+        
+        try{
+            // create user
+            const result = await createUser(email,password)
             setUser(result.user)
+            // update user profile
+            await updateUserProfile({displayName: name, photoURL: photo})
             navigate("/")
-        })
-        .catch(err =>{
+        }catch(err){
             console.log(err)
-        })
+        }
+            
+            
 
     }
     return (
@@ -32,20 +39,30 @@ const Register = () => {
                 <h2 className="text-2xl text-center font-semibold  mb-6">Register Now</h2>
 
                 <form onSubmit={handleRegisterUser}>
-                    {/* Email & Password Input */}
+                    
                     <div className="space-y-4">
+                        {/* name Input */}
                         <input
                             name="name"
                             type="text"
                             placeholder="user name *"
                             className="w-full px-4 py-2 border rounded-md focus:outline-none  "
                         />
+                        {/* Email Input */}
                         <input
                             name="email"
                             type="email"
                             placeholder="Email Address *"
                             className="w-full px-4 py-2 border rounded-md focus:outline-none  "
                         />
+                        {/* Image Upload Input */}
+                        <input
+                            name="image"
+                            type="file"
+                            accept="image/*"
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none"
+                        />
+                        {/* Password Input */}
                         <input
                             name="password"
                             type="password"
