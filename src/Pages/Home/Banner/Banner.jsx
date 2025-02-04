@@ -1,11 +1,12 @@
 import hand_icon from "../../../assets/Assets/hand_icon.png"
 import arrow_icon from "../../../assets/Assets/arrow.png"
 import hero_image from "../../../assets/Assets/hero_image.png"
+import { motion } from "framer-motion";
 const Banner = () => {
     return (
         <div
             style={{ background: "linear-gradient(180deg, #fde1ff, #e1ffea22)" }}
-            className="md:h-[550px] "
+            className="md:h-[550px] relative"
         >
             <div className="w-11/12 mx-auto md:flex py-10 md:py-0">
                 {/* left side */}
@@ -25,8 +26,14 @@ const Banner = () => {
                     </div>
                 </div>
                 {/* right side */}
-                <div className="flex-1 flex justify-center items-center ">
-                    <img src={hero_image} alt="" className="h-[500px]" />
+                <div className="flex-1 flex justify-center items-center relative z-10">
+                <motion.img 
+                        src={hero_image} 
+                        alt="" 
+                        className="h-[500px]" 
+                        animate={{ y: [0, -20, 0] }} 
+                        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                    />
                 </div>
             </div>
         </div>
