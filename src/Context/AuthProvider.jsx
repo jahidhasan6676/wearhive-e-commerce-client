@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthContext from "./AuthContext";
-
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 
 
 const AuthProvider = ({children}) => {
@@ -33,10 +34,35 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider);
     }
 
+    //  user update profile
+    const updateUserProfile = (updateData) => {
+        setLoading(true)
+        return updateProfile(auth.currentUser, updateData)
+    }
+
+    // observation setup
+    useEffect(()=>{
+        const unSubscriber = onAuthStateChanged(auth, (currentUser)=>{
+            setUser(currentUser)
+            console.log("curren User--->", currentUser)
+            setLoading(false)
+        })
+        return ()=>{
+            unSubscriber();
+        }
+    },[])
+
 
     const authInfo ={
         user,
-        setUser
+        setUser,
+        createUser,
+        loginUser,
+        signOutUser,
+        signInGoogle,
+        updateUserProfile,
+        loading,
+        setLoading
     }
     return (
         <AuthContext.Provider value={authInfo}>

@@ -2,12 +2,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { PiShoppingCartThin } from "react-icons/pi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/Assets/logo.png";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false)
+    const { user, signOutUser } = useAuth();
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleUserLogOut = () => {
+        signOutUser();
+        navigate("/login")
+    }
     return (
         <>
             <nav className="border-b sticky top-0 backdrop:blur-sm bg-white z-50">
@@ -44,9 +52,15 @@ const Navbar = () => {
                         <button className="text-xl hover:bg-secondary p-1 rounded-full hover:text-white duration-200">
                             <PiShoppingCartThin />
                         </button>
-                        <Link to="/login">
-                            <button className="font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white hidden md:block">Login</button>
-                        </Link>
+                        {
+                            user && user?.email ?
+                                <button onClick={handleUserLogOut} className="font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white hidden md:block">Logout</button>
+
+                                :
+                                <Link to="/login">
+                                    <button className="font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white hidden md:block">Login</button>
+                                </Link>
+                        }
 
                         {/* mobile hamburger menu section */}
                         <div className="md:hidden" onClick={() => setOpen(!open)}>
@@ -89,9 +103,15 @@ const Navbar = () => {
                             </ul>
                             <hr className="w-8/12 mx-auto my-4" />
                             <div className="text-center">
-                                <Link to="/login">
-                                    <button className="font-semibold hover:bg-white hover:text-secondary  rounded-md border-2 px-3 py-1  ">Login</button>
-                                </Link>
+                                {
+                                    user && user?.email ?
+                                        <button onClick={handleUserLogOut} className="font-semibold hover:bg-white hover:text-secondary  rounded-md border-2 px-3 py-1">Logout</button>
+                                        :
+                                        <Link to="/login">
+                                            <button className="font-semibold hover:bg-white hover:text-secondary  rounded-md border-2 px-3 py-1">Login</button>
+                                        </Link>
+                                }
+
                             </div>
                         </div>
                     </motion.div>
