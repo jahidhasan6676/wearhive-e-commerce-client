@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SocialLogin from "../Shared/SocialLogin";
 
 
 
@@ -6,7 +7,7 @@ const Login = () => {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[#fde1ff]">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-semibold  mb-6">Login</h2>
+          <h2 className="text-2xl text-center font-semibold  mb-6">Login Now</h2>
   
           {/* Email & Password Input */}
           <div className="space-y-4">
@@ -49,11 +50,8 @@ const Login = () => {
           </div>
   
           {/* Social Login */}
-          <p className="text-center font-semibold mb-3">Login With Social Media</p>
-          <div className="flex justify-center space-x-4">
-            <a href="#" className=" text-2xl"><i className="fab fa-google"></i></a>
-            
-          </div>
+          <p className="text-center font-medium mb-3">Login With Social Media</p>
+            <SocialLogin/>
         </div>
       </div>
     );

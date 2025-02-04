@@ -3,7 +3,7 @@ import Navbar from "../Pages/Shared/Navbar";
 import Footer from "../Pages/Shared/Footer";
 
 
-const Root = () => {
+const MainLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
@@ -15,4 +15,4 @@ const Root = () => {
     );
 };
 
-export default Root;
+export default MainLayout;

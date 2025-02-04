@@ -34,7 +34,7 @@ const Navbar = () => {
                                 <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Contact</NavLink>
                             </li>
                             <li className=" ">
-                                <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                <NavLink to="/dashboard" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
                             </li>
 
                         </ul>
@@ -82,6 +82,9 @@ const Navbar = () => {
                                 </li>
                                 <li className=" ">
                                     <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Blogs</NavLink>
+                                </li>
+                                <li className=" ">
+                                    <NavLink to="/dashboard" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
                                 </li>
                             </ul>
                             <hr className="w-8/12 mx-auto my-4" />

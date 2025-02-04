@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-
+import google_icon from "../../assets/social_icon/google.png"
+import SocialLogin from "../Shared/SocialLogin";
 
 const Register = () => {
     return (
@@ -44,11 +45,8 @@ const Register = () => {
                 </div>
 
                 {/* Social Login */}
-                <p className="text-center font-semibold mb-3">Login With Social Media</p>
-                <div className="flex justify-center space-x-4">
-                    <a href="#" className=" text-2xl"><i className="fab fa-google"></i></a>
-
-                </div>
+                <p className="text-center font-medium mb-3">Login With Social Media</p>
+                <SocialLogin/>
             </div>
         </div>
     );
