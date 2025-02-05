@@ -40,7 +40,6 @@ export default function AddProduct() {
         try {
             const res = await axiosPublic.post("/product", addProductData)
             if (res.data.insertedId) {
-                console.log(res.data)
                 toast.success("Product successfully added",{
                     position: "top-center",
                     autoClose: 3000,

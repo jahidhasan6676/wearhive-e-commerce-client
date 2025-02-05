@@ -5,6 +5,7 @@ import Register from "../Pages/Register/Register";
 import MainLayout from "../Layout/MainLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddProduct from "../Pages/Dashboard/sellerHome/AddProduct";
+import MyProduct from "../Pages/Dashboard/sellerHome/MyProduct";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path:"addProduct",
                 element:<AddProduct/>
+            },
+            {
+                path:"myProduct",
+                element:<MyProduct/>
             }
         ]
     }
