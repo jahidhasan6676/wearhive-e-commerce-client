@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import google_icon from "../../assets/social_icon/google.png"
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
+import { userSave } from "../../utilities/utils";
 
 const SocialLogin = () => {
     const { setUser, signInGoogle } = useAuth();
@@ -10,9 +12,11 @@ const SocialLogin = () => {
         try {
             const result = await signInGoogle()
             setUser(result.user);
-            navigate("/")
+            await userSave(result?.user);
+            navigate("/");
+            toast.success("Successfully Login");
         }catch(err){
-            console.log(err)
+            toast.error(err.message)
         }
     }
 

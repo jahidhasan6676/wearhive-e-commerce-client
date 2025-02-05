@@ -4,9 +4,9 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { auth } from "../firebase/firebaseConfig";
 
 
-const AuthProvider = ({children}) => {
-    const [user,setUser] = useState(null);
-    const [loading,setLoading] = useState(true);
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
 
@@ -41,19 +41,20 @@ const AuthProvider = ({children}) => {
     }
 
     // observation setup
-    useEffect(()=>{
-        const unSubscriber = onAuthStateChanged(auth, (currentUser)=>{
+    useEffect(() => {
+        const unSubscriber = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            console.log("curren User--->", currentUser)
+            console.log("current User--->", currentUser)
             setLoading(false)
+
         })
-        return ()=>{
+        return () => {
             unSubscriber();
         }
-    },[])
+    }, [])
 
 
-    const authInfo ={
+    const authInfo = {
         user,
         setUser,
         createUser,

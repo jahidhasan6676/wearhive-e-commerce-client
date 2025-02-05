@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import google_icon from "../../assets/social_icon/google.png"
 import SocialLogin from "../Shared/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
-import { photoUpload } from "../../utilities/imageUpload";
+import { photoUpload, userSave } from "../../utilities/utils";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
@@ -25,12 +26,13 @@ const Register = () => {
             setUser(result.user)
             // update user profile
             await updateUserProfile({displayName: name, photoURL: photo})
+            // user save database
+            await userSave({...result?.user, displayName: name, photoURL: photo})
             navigate("/")
+            toast.success("Successfully Register")
         }catch(err){
-            console.log(err)
-        }
-            
-            
+            toast.error(err.message)
+        }  
 
     }
     return (

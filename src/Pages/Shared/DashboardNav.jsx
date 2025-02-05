@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/Assets/logo.png"
-import image from "../../assets/Assets/logo.png"
 import useAuth from "../../Hooks/useAuth";
 
 const DashboardNav = () => {
     const { user } = useAuth();
     return (
-        <div className="border-l border-gray-600 hidden md:flex w-full h-[60px] bg-[#23272f]">
+        <div className="sticky top-0 z-50 border-l border-gray-600 hidden md:flex w-full h-[60px] bg-[#23272f]">
 
             <div className="w-full flex justify-between items-center px-10">
                 {/* left side */}
                 <div className="flex">
-                    <img src={user?.photoURL} alt="" className="w-[45px] rounded-full" />
+                    <img src={user?.photoURL} alt="" referrerPolicy="no-referrer" className="w-[45px] rounded-full" />
                     <div className="flex flex-col justify-end ml-2">
                         <p className="text-gray-200 text-sm">{user?.displayName}</p>
                         <p className="text-gray-300 text-[12px]">welcome to dashboard</p>

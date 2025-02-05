@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 
@@ -19,10 +20,10 @@ const Login = () => {
       .then(result => {
         setUser(result.user)
         navigate("/")
+        toast.success("Successfully Login")
       })
       .catch(err => {
-        console.log(err)
-
+        toast.error(err.message)
       })
 
   }

@@ -1,6 +1,8 @@
 // upload image and return image url
 
 import axios from "axios"
+import useAxiosPublic from "../Hooks/useAxiosPublic"
+
 
 export const photoUpload = async imageData => {
     
@@ -11,4 +13,15 @@ export const photoUpload = async imageData => {
 
     return data.data.display_url
     
+}
+
+export const userSave = async (user) =>{
+    const axiosPublic = useAxiosPublic();
+
+    await axiosPublic.post(`/user/${user?.email}`, {
+        name:user?.displayName,
+        image:user?.photoURL,
+        email:user?.email,
+        
+      })
 }
