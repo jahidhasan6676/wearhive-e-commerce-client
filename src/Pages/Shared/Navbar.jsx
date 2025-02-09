@@ -5,10 +5,12 @@ import { PiShoppingCartThin } from "react-icons/pi";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/Assets/logo.png";
 import useAuth from "../../Hooks/useAuth";
+import useRole from "../../Hooks/useRole";
 
 
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
+    const [role] = useRole();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -41,10 +43,24 @@ const Navbar = () => {
                             <li className=" ">
                                 <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Contact</NavLink>
                             </li>
-                            <li className=" ">
-                                <NavLink to="/dashboard" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
-                            </li>
+                            {
+                                user?.email && <>
+                                {user && role === "customer" && <li className=" ">
+                                    <NavLink to="/dashboard/cart" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                </li>}
 
+                                    {user && role === "seller" && <li className=" ">
+                                        <NavLink to="/dashboard/myProduct" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                    </li>}
+
+                                    {user && role === "moderator" && <li className=" ">
+                                        <NavLink to="/dashboard/reportProduct" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                    </li>}
+                                    {user && role === "admin" && <li className=" ">
+                                        <NavLink to="/dashboard/allUsers" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                    </li>}
+                                </>
+                            }
                         </ul>
                     </div>
                     {/* icon section */}
@@ -67,8 +83,6 @@ const Navbar = () => {
                             <MdMenu className="text-3xl" />
                         </div>
                     </div>
-
-
                 </div>
             </nav>
 

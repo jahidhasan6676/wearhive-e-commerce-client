@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { photoUpload } from "../../../utilities/utils";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 export default function AddProduct() {
     const {user} = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const handleAddProduct = async(e) =>{
         e.preventDefault();
@@ -43,7 +43,7 @@ export default function AddProduct() {
 
         // product data save database
         try {
-            const res = await axiosPublic.post("/product", addProductData)
+            const res = await axiosSecure.post("/product", addProductData)
             if (res.data.insertedId) {
                 toast.success("Product successfully added",{
                     position: "top-center",

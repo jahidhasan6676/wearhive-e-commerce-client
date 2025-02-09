@@ -19,7 +19,7 @@ const Login = () => {
     loginUser(email, password)
       .then(result => {
         setUser(result.user)
-        navigate("/")
+        navigate(location?.state ? location.state : "/")
         toast.success("Successfully Login")
       })
       .catch(err => {

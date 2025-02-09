@@ -6,6 +6,9 @@ import MainLayout from "../Layout/MainLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddProduct from "../Pages/Dashboard/sellerHome/AddProduct";
 import MyProduct from "../Pages/Dashboard/sellerHome/MyProduct";
+import SellerRoute from "./SellerRoute";
+import Cart from "../Pages/Dashboard/customer/Cart";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -38,15 +41,20 @@ export const router = createBrowserRouter([
         path:"/dashboard",
         element:<DashboardLayout></DashboardLayout>,
         children:[
+            // customer route
+            {
+                path:"cart",
+                element:<Cart/>
+            },
             // seller route
 
             {
                 path:"addProduct",
-                element:<AddProduct/>
+                element:<PrivateRoute><SellerRoute><AddProduct/></SellerRoute></PrivateRoute>
             },
             {
                 path:"myProduct",
-                element:<MyProduct/>
+                element:<PrivateRoute><SellerRoute><MyProduct/></SellerRoute></PrivateRoute>
             }
         ]
     }

@@ -28,7 +28,7 @@ const Register = () => {
             await updateUserProfile({displayName: name, photoURL: photo})
             // user save database
             await userSave({...result?.user, displayName: name, photoURL: photo})
-            navigate("/")
+            navigate(location?.state ? location.state : "/")
             toast.success("Successfully Register")
         }catch(err){
             toast.error(err.message)

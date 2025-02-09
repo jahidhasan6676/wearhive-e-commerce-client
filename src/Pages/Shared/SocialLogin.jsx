@@ -13,7 +13,7 @@ const SocialLogin = () => {
             const result = await signInGoogle()
             setUser(result.user);
             await userSave(result?.user);
-            navigate("/");
+            navigate(location?.state ? location.state : "/");
             toast.success("Successfully Login");
         }catch(err){
             toast.error(err.message)

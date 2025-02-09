@@ -7,14 +7,16 @@ import { IoMdHome } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { MdReportProblem } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import useRole from "../../../Hooks/useRole";
 const Sidebar = () => {
     const [isActive, setActive] = useState(false);
+    const [role, isLoading] = useRole();
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
         setActive(!isActive);
     };
-
+    
     return (
         <div className="">
             {/* Small Screen Navbar */}
@@ -44,62 +46,110 @@ const Sidebar = () => {
             >
                 <div>
                     <div className="w-full  px-4 py-2 shadow rounded-lg justify-center items-center mx-auto bg-gray-700">
-                        <h2 className="flex items-center justify-center gap-1 font-medium text-gray-100 "> <IoHome className="text-[15px]"/>Admin Home</h2>
-                        
+                        <h2 className="flex items-center justify-center gap-1 font-medium text-gray-100 "> <IoHome className="text-[15px]" />{`${role === 'customer' ? 'Customer' : role === 'seller' ? "Seller" : role === "moderator" ? "Moderator" : role === "admin" ? "Admin" : ''}`} Home</h2>
+
                     </div>
 
                     {/* Nav Items */}
                     <div>
                         <nav className="mt-10  space-y-4 text-[16px] font-medium flex flex-col">
 
-                            <NavLink to="/" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><CgProfile className="text-lg" /> Profile</NavLink>
+                           
+                                {/* customer */}
+                                {
+                                    role === "customer" && <>
+                                        <NavLink to="/dashboard/cart" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaPlus />My Cart</NavLink>
+                                    </>
+                                }
 
-                            <NavLink to="/dashboard/addProduct" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><FaPlus />Add Product</NavLink>
+                                {/* seller */}
+                                {
+                                    role === "seller" && <>
+                                        <NavLink to="/dashboard/addProduct" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaPlus />Add Product</NavLink>
 
-                            <NavLink to="/" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><FaChartPie /> Statistics</NavLink>
+                                        <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaBox />My Product</NavLink>
 
-                            <NavLink to="/" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><FaUsers />Manage Users</NavLink>
+                                    </>
+                                }
 
-                            <NavLink to="/" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><MdReportProblem /> Report Product</NavLink>
+                                {/* moderator */}
+                                {
+                                    role === "moderator" && <>
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><MdReportProblem /> Report Product</NavLink>
+                                    </>
+                                }
 
-                            <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><FaBox />My Product</NavLink>
+                                {/* admin */}
+                                {
+                                    role === "admin" && <>
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaChartPie /> Statistics</NavLink>
 
-                            <NavLink to="/" className={({ isActive }) =>
-                                `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                    ? "bg-gray-700 text-gray-100"
-                                    : "hover:bg-gray-700 hover:text-gray-100"
-                                }`
-                            }><FaTicketAlt />Manage Coupon</NavLink>
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaUsers />Manage Users</NavLink>
+
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-700 text-gray-100"
+                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                            }`
+                                        }><FaTicketAlt />Manage Coupon</NavLink>
+                                    </>
+                                }
+
+                           
+                            <div className="">
+                                <hr className="mt-[300px]" />
+                                <NavLink to="/" className={({ isActive }) =>
+                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        ? "bg-gray-700 text-gray-100"
+                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                    }`
+                                }><CgProfile className="text-lg" /> Profile</NavLink>
+
+                                <NavLink to="/" className={({ isActive }) =>
+                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        ? "bg-gray-700 text-gray-100"
+                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                    }`
+                                }><CgProfile className="text-lg" /> Home</NavLink>
+
+                                <NavLink to="/" className={({ isActive }) =>
+                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        ? "bg-gray-700 text-gray-100"
+                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                    }`
+                                }><CgProfile className="text-lg" /> LogOut</NavLink>
+
+                            </div>
                         </nav>
                     </div>
                 </div>
