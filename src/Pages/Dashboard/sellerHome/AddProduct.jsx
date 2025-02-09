@@ -14,6 +14,8 @@ export default function AddProduct() {
         const productName = form.productName.value;
         const manCategory = form.manCategory.value;
         const productCategory = form.productCategory.value;
+        const price = parseInt(form.price.value);
+        const brandName = form.brandName.value;
         const description = form.description.value;
         const quantity = parseInt(form.quantity.value);
         const image = form.image.files[0];
@@ -33,7 +35,10 @@ export default function AddProduct() {
             quantity,
             photo,
             date,
-            ownerInfo
+            ownerInfo,
+            price,
+            brandName,
+            status:"Pending"
         }
 
         // product data save database
@@ -57,8 +62,8 @@ export default function AddProduct() {
     }
     return (
         <div className=" bg-gray-50 min-h-[calc(100vh-60px)]  flex justify-center items-center">
-            <div className="max-w-2xl mx-auto shadow-sm bg-white p-10 rounded-md ">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center sm:text-lg">Add New Product</h2>
+            <div className="max-w-2xl mx-auto shadow-sm bg-white p-5 rounded-md ">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center sm:text-lg">Add New Product</h2>
                 <form onSubmit={handleAddProduct} className="grid grid-cols-1 gap-6 sm:gap-4">
                     {/* Image Upload */}
                     <div className="col-span-2">
@@ -89,11 +94,24 @@ export default function AddProduct() {
                             <input type="text" name="productCategory" placeholder="e.g. T-shirt, Jeans" className="mt-2 w-full p-3 border border-gray-300 focus:outline-gray-300 rounded-lg sm:p-2" />
                         </div>
 
+                        {/* price */}
+                        <div className="w-full">
+                            <label className="block text-sm font-medium text-gray-700">Price</label>
+                            <input type="price" name="price" placeholder="Enter price" className="mt-2 w-full p-3 border border-gray-300 focus:outline-gray-300 rounded-lg sm:p-2" />
+                        </div>
+
+                         {/* brand name */}
+                         <div className="w-full">
+                            <label className="block text-sm font-medium text-gray-700">Brand Name</label>
+                            <input type="text" name="brandName" placeholder="Enter brand name" className="mt-2 w-full p-3 border border-gray-300 focus:outline-gray-300 rounded-lg sm:p-2" />
+                        </div>
+
                         {/* Quantity */}
                         <div className="w-full">
                             <label className="block text-sm font-medium text-gray-700">Quantity</label>
                             <input type="number" name="quantity" placeholder="Enter quantity" className="mt-2 w-full p-3 border border-gray-300 focus:outline-gray-300 rounded-lg sm:p-2" />
                         </div>
+                       
                     </div>
 
                     {/* Description */}
