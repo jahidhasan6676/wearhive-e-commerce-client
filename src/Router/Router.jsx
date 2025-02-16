@@ -9,6 +9,7 @@ import MyProduct from "../Pages/Dashboard/sellerHome/MyProduct";
 import SellerRoute from "./SellerRoute";
 import Cart from "../Pages/Dashboard/customer/Cart";
 import PrivateRoute from "./PrivateRoute";
+import MyProductUpdate from "../components/Dashboard/sellerHome/MyProductUpdate";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path:"myProduct",
                 element:<PrivateRoute><SellerRoute><MyProduct/></SellerRoute></PrivateRoute>
+            },
+            {
+                path:"myProductUpdate/:id",
+                element:<PrivateRoute><SellerRoute><MyProductUpdate/></SellerRoute></PrivateRoute>
             }
         ]
     }

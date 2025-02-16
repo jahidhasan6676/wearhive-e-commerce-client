@@ -2,8 +2,10 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const MyProductTable = ({product,index}) => {
-    const {photo,productName,productCategory,status,price} = product || {};
+const MyProductTable = ({ product, index,handleProductDelete }) => {
+    const { photo, productName, productCategory, status, price, _id } = product || {};
+
+    
     return (
         <tr className="bg-white border-b text-gray-600">
             <td className="px-6 py-3">{index}</td>
@@ -13,14 +15,16 @@ const MyProductTable = ({product,index}) => {
             <td className="px-6 py-3 ">${price}</td>
             <td className="px-6 py-3 text-green-500">{status}</td>
             <td className="px-6 py-3">
-                <Link to={`/dashboard`}>
+                <Link to={`/dashboard/myProductUpdate/${_id}`}>
                     <button
+                        onClick={()=>handleUpdateProduct(_id)}
                         className="bg-blue-500 text-white px-2 py-2 rounded-md mr-2 hover:bg-blue-600">
                         <FaRegEdit />
                     </button>
                 </Link>
 
                 <button
+                    onClick={() => handleProductDelete(_id)}
                     className="bg-red-500 text-white px-2 py-2 rounded-md hover:bg-red-600">
                     <MdDelete />
                 </button>

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import MyProductTable from "../../../components/Dashboard/sellerHome/MyProductTable";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-
+import Swal from "sweetalert2";
 
 
 const MyProduct = () => {
@@ -17,7 +17,33 @@ const MyProduct = () => {
             return data.data;
         }
     })
-    //console.log(products)
+   
+
+    // product item delete
+    const handleProductDelete = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/product/${id}`)
+                if (res.data.deletedCount) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your product has been deleted.",
+                        icon: "success"
+                    });
+                    refetch()
+                }
+            }
+        });
+    }
+
+    
 
     return (
         <div className="overflow-x-auto bg-gray-100 min-h-screen">
@@ -49,7 +75,7 @@ const MyProduct = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products?.map((product, index) => <MyProductTable key={product._id} product={product} index={index + 1} />)}
+                        {products?.map((product, index) => <MyProductTable key={product._id} product={product} index={index + 1} handleProductDelete={handleProductDelete} />)}
 
                     </tbody>
                 </table>
