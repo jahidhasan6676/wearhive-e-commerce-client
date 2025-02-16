@@ -35,14 +35,20 @@ const Navbar = () => {
                                 <NavLink to="/" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Home</NavLink>
                             </li>
                             <li className=" ">
-                                <NavLink to="/ss" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Shop</NavLink>
+                                <NavLink to="/men" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Men</NavLink>
                             </li>
                             <li className=" ">
+                                <NavLink to="/women" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Women</NavLink>
+                            </li>
+                            <li className=" ">
+                                <NavLink to="/kid" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Kids</NavLink>
+                            </li>
+                            {/* <li className=" ">
                                 <NavLink to="/sg" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >About</NavLink>
-                            </li>
-                            <li className=" ">
+                            </li> */}
+                            {/* <li className=" ">
                                 <NavLink to="/gs" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Contact</NavLink>
-                            </li>
+                            </li> */}
                             {
                                 user?.email && <>
                                 {user && role === "customer" && <li className=" ">

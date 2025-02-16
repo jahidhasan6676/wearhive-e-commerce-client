@@ -10,6 +10,10 @@ import SellerRoute from "./SellerRoute";
 import Cart from "../Pages/Dashboard/customer/Cart";
 import PrivateRoute from "./PrivateRoute";
 import MyProductUpdate from "../components/Dashboard/sellerHome/MyProductUpdate";
+import Shop from "../Pages/Shop/Shop";
+import Men from "../Pages/Men/Men";
+import Women from "../Pages/Women/Women";
+import Kids from "../Pages/Kids/Kids";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +26,22 @@ export const router = createBrowserRouter([
                 path:"/",
                 element:<Home></Home>
             },
+            {
+                path:"/shop",
+                element:<Shop/>
+            },
+            {
+                path:"/men",
+                element:<Men/>
+            },
+            {
+                path:"/women",
+                element:<Women/>
+            },
+            {
+                path:"/kid",
+                element:<Kids/>
+            }
             
             
         ]
