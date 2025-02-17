@@ -11,7 +11,7 @@ const DashboardNav = () => {
             <div className="w-full flex justify-between items-center px-10">
                 {/* left side */}
                 <div className="flex">
-                    <img src={user?.photoURL} alt="" referrerPolicy="no-referrer" className="w-[45px] rounded-full" />
+                    <img src={user?.photoURL} alt="" referrerPolicy="no-referrer" className="w-[45px] h-[45px] rounded-full" />
                     <div className="flex flex-col justify-end ml-2">
                         <p className="text-sm">{user?.displayName}</p>
                         <p className="text-gray-500 text-[12px]">welcome to dashboard</p>
