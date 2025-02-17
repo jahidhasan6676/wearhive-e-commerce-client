@@ -14,6 +14,8 @@ import Shop from "../Pages/Shop/Shop";
 import Men from "../Pages/Men/Men";
 import Women from "../Pages/Women/Women";
 import Kids from "../Pages/Kids/Kids";
+import PendingProduct from "../Pages/Dashboard/moderator/PendingProduct";
+import ModeratorRoute from "./ModeratorRoute";
 
 
 export const router = createBrowserRouter([
@@ -80,6 +82,11 @@ export const router = createBrowserRouter([
             {
                 path:"myProductUpdate/:id",
                 element:<PrivateRoute><SellerRoute><MyProductUpdate/></SellerRoute></PrivateRoute>
+            },
+            // moderator route
+            {
+                path:"pendingProduct",
+                element:<PrivateRoute><ModeratorRoute><PendingProduct/></ModeratorRoute></PrivateRoute>
             }
         ]
     }

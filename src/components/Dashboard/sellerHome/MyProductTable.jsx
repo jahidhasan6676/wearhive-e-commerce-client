@@ -14,7 +14,7 @@ const MyProductTable = ({ product, index,handleProductDelete }) => {
             <td className="px-6 py-3">{productCategory}</td>
             <td className="px-6 py-3 ">${price}</td>
             <td className="px-6 py-3 text-green-500">{status}</td>
-            <td className="px-6 py-3">
+            <td className="px-2 md:px-3 lg:px-6 py-3">
                 <Link to={`/dashboard/myProductUpdate/${_id}`}>
                     <button
                         onClick={()=>handleUpdateProduct(_id)}

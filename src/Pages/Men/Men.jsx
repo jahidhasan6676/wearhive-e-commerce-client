@@ -2,12 +2,19 @@ import Cover from "../Shared/Cover";
 import menImage from "../../assets/Assets/menBannerImage.png"
 
 const Men = () => {
+
+    
     return (
         <div>
+            {/* banner part */}
             <div className="">
                 <Cover image={menImage} />
             </div>
-            <h2>Men</h2>
+            
+            {/* product part */}
+            <div>
+                <h2>Men All Product</h2>
+            </div>
         </div>
     );
 };

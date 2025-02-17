@@ -20,10 +20,10 @@ const Sidebar = () => {
     return (
         <div className="">
             {/* Small Screen Navbar */}
-            <div className="bg-[#23272f] text-gray-400 flex justify-between md:hidden">
+            <div className="bg-white flex justify-between md:hidden">
                 <div>
                     <div className="block cursor-pointer p-4 font-bold">
-                        <Link to="/"><div className=" flex items-center gap-1 text-white">
+                        <Link to="/"><div className=" flex items-center gap-1">
                             <img className="w-[25px]" src={logo} alt="" />
                             <p className="text-[20px] font-semibold uppercase">Shop<span className="text-secondary">Per</span></p>
 
@@ -41,11 +41,11 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div
-                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-[#23272f] text-gray-400 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-white w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
                     } md:translate-x-0 transition duration-200 ease-in-out`}
             >
                 <div>
-                    <div className="w-full  px-4 py-2 shadow rounded-lg justify-center items-center mx-auto bg-gray-700">
+                    <div className="w-full  px-4 py-2 shadow rounded-lg justify-center items-center mx-auto bg-secondary">
                         <h2 className="flex items-center justify-center gap-1 font-medium text-gray-100 "> <IoHome className="text-[15px]" />{`${role === 'customer' ? 'Customer' : role === 'seller' ? "Seller" : role === "moderator" ? "Moderator" : role === "admin" ? "Admin" : ''}`} Home</h2>
 
                     </div>
@@ -60,8 +60,8 @@ const Sidebar = () => {
                                     role === "customer" && <>
                                         <NavLink to="/dashboard/cart" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaPlus />My Cart</NavLink>
                                     </>
@@ -72,15 +72,15 @@ const Sidebar = () => {
                                     role === "seller" && <>
                                         <NavLink to="/dashboard/addProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaPlus />Add Product</NavLink>
 
                                         <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaBox />My Product</NavLink>
 
@@ -90,10 +90,28 @@ const Sidebar = () => {
                                 {/* moderator */}
                                 {
                                     role === "moderator" && <>
+                                        <NavLink to="/dashboard/pendingProduct" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
+                                            }`
+                                        }><MdReportProblem /> Pending Product</NavLink>
                                         <NavLink to="/" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
+                                            }`
+                                        }><MdReportProblem />Accepted Product</NavLink>
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
+                                            }`
+                                        }><MdReportProblem /> Rejected Product</NavLink>
+                                        <NavLink to="/" className={({ isActive }) =>
+                                            `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><MdReportProblem /> Report Product</NavLink>
                                     </>
@@ -104,22 +122,22 @@ const Sidebar = () => {
                                     role === "admin" && <>
                                         <NavLink to="/" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaChartPie /> Statistics</NavLink>
 
                                         <NavLink to="/" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaUsers />Manage Users</NavLink>
 
                                         <NavLink to="/" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                                ? "bg-gray-700 text-gray-100"
-                                                : "hover:bg-gray-700 hover:text-gray-100"
+                                                ? "bg-gray-100"
+                                                : "hover:bg-gray-100"
                                             }`
                                         }><FaTicketAlt />Manage Coupon</NavLink>
                                     </>
@@ -127,25 +145,25 @@ const Sidebar = () => {
 
                            
                             <div className="">
-                                <hr className="mt-[300px]" />
+                                <hr className="mt-[100px]" />
                                 <NavLink to="/" className={({ isActive }) =>
                                     `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                        ? "bg-gray-700 text-gray-100"
-                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                        ? "bg-gray-100"
+                                        : "hover:bg-gray-100"
                                     }`
                                 }><CgProfile className="text-lg" /> Profile</NavLink>
 
                                 <NavLink to="/" className={({ isActive }) =>
                                     `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                        ? "bg-gray-700 text-gray-100"
-                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                        ? "bg-gray-100"
+                                        : "hover:bg-gray-100"
                                     }`
                                 }><CgProfile className="text-lg" /> Home</NavLink>
 
                                 <NavLink to="/" className={({ isActive }) =>
                                     `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                        ? "bg-gray-700 text-gray-100"
-                                        : "hover:bg-gray-700 hover:text-gray-100"
+                                        ? "bg-gray-100"
+                                        : "hover:bg-gray-100"
                                     }`
                                 }><CgProfile className="text-lg" /> LogOut</NavLink>
 

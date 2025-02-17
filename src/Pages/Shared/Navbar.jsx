@@ -60,7 +60,7 @@ const Navbar = () => {
                                     </li>}
 
                                     {user && role === "moderator" && <li className=" ">
-                                        <NavLink to="/dashboard/reportProduct" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
+                                        <NavLink to="/dashboard/pendingProduct" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
                                     </li>}
                                     {user && role === "admin" && <li className=" ">
                                         <NavLink to="/dashboard/allUsers" className={({ isActive }) => `inline-block font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} >Dashboard</NavLink>
