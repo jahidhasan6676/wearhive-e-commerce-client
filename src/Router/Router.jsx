@@ -18,6 +18,8 @@ import PendingProduct from "../Pages/Dashboard/moderator/PendingProduct";
 import ModeratorRoute from "./ModeratorRoute";
 import ApproveProduct from "../Pages/Dashboard/moderator/ApproveProduct";
 import RejectedProduct from "../Pages/Dashboard/moderator/RejectedProduct";
+import ManageUsers from "../Pages/Dashboard/admin/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +73,7 @@ export const router = createBrowserRouter([
                 path:"cart",
                 element:<Cart/>
             },
+            
             // seller route
 
             {
@@ -85,7 +88,9 @@ export const router = createBrowserRouter([
                 path:"myProductUpdate/:id",
                 element:<PrivateRoute><SellerRoute><MyProductUpdate/></SellerRoute></PrivateRoute>
             },
+
             // moderator route
+
             {
                 path:"pendingProduct",
                 element:<PrivateRoute><ModeratorRoute><PendingProduct/></ModeratorRoute></PrivateRoute>
@@ -97,6 +102,13 @@ export const router = createBrowserRouter([
             {
                 path:"rejectProduct",
                 element:<PrivateRoute><ModeratorRoute><RejectedProduct/></ModeratorRoute></PrivateRoute>
+            },
+
+            // admin route
+
+            {
+                path:"manageUsers",
+                element:<PrivateRoute><AdminRoute><ManageUsers/></AdminRoute></PrivateRoute>
             }
         ]
     }

@@ -128,7 +128,7 @@ const Sidebar = () => {
                                             }`
                                         }><FaChartPie /> Statistics</NavLink>
 
-                                        <NavLink to="/" className={({ isActive }) =>
+                                        <NavLink to="/dashboard/manageUsers" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
