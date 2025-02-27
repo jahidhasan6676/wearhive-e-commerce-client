@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 
-
-const MenProductCard = ({ menProduct }) => {
-    const { photo, productName, price, _id } = menProduct || {};
-
+const KidProductCard = ({ kidProduct }) => {
+    const { photo, productName, price, _id } = kidProduct || {};
     return (
         <div>
             <img src={photo} alt="" className="h-[400px] w-full" />
@@ -18,4 +16,4 @@ const MenProductCard = ({ menProduct }) => {
     );
 };
 
-export default MenProductCard;
+export default KidProductCard;

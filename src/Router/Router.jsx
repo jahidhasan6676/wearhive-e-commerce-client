@@ -20,6 +20,7 @@ import ApproveProduct from "../Pages/Dashboard/moderator/ApproveProduct";
 import RejectedProduct from "../Pages/Dashboard/moderator/RejectedProduct";
 import ManageUsers from "../Pages/Dashboard/admin/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import ProductDetails from "../Pages/ProductDetails";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path:"/kid",
                 element:<Kids/>
+            },
+            {
+                path:"/productDetails/:id",
+                element:<ProductDetails/>
             }
             
             
