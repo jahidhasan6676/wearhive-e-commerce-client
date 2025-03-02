@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 
 const ApproveProduct = () => {
@@ -47,7 +48,7 @@ const ApproveProduct = () => {
                             <td className="px-6 py-3 flex justify-center items-center"> <img src={approveProduct.photo} alt="" className="w-[50px] h-[50px] rounded-md " /> </td>
                             <td className="px-6 py-3">{approveProduct.productName}</td>
                             <td className="px-6 py-3">{approveProduct.productCategory}</td>
-                            <td className="px-6 py-3 underline">Details</td>
+                            <td className="px-6 py-3 underline"><Link to={`/productDetails/${approveProduct._id}`} >Details</Link></td>
                             <td className="px-2 md:px-3 lg:px-6 py-3">
                                 <button  className="bg-green-500 text-white px-3 py-1 mr-2 rounded-full">{approveProduct.status}</button>
                             </td>

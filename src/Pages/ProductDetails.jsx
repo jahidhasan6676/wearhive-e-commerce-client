@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
-import { div } from "framer-motion/client";
+
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -39,7 +39,7 @@ const ProductDetails = () => {
                     {/* Rating */}
                     <div className="flex items-center space-x-2 my-2">
                         <span className="text-yellow-500 text-lg">★★★★☆</span>
-                        <span className="text-gray-500 text-sm">({product.reviews})</span>
+                        <span className="text-gray-500 text-sm">(0)</span>
                     </div>
 
                     {/* Price */}
