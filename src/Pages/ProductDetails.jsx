@@ -3,7 +3,6 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
 
-
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
     const { id } = useParams();
@@ -22,53 +21,56 @@ const ProductDetails = () => {
 
     return (
         <div className="py-20 w-11/12 lg:w-8/12 mx-auto">
-            <div className=" grid md:grid-cols-2 gap-5">
+            <div className="md:flex gap-5 space-y-5 md:space-y-0">
                 {/* Image Section */}
-                <div className="flex justify-center items-center  ">
+                <div className="flex-1 w-full">
                     <img
                         src={product.photo}
                         alt={product.name}
-                        className="w-[450px] h-[500px] object-cover rounded-lg"
+                        className="w-full h-[550px] object-contain rounded-lg"
                     />
                 </div>
 
                 {/* Product Info */}
-                <div className="min-h-[400px] flex flex-col justify-center">
+                <div className="flex-1 flex flex-col justify-center">
                     <h1 className="text-2xl font-semibold">{product.productName}</h1>
 
                     {/* Rating */}
-                    <div className="flex items-center space-x-2 my-2">
-                        <span className="text-yellow-500 text-lg">★★★★☆</span>
-                        <span className="text-gray-500 text-sm">(0)</span>
+                    <div className="flex items-center space-x-2 mt-2">
+                        <span className="text-yellow-500 text-lg">★★★★★</span>
+                        <span className="text-gray-500 text-sm">(122)</span>
                     </div>
 
                     {/* Price */}
-                    <div className="text-xl font-semibold">${product.price}</div>
+                    <div className="text-2xl font-semibold mt-8">${product.price}</div>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-sm mt-3">{product.description}</p>
+                    <p className="text-gray-600 text-sm mt-8">{product.description}</p>
 
                     {/* Select Size */}
                     <div className="mt-4">
                         <h3 className="text-md font-medium">Select Size</h3>
-                        <div className="flex space-x-3 mt-2">
-                            <p className="border px-3 py-1 rounded-lg bg-gray-100">SM</p>
-                            <p className="border px-3 py-1 rounded-lg bg-gray-100">M</p>
-                            <p className="border px-3 py-1 rounded-lg bg-gray-100">L</p>
-                            <p className="border px-3 py-1 rounded-lg bg-gray-100">XL</p>
+                        <div className="flex space-x-3 mt-4">
+                            <p className="border px-3 py-1 rounded-sm bg-gray-100">S</p>
+                            <p className="border px-3 py-1 rounded-sm bg-gray-100">M</p>
+                            <p className="border px-3 py-1 rounded-sm bg-gray-100">L</p>
+                            <p className="border px-3 py-1 rounded-sm bg-gray-100">XL</p>
+                            <p className="border px-3 py-1 rounded-sm bg-gray-100">XXL</p>
                         </div>
                     </div>
 
                     {/* Add to Cart Button */}
-                    <button className="mt-5 w-fit hover:bg-primary border-b-4  border-b-secondary  hover:text-white py-2 px-4 text-sm font-medium rounded-lg  transition duration-300">
+                    <button className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
                         ADD TO CART
                     </button>
 
-                    {/* Category */}
-                    <div className="mt-4 text-sm text-gray-600">
-                        <p>
-                            <span className="font-medium text-black">Category:</span> {product.productCategory}
-                        </p>
+                    <hr className="mt-8"/>
+
+                    {/* Additional Info */}
+                    <div className="mt-6 text-sm text-gray-600">
+                        <p>100% Original product.</p>
+                        <p>Cash on delivery is available on this product.</p>
+                        <p>Easy return and exchange policy within 7 days.</p>
                     </div>
                 </div>
             </div>
