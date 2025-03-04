@@ -4,8 +4,8 @@ const KidProductCard = ({ kidProduct }) => {
     const { photo, productName, price, _id } = kidProduct || {};
     return (
         <div>
-            <img src={photo} alt="" className="h-[400px] w-full" />
-            <div className="mt-2">
+            <img src={photo} alt="" className="h-auto max-h-[350px] object-contain" />
+            <div className="mt-2 w-full">
                 <h2>{productName}</h2>
                 <p>${price}</p>
                 <Link to={`/productDetails/${_id}`}>

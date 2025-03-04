@@ -3,20 +3,29 @@ import { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { FaBox, FaChartPie, FaPlus, FaTicketAlt, FaUsers } from "react-icons/fa";
-import { IoMdHome } from "react-icons/io";
+import { IoIosLogOut, IoMdHome } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { MdOutlinePending, MdReportProblem } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
+import { Clock, CheckCircle, XCircle } from "lucide-react";
+import useAuth from "../../../Hooks/useAuth";
 const Sidebar = () => {
     const [isActive, setActive] = useState(false);
     const [role, isLoading] = useRole();
+    const {signOutUser} = useAuth();
+    const navigate = useNavigate();
 
     // Sidebar Responsive Handler
     const handleToggle = () => {
         setActive(!isActive);
     };
+
+    const handleUserLogOut = () => {
+        signOutUser()
+        navigate("/login")
+    }
     
     return (
         <div className="">
@@ -96,25 +105,25 @@ const Sidebar = () => {
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><MdOutlinePending /> Pending Product</NavLink>
+                                        }><Clock className="text-yellow-500 w-[18px] h-[18px]" /> Pending Product</NavLink>
                                         <NavLink to="/dashboard/approveProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FcApprove/> Approve Product</NavLink>
+                                        }> <CheckCircle className="text-green-600 w-[18px] h-[18px]" /> Approve Product</NavLink>
                                         <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FcDisapprove/> Rejected Product</NavLink>
+                                        }>  <XCircle className="text-red-600 w-[18px] h-[18px]" /> Rejected Product</NavLink>
                                         <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><MdReportProblem /> Report Product</NavLink>
+                                        }><MdReportProblem className="w-[18px] h-[18px]" /> Report Product</NavLink>
                                     </>
                                 }
 
@@ -145,28 +154,24 @@ const Sidebar = () => {
                                 }
 
                            
-                            <div className="">
+                            <div className="space-y-4">
                                 <hr className="mt-[100px]" />
-                                <NavLink to="/" className={({ isActive }) =>
+                                <NavLink to="/dashboard/profile" className={({ isActive }) =>
                                     `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                         ? "bg-gray-100"
                                         : "hover:bg-gray-100"
                                     }`
-                                }><CgProfile className="text-lg" /> Profile</NavLink>
+                                }><CgProfile className="w-[18px] h-[18px]" /> Profile</NavLink>
 
                                 <NavLink to="/" className={({ isActive }) =>
                                     `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                         ? "bg-gray-100"
                                         : "hover:bg-gray-100"
                                     }`
-                                }><CgProfile className="text-lg" /> Home</NavLink>
+                                }><IoMdHome className="w-[18px] h-[18px]" /> Home</NavLink>
 
-                                <NavLink to="/" className={({ isActive }) =>
-                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                        ? "bg-gray-100"
-                                        : "hover:bg-gray-100"
-                                    }`
-                                }><CgProfile className="text-lg" /> LogOut</NavLink>
+                                <button onClick={handleUserLogOut} className="
+                                    flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full"><IoIosLogOut className="w-[18px] h-[18px]" /> LogOut</button>
 
                             </div>
                         </nav>

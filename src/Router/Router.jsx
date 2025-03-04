@@ -21,6 +21,7 @@ import RejectedProduct from "../Pages/Dashboard/moderator/RejectedProduct";
 import ManageUsers from "../Pages/Dashboard/admin/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import ProductDetails from "../Pages/ProductDetails";
+import Profile from "../Pages/Dashboard/allRole/Profile";
 
 
 export const router = createBrowserRouter([
@@ -114,6 +115,13 @@ export const router = createBrowserRouter([
             {
                 path:"manageUsers",
                 element:<PrivateRoute><AdminRoute><ManageUsers/></AdminRoute></PrivateRoute>
+            },
+
+            // all role
+
+            {
+                path:"profile",
+                element:<PrivateRoute><Profile/></PrivateRoute>
             }
         ]
     }
