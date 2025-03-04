@@ -2,12 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
+import useAuth from "../Hooks/useAuth";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import useWishlist from "../Hooks/useWishlist";
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+    const [, , refetch] = useWishlist();
+    const { user } = useAuth();
     const { id } = useParams();
 
-    const { data: products = [], isLoading } = useQuery({
+    const { data: products = [], isLoading, } = useQuery({
         queryKey: ["products", id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/allProduct/${id}`);
@@ -18,6 +25,47 @@ const ProductDetails = () => {
     if (isLoading) return <LoadingSpinner />;
 
     const product = products[0];
+
+    // product item add
+    const handleAddProduct = async (product) => {
+
+        const productItem = {
+            productId: product?._id,
+            productName: product?.productName,
+            price: parseInt(product?.price),
+            manCategory: product?.manCategory,
+            email: user?.email,
+        }
+
+        // product item add database
+        const item = await axiosSecure.post(`/productItem`, productItem)
+
+        if (item.data.insertedId) {
+            toast.success(`${product.productName} Successfully Added`)
+            refetch();
+        }
+
+    }
+
+    // product add wishlist
+    const handleWishlistProduct = async (product) => {
+
+        const wishlistItem = {
+            productId: product?._id,
+            productName: product?.productName,
+            price: parseInt(product?.price),
+            manCategory: product?.manCategory,
+            email: user?.email,
+        }
+
+        // product item add database
+        const wishlist = await axiosPublic.post(`/wishlistItem`, wishlistItem)
+        if (wishlist.data.insertedId) {
+            toast.success(`${product.productName} Successfully Added`)
+            refetch();
+        }
+
+    }
 
     return (
         <div className="py-20 w-11/12 lg:w-8/12 mx-auto">
@@ -59,12 +107,18 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    {/* Add to Cart Button */}
-                    <button className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
-                        ADD TO CART
-                    </button>
+                    <div className="flex gap-3">
+                        {/* Add to Cart Button */}
+                        <button onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
+                            ADD TO CART
+                        </button>
+                        {/* Add to wishlist Button */}
+                        <button onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
+                            Add Wishlist
+                        </button>
+                    </div>
 
-                    <hr className="mt-8"/>
+                    <hr className="mt-8" />
 
                     {/* Additional Info */}
                     <div className="mt-6 text-sm text-gray-600">

@@ -18,7 +18,7 @@ const LatestProduct = () => {
         }
     })
     if (isLoading) return <LoadingSpinner />
-    console.log(latestProducts)
+    
     return (
         <div className="w-11/12 mx-auto pb-20">
             <div className="mb-10 text-center">
