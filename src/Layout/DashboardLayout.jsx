@@ -4,7 +4,7 @@ import DashboardNav from "../Pages/Shared/DashboardNav";
 
 const DashboardLayout = () => {
     return (
-        <div className='relative min-h-screen md:flex bg-white'>
+        <div className='relative min-h-screen md:flex bg-white mt-[60px] md:mt-[0px]'>
             {/* Left Side: Sidebar Component */}
             <Sidebar />
             {/* Right Side: Dashboard Dynamic Content */}

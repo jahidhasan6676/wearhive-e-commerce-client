@@ -4,15 +4,15 @@ import useAxiosSecure from "./useAxiosSecure";
 const useItem = () => {
     const axiosSecure = useAxiosSecure();
 
-  const { data: items = [], isLoading, refetch, error } = useQuery({
-    queryKey: ["items"],
+  const { data: cart = [], isLoading, refetch, error } = useQuery({
+    queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allItemProduct"); 
       return res.data;
     },
   });
 
-  return [items, isLoading, refetch, error];
+  return [cart, isLoading, refetch, error];
 };
 
 export default useItem;

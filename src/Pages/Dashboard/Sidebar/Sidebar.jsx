@@ -8,7 +8,6 @@ import { IoHome } from "react-icons/io5";
 import { MdOutlinePending, MdReportProblem } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { FcApprove, FcDisapprove } from "react-icons/fc";
 import { Clock, CheckCircle, XCircle } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
 const Sidebar = () => {
@@ -30,8 +29,8 @@ const Sidebar = () => {
     return (
         <div className="">
             {/* Small Screen Navbar */}
-            <div className="bg-white flex justify-between md:hidden">
-                <div>
+            <div className="fixed top-0 z-50 w-full bg-white flex justify-between md:hidden">
+                <div className="">
                     <div className="block cursor-pointer p-4 font-bold">
                         <Link to="/"><div className=" flex items-center gap-1">
                             <img className="w-[25px]" src={logo} alt="" />

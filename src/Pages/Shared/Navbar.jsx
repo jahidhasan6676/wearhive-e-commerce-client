@@ -16,14 +16,14 @@ const Navbar = () => {
     const [wishlist] = useWishlist();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    
+
     const handleUserLogOut = () => {
         signOutUser();
         navigate("/login");
     };
 
-    
-    
+
+
 
     return (
         <>
@@ -34,7 +34,7 @@ const Navbar = () => {
                         <img className="w-[30px]" src={logo} alt="" />
                         <p className="text-[24px] font-bold uppercase">Shop<span className="text-secondary">Per</span></p>
                     </div>
-                    
+
                     {/* menu section for larger screens */}
                     <div className="hidden md:block">
                         <ul className="flex items-center gap-6">
@@ -45,20 +45,22 @@ const Navbar = () => {
 
                             {user?.email && role === "customer" && <li><NavLink to="/dashboard/cart" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "seller" &&  <li><NavLink to="/dashboard/addProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
+                            {user?.email && role === "seller" && <li><NavLink to="/dashboard/addProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
                             {user?.email && role === "moderator" && <li><NavLink to="/dashboard/pendingProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "admin" &&  <li><NavLink to="/dashboard/statistics" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
+                            {user?.email && role === "admin" && <li><NavLink to="/dashboard/statistics" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
                         </ul>
                     </div>
-                    
+
                     {/* icon section */}
-                    <div className="flex items-center gap-4 relative">
-                        <button className="text-xl hover:bg-secondary p-1 rounded-full hover:text-white duration-200">
-                            <PiShoppingCartThin />
-                        </button>
-                        <p className="absolute right-[97px] -top-[2px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
+                    <div className="flex items-center gap-4 ">
+                        <Link to="/wishlist"><div className="relative">
+                            <button className="text-xl hover:bg-secondary p-1 rounded-full hover:text-white duration-200">
+                                <PiShoppingCartThin />
+                            </button>
+                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
+                        </div></Link>
                         {user ? (
                             <button onClick={handleUserLogOut} className="hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white">Logout</button>
                         ) : (
@@ -66,7 +68,7 @@ const Navbar = () => {
                                 <button className="hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white">Login</button>
                             </Link>
                         )}
-                        
+
                         {/* mobile hamburger menu section */}
                         <div className="md:hidden" onClick={() => setOpen(!open)}>
                             <MdMenu className="text-3xl" />

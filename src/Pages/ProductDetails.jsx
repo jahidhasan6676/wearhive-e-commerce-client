@@ -34,6 +34,8 @@ const ProductDetails = () => {
             productName: product?.productName,
             price: parseInt(product?.price),
             manCategory: product?.manCategory,
+            photo: product?.photo,
+            quantity: product?.quantity,
             email: user?.email,
         }
 
@@ -55,6 +57,7 @@ const ProductDetails = () => {
             productName: product?.productName,
             price: parseInt(product?.price),
             manCategory: product?.manCategory,
+            photo: product?.photo,
             email: user?.email,
         }
 
