@@ -22,8 +22,11 @@ const LatestProduct = () => {
     return (
         <div className="w-11/12 mx-auto pb-20">
             <div className="mb-10 text-center">
-                <h1 className="text-2xl md:text-3xl font-medium mb-3 "><span className="text-gray-500">LATEST</span> COLLECTIONS</h1>
-                <p className="text-gray-500">Discover the trendiest picks of the season, handpicked just for you!</p>
+            <h2 className="text-2xl md:text-3xl font-medium uppercase relative w-fit inline">
+                <span className="text-gray-500">LATEST</span> COLLECTION
+                <hr className="absolute top-[17px] md:top-[20px] left-[245px] md:left-[306px] border-[1px] border-gray-600 w-[20px] sm:w-[50px] " />
+            </h2>
+                <p className="text-gray-500 mt-3">Discover the trendiest picks of the season, handpicked just for you!</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                 {latestProducts?.map(latestProduct => <React.Fragment key={latestProduct?._id}><Link to={`/productDetails/${latestProduct?._id}`}><div className="">

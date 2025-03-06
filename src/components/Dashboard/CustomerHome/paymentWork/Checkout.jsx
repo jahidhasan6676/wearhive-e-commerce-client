@@ -3,10 +3,10 @@ import usePrice from "../../../../Hooks/usePrice";
 const Checkout = () => {
     const [total,shippingFee,subTotal] = usePrice();
     return (
-        <div className="w-11/12 mx-auto py-20">
+        <div className="w-11/12 mx-auto py-10">
             <div className="grid lg:grid-cols-2 gap-10">
                 {/* Delivery Information Form */}
-                <div>
+                <div className="bg-white rounded-md p-3 md:p-6 lg:p-10">
 
                     <h2 className="text-2xl font-medium uppercase relative">
                         <span className="text-gray-500">DELIVERY</span> INFORMATION
@@ -38,7 +38,7 @@ const Checkout = () => {
                 </div>
 
                 {/* Cart Totals and Payment Method */}
-                <div>
+                <div className="bg-white rounded-md p-3 md:p-6 lg:p-10">
                     <h2 className="text-2xl font-medium uppercase relative">
                         <span className="text-gray-500">CART</span> TOTALS
                         <hr className="absolute top-[14px] left-[168px] border-[1px] border-gray-600 w-[50px] " />

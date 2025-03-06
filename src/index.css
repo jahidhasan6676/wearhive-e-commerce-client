@@ -13,7 +13,7 @@ body{
 
 /* Custom Styles */
 .input-field {
-    @apply border p-2 w-full outline-none focus:ring-2 focus:ring-black rounded-md;
+    @apply border border-gray-200 p-2 w-full outline-none focus:ring-1 focus:ring-black  rounded-md;
 }
 
 .payment-option {

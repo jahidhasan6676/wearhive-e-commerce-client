@@ -21,7 +21,7 @@ const CategorySection = () => {
 
     return (
         <div className="w-11/12 mx-auto py-20">
-            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10">Shop by Category</h2>
+            <h2 className="text-2xl md:text-3xl font-medium uppercase text-center mb-10"><span className="text-gray-500">Shop by</span> Category</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6">
                 {categories.map((category, index) => (
                     <div
