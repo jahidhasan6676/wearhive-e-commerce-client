@@ -35,7 +35,7 @@ const ProductDetails = () => {
             price: parseInt(product?.price),
             manCategory: product?.manCategory,
             photo: product?.photo,
-            quantity: product?.quantity,
+            orderQuantity: parseInt(1),
             email: user?.email,
         }
 
@@ -43,7 +43,7 @@ const ProductDetails = () => {
         const item = await axiosSecure.post(`/productItem`, productItem)
 
         if (item.data.insertedId) {
-            toast.success(`${product.productName} Successfully Added`)
+            toast.success(`${product?.productName} Successfully Added`)
             refetch();
         }
 
@@ -64,7 +64,7 @@ const ProductDetails = () => {
         // product item add database
         const wishlist = await axiosPublic.post(`/wishlistItem`, wishlistItem)
         if (wishlist.data.insertedId) {
-            toast.success(`${product.productName} Successfully Added`)
+            toast.success(`${product?.productName} Successfully Added`)
             refetch();
         }
 
@@ -76,15 +76,15 @@ const ProductDetails = () => {
                 {/* Image Section */}
                 <div className="flex-1 w-full">
                     <img
-                        src={product.photo}
-                        alt={product.name}
+                        src={product?.photo}
+                        alt={product?.productName}
                         className="w-full h-[550px] object-contain rounded-lg"
                     />
                 </div>
 
                 {/* Product Info */}
                 <div className="flex-1 flex flex-col justify-center">
-                    <h1 className="text-2xl font-semibold">{product.productName}</h1>
+                    <h1 className="text-2xl font-semibold">{product?.productName}</h1>
 
                     {/* Rating */}
                     <div className="flex items-center space-x-2 mt-2">
@@ -93,10 +93,10 @@ const ProductDetails = () => {
                     </div>
 
                     {/* Price */}
-                    <div className="text-2xl font-semibold mt-8">${product.price}</div>
+                    <div className="text-2xl font-semibold mt-8">${product?.price}</div>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-sm mt-8">{product.description}</p>
+                    <p className="text-gray-600 text-sm mt-8">{product?.description}</p>
 
                     {/* Select Size */}
                     <div className="mt-4">
@@ -116,7 +116,7 @@ const ProductDetails = () => {
                             ADD TO CART
                         </button>
                         {/* Add to wishlist Button */}
-                        <button onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
+                        <button onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm">
                             Add Wishlist
                         </button>
                     </div>

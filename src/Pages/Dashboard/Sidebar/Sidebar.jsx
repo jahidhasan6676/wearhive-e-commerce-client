@@ -6,6 +6,7 @@ import { FaBox, FaChartPie, FaPlus, FaTicketAlt, FaUsers } from "react-icons/fa"
 import { IoIosLogOut, IoMdHome } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
 import { MdOutlinePending, MdReportProblem } from "react-icons/md";
+import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
 import { Clock, CheckCircle, XCircle } from "lucide-react";
@@ -72,7 +73,7 @@ const Sidebar = () => {
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaPlus />My Cart</NavLink>
+                                        }><IoCartOutline className=" w-[18px] h-[18px]" />My Cart</NavLink>
                                     </>
                                 }
 
@@ -84,14 +85,14 @@ const Sidebar = () => {
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaPlus />Add Product</NavLink>
+                                        }><FaPlus className="text-green-600 w-[18px] h-[18px]" />Add Product</NavLink>
 
                                         <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaBox />My Product</NavLink>
+                                        }><FaBox className="text-green-600 w-[18px] h-[18px]" />My Product</NavLink>
 
                                     </>
                                 }
@@ -134,21 +135,21 @@ const Sidebar = () => {
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaChartPie /> Statistics</NavLink>
+                                        }><FaChartPie className="text-green-600 w-[18px] h-[18px]" /> Statistics</NavLink>
 
                                         <NavLink to="/dashboard/manageUsers" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaUsers />Manage Users</NavLink>
+                                        }><FaUsers className="text-green-600 w-[18px] h-[18px]" />Manage Users</NavLink>
 
                                         <NavLink to="/" className={({ isActive }) =>
                                             `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                                 ? "bg-gray-100"
                                                 : "hover:bg-gray-100"
                                             }`
-                                        }><FaTicketAlt />Manage Coupon</NavLink>
+                                        }><FaTicketAlt className="text-green-600 w-[18px] h-[18px]" />Manage Coupon</NavLink>
                                     </>
                                 }
 
