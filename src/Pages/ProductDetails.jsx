@@ -6,6 +6,7 @@ import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useWishlist from "../Hooks/useWishlist";
+import useRole from "../Hooks/useRole";
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -13,6 +14,7 @@ const ProductDetails = () => {
     const [, , refetch] = useWishlist();
     const { user } = useAuth();
     const { id } = useParams();
+    const [role] = useRole();
 
     const { data: products = [], isLoading, } = useQuery({
         queryKey: ["products", id],
@@ -112,11 +114,11 @@ const ProductDetails = () => {
 
                     <div className="flex gap-3">
                         {/* Add to Cart Button */}
-                        <button onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm">
+                        <button disabled={role != "customer"} onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
                             ADD TO CART
                         </button>
                         {/* Add to wishlist Button */}
-                        <button onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm">
+                        <button disabled={role != "customer"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
                             Add Wishlist
                         </button>
                     </div>

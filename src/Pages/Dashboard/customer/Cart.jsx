@@ -29,8 +29,7 @@ const Cart = () => {
         }
     }
 
-    // 
-    console.log(total)
+    
     return (
         <>
             <div className="w-11/12 mx-auto py-20">

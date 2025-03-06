@@ -1,6 +1,7 @@
 import React from "react";
 import useWishlist from "../../Hooks/useWishlist";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 
 const Wishlist = () => {
