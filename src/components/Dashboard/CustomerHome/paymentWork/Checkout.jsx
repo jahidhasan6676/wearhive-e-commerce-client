@@ -1,4 +1,7 @@
+import usePrice from "../../../../Hooks/usePrice";
+
 const Checkout = () => {
+    const [total,shippingFee,subTotal] = usePrice();
     return (
         <div className="w-11/12 mx-auto py-20">
             <div className="grid lg:grid-cols-2 gap-10">
@@ -43,17 +46,17 @@ const Checkout = () => {
                     <div className="mt-6 space-y-2">
                         <div className="flex justify-between">
                             <p>Subtotal</p>
-                            <p className="font-semibold">$84.00</p>
+                            <p className="font-semibold">${subTotal.toFixed(2)}</p>
                         </div>
                         <hr className="mb-3" />
                         <div className="flex justify-between">
                             <p>Shipping Fee</p>
-                            <p className="font-semibold">$10.00</p>
+                            <p className="font-semibold">${shippingFee.toFixed(2)}</p>
                         </div>
                         <hr className="mb-3" />
                         <div className="flex justify-between">
                             <p className="font-bold">Total</p>
-                            <p className="font-bold">$94.00</p>
+                            <p className="font-bold">${total.toFixed(2)}</p>
                         </div>
                     </div>
 
