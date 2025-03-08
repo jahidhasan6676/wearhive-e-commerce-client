@@ -7,9 +7,6 @@ import useCart from "../../../../../Hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
-
-
 const CheckoutForm = () => {
     const [cart] = useCart();
     const [error, setError] = useState("");
@@ -24,7 +21,6 @@ const CheckoutForm = () => {
     useEffect(() => {
         axiosSecure.post("/payment-intent", { price: total })
             .then(res => {
-                console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
             })
 
@@ -84,11 +80,13 @@ const CheckoutForm = () => {
                     name: user?.displayName,
                     price: total,
                     transactionId: paymentIntent.id,
-                    data: new Date(),
+                    date: new Date(),
                     cartIds: cart.map(item => item._id),
                     productIds: cart.map(item => item.productId),
                     status: 'Pending',
                     deliveryInfo: storedDeliveryInfo,
+                    method: "stripe",
+                    payment: "success"
                 }
 
                 const res = await axiosSecure.post("/payments", payment);
@@ -123,7 +121,7 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe || !clientSecret} className="bg-purple-900 rounded-md px-2 py-1 mt-2 text-white">
+            <button type="submit" disabled={!stripe || !clientSecret} className="bg-purple-700 rounded-md px-2 py-1 mt-4 text-white">
                 Pay
             </button>
             <p className="text-red-500">{error}</p>

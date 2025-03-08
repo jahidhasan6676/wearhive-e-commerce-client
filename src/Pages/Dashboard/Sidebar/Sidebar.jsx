@@ -101,14 +101,14 @@ const Sidebar = () => {
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaPlus className="text-green-600 w-[18px] h-[18px]" />Add Product</NavLink>
+                                    }><FaPlus className=" w-[18px] h-[18px]" />Add Product</NavLink>
 
                                     <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaBox className="text-green-600 w-[18px] h-[18px]" />My Product</NavLink>
+                                    }><FaBox className=" w-[18px] h-[18px]" />My Product</NavLink>
 
                                 </>
                             }

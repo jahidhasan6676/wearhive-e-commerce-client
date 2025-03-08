@@ -9,7 +9,7 @@ const MyProduct = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    // user products data load
+    // seller products data load
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
