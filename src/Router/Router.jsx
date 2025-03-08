@@ -24,6 +24,9 @@ import ProductDetails from "../Pages/ProductDetails";
 import Profile from "../Pages/Dashboard/allRole/Profile";
 import Wishlist from "../Pages/wishlist/Wishlist";
 import Checkout from "../components/Dashboard/CustomerHome/paymentWork/CheckOut";
+import StripePayment from "../components/Dashboard/CustomerHome/paymentWork/stripe-payment/StripePayment";
+import MyOrder from "../Pages/Dashboard/customer/MyOrder";
+import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -84,11 +87,23 @@ export const router = createBrowserRouter([
             
             {
                 path:"cart",
-                element:<Cart/>
+                element:<PrivateRoute><Cart/></PrivateRoute>
             },
             {
                 path:"checkout",
-                element:<Checkout/>
+                element:<PrivateRoute><Checkout/></PrivateRoute>
+            },
+            {
+                path:"stripePayment",
+                element:<PrivateRoute><StripePayment/></PrivateRoute>
+            },
+            {
+                path:"myOrder",
+                element:<PrivateRoute><MyOrder/></PrivateRoute>
+            },
+            {
+                path:"paymentHistory",
+                element:<PrivateRoute><PaymentHistory/></PrivateRoute>
             },
             
             // seller route

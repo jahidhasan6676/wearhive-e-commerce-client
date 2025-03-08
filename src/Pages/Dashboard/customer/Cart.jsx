@@ -95,7 +95,7 @@ const Cart = () => {
                             </div>
                             <div className="flex justify-end">
                                 <Link to="/dashboard/checkout">
-                                    <button className="mt-4 bg-black text-sm text-white py-3 px-8 w-fit">
+                                    <button disabled={cart?.length === 0} className="mt-4 bg-black text-sm text-white py-3 px-8 w-fit disabled:cursor-not-allowed disabled:opacity-50">
                                         PROCEED TO CHECKOUT
                                     </button>
                                 </Link>

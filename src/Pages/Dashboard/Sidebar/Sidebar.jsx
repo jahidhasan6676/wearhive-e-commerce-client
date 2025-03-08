@@ -9,7 +9,7 @@ import { MdOutlinePending, MdReportProblem } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { Clock, CheckCircle, XCircle } from "lucide-react";
+import { Clock, CheckCircle, XCircle,ClipboardList,CreditCard     } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
 const Sidebar = () => {
     const [isActive, setActive] = useState(false);
@@ -76,6 +76,20 @@ const Sidebar = () => {
                                             : "hover:bg-gray-100"
                                         }`
                                     }><IoCartOutline className=" w-[18px] h-[18px]" />My Cart</NavLink>
+
+                                    <NavLink to="/dashboard/myOrder" className={({ isActive }) =>
+                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><ClipboardList  className=" w-[18px] h-[18px]" />My Order</NavLink>
+
+                                    <NavLink to="/dashboard/paymentHistory" className={({ isActive }) =>
+                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><CreditCard    className=" w-[18px] h-[18px]" />Payment History</NavLink>
                                 </>
                             }
 
