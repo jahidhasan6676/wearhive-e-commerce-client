@@ -4,14 +4,10 @@ import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 
+
 const NewOrders = () => {
-    const [status, setStatus] = useState("Order Placed");
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-
-    const handleStatusChange = (e) => {
-        setStatus(e.target.value);
-    };
 
     // seller products data load
     const { data: newOrders = [], isLoading, refetch } = useQuery({
@@ -21,8 +17,18 @@ const NewOrders = () => {
             return data.data;
         }
     })
-    if (isLoading) return <LoadingSpinner />
 
+     // order placed update
+     const handleStatusChange = async(newOrderPlaced,id) => {
+        const res = await axiosSecure.patch(`/order-placed-update/${id}`,{newOrderPlaced} )
+        console.log(res.data)
+        if(res.data.modifiedCount > 0){
+            refetch();
+        }
+    };
+    
+    if (isLoading) return <LoadingSpinner />
+    console.log(newOrders)
 
     return (
         <div className="w-11/12 mx-auto py-10">
@@ -61,15 +67,16 @@ const NewOrders = () => {
                             {/* Order Status Dropdown */}
                             <div>
                                 <select
-                                    value={status}
-                                    onChange={handleStatusChange}
+                                    defaultValue={newOrder?.status}
+                                    onChange={(e)=>handleStatusChange(e.target.value,newOrder?._id)}
                                     className="border px-3 py-2 rounded-md bg-white shadow-sm cursor-pointer focus:outline-none"
                                 >
                                     <option>Order Placed</option>
-                                    <option>Packing</option>
-                                    <option>Shipped</option>
-                                    <option>Out for delivery</option>
-                                    <option>Delivered</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Packing">Packing</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Out for delivery">Out for delivery</option>
+                                    <option value="Delivered">Delivered</option>
                                 </select>
                             </div></div>)
                     }

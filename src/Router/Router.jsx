@@ -28,6 +28,7 @@ import StripePayment from "../components/Dashboard/CustomerHome/paymentWork/stri
 import MyOrder from "../Pages/Dashboard/customer/MyOrder";
 import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
 import NewOrders from "../Pages/Dashboard/sellerHome/NewOrders";
+import Statistics from "../Pages/Dashboard/admin/Statistics";
 
 
 export const router = createBrowserRouter([
@@ -146,6 +147,10 @@ export const router = createBrowserRouter([
             {
                 path:"manageUsers",
                 element:<PrivateRoute><AdminRoute><ManageUsers/></AdminRoute></PrivateRoute>
+            },
+            {
+                path:"statistics",
+                element:<PrivateRoute><AdminRoute><Statistics/></AdminRoute></PrivateRoute>
             },
 
             // all role

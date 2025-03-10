@@ -7,7 +7,7 @@ const ManageUsersModal = ({ activeModal, setActiveModal, handleUpdateUserRole })
     };
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
                 <h3 className="text-lg font-bold mb-4">Select Role for {activeModal.name}</h3>
                 

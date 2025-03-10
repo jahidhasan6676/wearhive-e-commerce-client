@@ -22,9 +22,6 @@ const Navbar = () => {
         navigate("/login");
     };
 
-
-
-
     return (
         <>
             <nav className="border-b sticky top-0 backdrop:blur-sm bg-white z-50">

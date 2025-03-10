@@ -158,21 +158,21 @@ const Sidebar = () => {
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaChartPie className="text-green-600 w-[18px] h-[18px]" /> Statistics</NavLink>
+                                    }><FaChartPie className=" w-[18px] h-[18px]" /> Statistics</NavLink>
 
                                     <NavLink to="/dashboard/manageUsers" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaUsers className="text-green-600 w-[18px] h-[18px]" />Manage Users</NavLink>
+                                    }><FaUsers className=" w-[18px] h-[18px]" />Manage Users</NavLink>
 
                                     <NavLink to="/" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaTicketAlt className="text-green-600 w-[18px] h-[18px]" />Manage Coupon</NavLink>
+                                    }><FaTicketAlt className=" w-[18px] h-[18px]" />Manage Coupon</NavLink>
                                 </>
                             }
 

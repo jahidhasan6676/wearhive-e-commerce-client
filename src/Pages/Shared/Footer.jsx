@@ -31,12 +31,12 @@ const Footer = () => {
                 <div>
                     <h2 className="text-xl font-semibold mb-3">Categories</h2>
                     <ul className="text-gray-400 space-y-2 text-sm">
-                        <li><Link className="hover:text-white">Home</Link></li>
-                        <li><Link className="hover:text-white">Shop</Link></li>
+                        <li><Link to="/" className="hover:text-white">Home</Link></li>
+                        <li><Link to="/men" className="hover:text-white">Men</Link></li>
+                        <li><Link to="/women" className="hover:text-white">Women</Link></li>
+                        <li><Link to="/kid" className="hover:text-white">Kids</Link></li>
                         <li><Link className="hover:text-white">Blog</Link></li>
-                        <li><Link className="hover:text-white">About</Link></li>
                         <li><Link className="hover:text-white">Contact</Link></li>
-                        <li><Link className="hover:text-white">Policy</Link></li>
                     </ul>
                 </div>
 
@@ -53,19 +53,21 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* Recent Tweets */}
+                {/* Special Offers & Announcements */}
                 <div className="">
-                    <h2 className="text-xl font-semibold mb-3 ">Recent Tweets</h2>
-                    <div className="text-gray-400 text-sm space-y-3">
+                    <h2 className="text-xl font-semibold mb-3">Special Offers & Announcements</h2>
+                    <div className="text-gray-400 space-y-2 text-sm">
                         <div>
-                            <p className="font-semibold text-white">@Aminur Islam</p>
-                            <p>@ShopCart Greetings! #HTML_Template</p>
-                            <p>Grab your item, 50% Big Sale Offer !!</p>
+                            <p className="font-medium text-white">🎉 Buy 2, Get 1 Free!</p>
+                            <p>Limited Time Offer, Hurry Up!</p>
                         </div>
                         <div>
-                            <p className="font-semibold text-white">@Somrat Islam</p>
-                            <p>@ShopCart Hey! #HTML_Template</p>
-                            <p>Grab your item, 50% Big Sale Offer !!</p>
+                            <p className="font-medium text-white">🛍 Flat 30% Discount on Women's Collection!</p>
+                            <p>Grab your favorite outfits at the best price.</p>
+                        </div>
+                        <div>
+                            <p className="font-medium text-white">🚀 Free Shipping on Orders Over $50!</p>
+                            <p>Enjoy free shipping for a hassle-free shopping experience.</p>
                         </div>
                     </div>
                 </div>

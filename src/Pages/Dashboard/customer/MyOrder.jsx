@@ -53,7 +53,7 @@ const MyOrder = () => {
                                         <td className="p-3">{new Date(order?.date).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}</td>
                                         <td className="p-3 text-sm">{order?.transactionId}</td>
                                         <td className="p-3">
-                                            <span className="px-3 py-1 text-sm text-white rounded-full" style={{ backgroundColor: order.status === "Paid" ? "green" : "blue" }}>
+                                            <span className="px-3 py-1 text-sm text-white rounded-full" style={{ backgroundColor: order?.status === "Pending" ? "yellow" : order?.status === "Packing" ? "Orange" : order?.status === "Shipped" ? "blue" : order?.status === "Out for delivery" ? "purple" : order?.status === "Delivered" ? "green" : ""}}>
                                                 {order.status}
                                             </span>
                                         </td>
