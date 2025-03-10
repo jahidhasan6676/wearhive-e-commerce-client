@@ -28,8 +28,7 @@ const NewOrders = () => {
     };
     
     if (isLoading) return <LoadingSpinner />
-    console.log(newOrders)
-
+    
     return (
         <div className="w-11/12 mx-auto py-10">
             <div className="rounded-md bg-white min-h-[calc(100vh-140px)]">

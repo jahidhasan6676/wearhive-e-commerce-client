@@ -7,9 +7,14 @@ import {
     FaInstagram,
 } from "react-icons/fa6";
 import useAuth from "../../../Hooks/useAuth";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Profile = () => {
     const { user } = useAuth();
+   
+
     return (
         <div className=" bg-gray-100 ">
             <div className="w-11/12 py-10 mx-auto">
@@ -39,10 +44,10 @@ const Profile = () => {
                             <FaLinkedin className="text-4xl text-gray-500  cursor-pointer hover:text-blue-500 border p-1.5 rounded-badge" />
                             <FaInstagram className="text-4xl text-gray-500  cursor-pointer hover:text-pink-500 border p-1.5 rounded-badge" />
                         </div>
-                        <button className="text-gray-500 lg:w-auto w-full justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
+                        <Link to="/dashboard/profileUpdate"><button  className="text-gray-500 lg:w-auto w-full justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
                             <FaPen></FaPen>
                             Edit
-                        </button>
+                        </button></Link>
                     </div>
 
                     {/* Personal Information */}
@@ -50,10 +55,10 @@ const Profile = () => {
                         <div className="flex lg:flex-row flex-col justify-between items-center">
                             <h3 className="text-lg font-semibold">Personal Information</h3>
 
-                            <button className="text-gray-500 hidden lg:flex items-center gap-2 border px-3 py-1 rounded-badge">
+                            <Link to="/dashboard/profileUpdate"><button className="text-gray-500 hidden lg:flex items-center gap-2 border px-3 py-1 rounded-badge">
                                 <FaPen></FaPen>
                                 Edit
-                            </button>
+                            </button></Link>
                         </div>
                         <div className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-4 text-gray-700">
                             <p>
@@ -82,10 +87,10 @@ const Profile = () => {
                                 <br />
                                 <strong>Team Manager</strong>
                             </p>
-                            <button className="text-gray-500 lg:hidden justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
+                            <Link to="/dashboard/profileUpdate"><button onClick={() => setIsModalOpen(true)} className="text-gray-500 lg:hidden justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
                                 <FaPen></FaPen>
                                 Edit
-                            </button>
+                            </button></Link>
                         </div>
                     </div>
 
@@ -93,10 +98,10 @@ const Profile = () => {
                     <div className="mt-8 p-4 border rounded-lg">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-semibold">Address</h3>
-                            <button className="text-gray-500 hidden  lg:flex items-center gap-2 border px-3 py-1 rounded-badge">
+                            <Link to="/dashboard/profileUpdate"><button  className="text-gray-500 hidden  lg:flex items-center gap-2 border px-3 py-1 rounded-badge">
                                 <FaPen></FaPen>
                                 Edit
-                            </button>
+                            </button></Link>
                         </div>
                         <div className="mt-2 grid grid-cols-1 lg:grid-cols-2 gap-4 text-gray-700">
                             <p>
@@ -121,14 +126,16 @@ const Profile = () => {
                                 <br />
                                 <strong> AS4568384</strong>
                             </p>
-                            <button className="text-gray-500 lg:hidden justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
+                            <Link to="/dashboard/profileUpdate"><button className="text-gray-500 lg:hidden justify-center flex items-center gap-2 border px-3 py-1 rounded-badge">
                                 <FaPen></FaPen>
                                 Edit
-                            </button>
+                            </button></Link>
                         </div>
                     </div>
                 </div>
             </div>
+           
+
         </div>
     );
 };

@@ -153,7 +153,7 @@ const Sidebar = () => {
                             {/* admin */}
                             {
                                 role === "admin" && <>
-                                    <NavLink to="/statistics" className={({ isActive }) =>
+                                    <NavLink to="/dashboard/statistics" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"

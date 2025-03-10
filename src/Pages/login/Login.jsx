@@ -2,12 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../Shared/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
-
-
+import { useState } from "react";
 
 const Login = () => {
   const { loginUser, setUser } = useAuth();
   const navigate = useNavigate();
+  const [pass, setPass] = useState('');
+  const [mail, setMail] = useState('');
+
   const handleLoginUser = (e) => {
     e.preventDefault();
 
@@ -28,10 +30,30 @@ const Login = () => {
 
   }
 
+  // handle seller, moderator and admin email
+  const handleSeller = () =>{
+    setPass("123456")
+    setMail("seller@gmail.com")
+  }
+  const handleModerator = () => {
+    setPass("123456")
+    setMail("moderator@gmail.com")
+  }
+  const handleAdmin = () => {
+    setPass("123456")
+    setMail("kamrul@gmail.com")
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-[#fde1ff]">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl text-center font-semibold  mb-6">Login Now</h2>
+
+        <div className="flex justify-center items-center gap-2 mb-4">
+          <button onClick={handleSeller}>Seller</button>
+          <button onClick={handleModerator}>Moderator</button>
+          <button onClick={handleAdmin}>Admin</button>
+        </div>
 
         <form onSubmit={handleLoginUser}>
           {/* Email & Password Input */}
@@ -39,12 +61,14 @@ const Login = () => {
             <input
               name="email"
               type="email"
+              defaultValue={mail}
               placeholder="Email Address *"
               className="w-full px-4 py-2 border rounded-md focus:outline-none  "
             />
             <input
               name="password"
               type="password"
+              defaultValue={pass}
               placeholder="Password *"
               className="w-full px-4 py-2 border rounded-md focus:outline-none "
             />

@@ -16,10 +16,21 @@ const Navbar = () => {
     const [wishlist] = useWishlist();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const [showLoginModal, setShowLoginModal] = useState(false);
 
     const handleUserLogOut = () => {
         signOutUser();
         navigate("/login");
+    };
+
+    const handleCartClick = () => {
+        if (!user) {
+            setShowLoginModal(true);
+        }
+        
+        else {
+            navigate("/dashboard/cart");
+        }
     };
 
     return (
@@ -51,11 +62,16 @@ const Navbar = () => {
                     </div>
 
                     {/* icon section */}
-                    <div className="flex items-center gap-4 ">
-                        <Link to="/wishlist"><div className="relative">
-                            <button className="text-xl hover:bg-secondary p-1 rounded-full hover:text-white duration-200">
+                    <div className="flex items-center gap-3 ">
+                        <div className="relative">
+                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleCartClick} className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50">
                                 <PiShoppingCartThin />
                             </button>
+                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
+                        </div>
+
+                        <Link to="/wishlist"><div className="relative">
+                            <button className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200"><ion-icon name="heart-outline"></ion-icon></button>
                             <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
                         </div></Link>
                         {user ? (
@@ -115,6 +131,24 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Login Modal */}
+            {showLoginModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-sm">
+                        <h2 className="text-lg font-semibold mb-4 text-center">Please Login First</h2>
+                        <p className="text-gray-600 text-center mb-4">You need to log in to access the cart.</p>
+                        <div className="flex justify-center gap-4">
+                            <button onClick={() => setShowLoginModal(false)} className="px-4 py-2 bg-gray-300 rounded">
+                                Cancel
+                            </button>
+                            <button onClick={() => navigate("/login")} className="px-4 py-2 bg-blue-600 text-white rounded">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

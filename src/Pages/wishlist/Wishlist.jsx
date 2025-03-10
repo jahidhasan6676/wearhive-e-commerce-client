@@ -1,17 +1,15 @@
 import React from "react";
 import useWishlist from "../../Hooks/useWishlist";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Link } from "react-router-dom";
-
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Wishlist = () => {
     const [wishlist, , refetch] = useWishlist();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // product item delete
     const handleWishlistProductDelete = async (id) => {
 
-        const res = await axiosPublic.delete(`/wishlistProduct-delete/${id}`)
+        const res = await axiosSecure.delete(`/wishlistProduct-delete/${id}`)
         if (res.data.deletedCount) {
             refetch()
         }

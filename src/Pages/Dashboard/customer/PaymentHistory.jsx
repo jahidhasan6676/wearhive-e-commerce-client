@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -6,8 +6,6 @@ import useAuth from "../../../Hooks/useAuth";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 
 const PaymentHistory = () => {
-    const [payments, setPayments] = useState([]);
-
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
@@ -32,7 +30,7 @@ const PaymentHistory = () => {
                 </h2>
                 {PaymentHistory.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20">
-                        <p className="text-gray-500 text-lg">You have no orders yet.</p>
+                        <p className="text-gray-500 text-lg">You have no payment yet.</p>
                     </div>
                 ) : (
                     <div className="overflow-x-auto">

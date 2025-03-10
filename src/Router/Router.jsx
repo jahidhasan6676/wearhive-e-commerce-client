@@ -29,6 +29,7 @@ import MyOrder from "../Pages/Dashboard/customer/MyOrder";
 import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
 import NewOrders from "../Pages/Dashboard/sellerHome/NewOrders";
 import Statistics from "../Pages/Dashboard/admin/Statistics";
+import ProfileUpdate from "../Pages/Dashboard/allRole/ProfileUpdate";
 
 
 export const router = createBrowserRouter([
@@ -158,6 +159,10 @@ export const router = createBrowserRouter([
             {
                 path:"profile",
                 element:<PrivateRoute><Profile/></PrivateRoute>
+            },
+            {
+                path:"profileUpdate",
+                element:<PrivateRoute><ProfileUpdate/></PrivateRoute>
             }
         ]
     }

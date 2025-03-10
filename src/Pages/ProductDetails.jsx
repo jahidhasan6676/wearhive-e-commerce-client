@@ -7,6 +7,8 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useWishlist from "../Hooks/useWishlist";
 import useRole from "../Hooks/useRole";
+import { useState } from "react";
+import LoginModal from "../Modal/LoginModal";
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -15,6 +17,7 @@ const ProductDetails = () => {
     const { user } = useAuth();
     const { id } = useParams();
     const [role] = useRole();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data: products = [], isLoading, } = useQuery({
         queryKey: ["products", id],
@@ -30,6 +33,11 @@ const ProductDetails = () => {
 
     // product item add
     const handleAddProduct = async (product) => {
+
+        if (!user) {
+            setIsModalOpen(true); // Show the modal if user is not logged in
+            return;
+        }
 
         const productItem = {
             productId: product?._id,
@@ -53,6 +61,11 @@ const ProductDetails = () => {
 
     // product add wishlist
     const handleWishlistProduct = async (product) => {
+
+        if (!user) {
+            setIsModalOpen(true); // Show the modal if user is not logged in
+            return;
+        }
 
         const wishlistItem = {
             productId: product?._id,
@@ -114,11 +127,12 @@ const ProductDetails = () => {
 
                     <div className="flex gap-3">
                         {/* Add to Cart Button */}
-                        <button disabled={role != "customer"} onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
+                        <button disabled={role === "seller" || role === "moderator" || role === "admin"
+                        } onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
                             ADD TO CART
                         </button>
                         {/* Add to wishlist Button */}
-                        <button disabled={role != "customer"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
+                        <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
                             Add Wishlist
                         </button>
                     </div>
@@ -133,6 +147,8 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            {/* Modal */}
+            <LoginModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
         </div>
     );
 };
