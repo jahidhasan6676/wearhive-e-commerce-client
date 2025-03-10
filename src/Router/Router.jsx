@@ -27,6 +27,7 @@ import Checkout from "../components/Dashboard/CustomerHome/paymentWork/CheckOut"
 import StripePayment from "../components/Dashboard/CustomerHome/paymentWork/stripe-payment/StripePayment";
 import MyOrder from "../Pages/Dashboard/customer/MyOrder";
 import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
+import NewOrders from "../Pages/Dashboard/sellerHome/NewOrders";
 
 
 export const router = createBrowserRouter([
@@ -119,6 +120,10 @@ export const router = createBrowserRouter([
             {
                 path:"myProductUpdate/:id",
                 element:<PrivateRoute><SellerRoute><MyProductUpdate/></SellerRoute></PrivateRoute>
+            },
+            {
+                path:"newOrders",
+                element:<PrivateRoute><SellerRoute><NewOrders/></SellerRoute></PrivateRoute>
             },
 
             // moderator route

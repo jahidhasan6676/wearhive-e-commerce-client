@@ -4,7 +4,6 @@ import MyProductTable from "../../../components/Dashboard/sellerHome/MyProductTa
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-
 const MyProduct = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -42,8 +41,6 @@ const MyProduct = () => {
             }
         });
     }
-
-    
 
     return (
         <div className="overflow-x-auto bg-gray-100 min-h-screen">
