@@ -5,7 +5,8 @@ import { CgProfile } from "react-icons/cg";
 import { FaBox, FaChartPie, FaPlus, FaTicketAlt, FaUsers } from "react-icons/fa";
 import { IoIosLogOut, IoMdHome } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
-import { MdOutlinePending, MdReportProblem } from "react-icons/md";
+import {  MdReportProblem } from "react-icons/md";
+import { BiSolidDashboard } from "react-icons/bi";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
@@ -153,12 +154,12 @@ const Sidebar = () => {
                             {/* admin */}
                             {
                                 role === "admin" && <>
-                                    <NavLink to="/dashboard/statistics" className={({ isActive }) =>
+                                    <NavLink to="/dashboard/adminDashboard" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaChartPie className=" w-[18px] h-[18px]" /> Statistics</NavLink>
+                                    }><BiSolidDashboard className=" w-[18px] h-[18px]" />Dashboard</NavLink>
 
                                     <NavLink to="/dashboard/manageUsers" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive

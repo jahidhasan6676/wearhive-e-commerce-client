@@ -28,8 +28,8 @@ import StripePayment from "../components/Dashboard/CustomerHome/paymentWork/stri
 import MyOrder from "../Pages/Dashboard/customer/MyOrder";
 import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
 import NewOrders from "../Pages/Dashboard/sellerHome/NewOrders";
-import Statistics from "../Pages/Dashboard/admin/Statistics";
 import ProfileUpdate from "../Pages/Dashboard/allRole/ProfileUpdate";
+import Dashboard from "../Pages/Dashboard/admin/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -150,8 +150,8 @@ export const router = createBrowserRouter([
                 element:<PrivateRoute><AdminRoute><ManageUsers/></AdminRoute></PrivateRoute>
             },
             {
-                path:"statistics",
-                element:<PrivateRoute><AdminRoute><Statistics/></AdminRoute></PrivateRoute>
+                path:"adminDashboard",
+                element:<PrivateRoute><AdminRoute><Dashboard/></AdminRoute></PrivateRoute>
             },
 
             // all role
