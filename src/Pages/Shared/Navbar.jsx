@@ -53,12 +53,11 @@ const Navbar = () => {
                             <li className="relative group">
                                 <div className="flex items-center">
                                     {/* Shop Text */}
-                                    <NavLink
+                                    <button
                                         to="#"
-                                        className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}
-                                    >
+                                        className="font-medium text-[17px] hover:text-secondary">
                                         Shop
-                                    </NavLink>
+                                    </button>
 
                                     {/* Icon next to Shop */}
                                     <span className=" transition-transform duration-300 ease-in-out  group-hover:rotate-180">
@@ -67,7 +66,7 @@ const Navbar = () => {
                                 </div>
 
                                 {/* Dropdown Menu */}
-                                <ul className="absolute left-0 w-[140px] hidden space-y-2 bg-white group-hover:block">
+                                <ul className="absolute pb-4 left-0 w-[140px] hidden space-y-2 bg-white group-hover:block">
                                     <li className="mt-5">
                                         <NavLink
                                             to="/men"
@@ -96,16 +95,16 @@ const Navbar = () => {
                             </li>
 
                             {/* Other links */}
-                            <li><NavLink to="/" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Contact</NavLink></li>
-                            <li><NavLink to="/" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>About</NavLink></li>
+                            <li><NavLink to="/about" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>About</NavLink></li>
+                            <li><NavLink to="/contact" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Contact</NavLink></li>
 
-                            {user?.email && role === "customer" && <li><NavLink to="/dashboard/cart" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Dashboard</NavLink></li>}
+                            {user?.email && role === "customer" && <li><NavLink to="/dashboard/cart" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "seller" && <li><NavLink to="/dashboard/addProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Dashboard</NavLink></li>}
+                            {user?.email && role === "seller" && <li><NavLink to="/dashboard/addProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "moderator" && <li><NavLink to="/dashboard/pendingProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Dashboard</NavLink></li>}
+                            {user?.email && role === "moderator" && <li><NavLink to="/dashboard/pendingProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "admin" && <li><NavLink to="/dashboard/adminDashboard" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Dashboard</NavLink></li>}
+                            {user?.email && role === "admin" && <li><NavLink to="/dashboard/adminDashboard" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
                         </ul>
                     </div>
 

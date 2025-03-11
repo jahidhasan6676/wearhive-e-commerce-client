@@ -30,6 +30,9 @@ import PaymentHistory from "../Pages/Dashboard/customer/PaymentHistory";
 import NewOrders from "../Pages/Dashboard/sellerHome/NewOrders";
 import ProfileUpdate from "../Pages/Dashboard/allRole/ProfileUpdate";
 import Dashboard from "../Pages/Dashboard/admin/Dashboard";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
+
 
 
 export const router = createBrowserRouter([
@@ -65,6 +68,14 @@ export const router = createBrowserRouter([
             {
                 path:"/wishlist",
                 element:<Wishlist/>
+            },
+            {
+                path:"/about",
+                element:<About/>
+            },
+            {
+                path:"/contact",
+                element:<Contact/>
             },
             
             

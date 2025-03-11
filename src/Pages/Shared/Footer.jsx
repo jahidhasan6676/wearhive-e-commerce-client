@@ -15,7 +15,7 @@ const Footer = () => {
                     </p>
                     <div className="mt-3 space-y-1 text-gray-400 text-sm">
                         <p className="flex items-center gap-1"><IoLocation className="text-white" /> Dhaka,Bangladesh.</p>
-                        <p className="flex items-center gap-1"><IoCall className="text-white" /> +880 18186676</p>
+                        <p className="flex items-center gap-1"><IoCall className="text-white" /> +8801818186676</p>
                         <p className="flex items-center gap-1"><MdEmail className="text-white" /> info@shopper.com</p>
                     </div>
                     <div className="flex space-x-3 mt-4">
@@ -35,8 +35,8 @@ const Footer = () => {
                         <li><Link to="/men" className="hover:text-white">Men</Link></li>
                         <li><Link to="/women" className="hover:text-white">Women</Link></li>
                         <li><Link to="/kid" className="hover:text-white">Kids</Link></li>
-                        <li><Link className="hover:text-white">Blog</Link></li>
-                        <li><Link className="hover:text-white">Contact</Link></li>
+                        <li><Link to="/about" className="hover:text-white">About</Link></li>
+                        <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
                     </ul>
                 </div>
 
