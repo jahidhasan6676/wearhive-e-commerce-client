@@ -16,7 +16,7 @@ const Footer = () => {
                     <div className="mt-3 space-y-1 text-gray-400 text-sm">
                         <p className="flex items-center gap-1"><IoLocation className="text-white" /> Dhaka,Bangladesh.</p>
                         <p className="flex items-center gap-1"><IoCall className="text-white" /> +8801818186676</p>
-                        <p className="flex items-center gap-1"><MdEmail className="text-white" /> info@shopper.com</p>
+                        <p className="flex items-center gap-1"><MdEmail className="text-white" /> shopper@gmail.com</p>
                     </div>
                     <div className="flex space-x-3 mt-4">
                         <Link className="text-blue-500"><i className="fab fa-facebook"></i></Link>

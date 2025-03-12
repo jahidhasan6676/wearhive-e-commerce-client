@@ -1,4 +1,7 @@
 import React from "react";
+import { FaRegClock } from "react-icons/fa";
+import { IoLocation } from "react-icons/io5";
+import { MdOutlineAddIcCall, MdOutlineMailOutline } from "react-icons/md";
 
 const Contact = () => {
   return (
@@ -17,15 +20,63 @@ const Contact = () => {
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Contact Info Section */}
-        <div className="bg-gray-100 p-3 md:p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Contact Info</h2>
-          <p><strong>Phone:</strong> +8801818186676</p>
-          <p className="mt-2"><strong>Email:</strong>info@shopper.com</p>
-          <p className="mt-2"><strong>Address:</strong> ElliotGang, Chandina, Comilla</p>
+        <div className="bg-gray-100 p-3 md:p-6 rounded-md">
+          <h2 className="text-xl font-semibold mb-4">
+            Contact Information
+          </h2>
+          <div className="mt-8 space-y-6">
+            {/* Address */}
+            <div className="flex items-start space-x-4">
+              <div className="bg-blue-100 p-3 rounded-full">
+              <IoLocation className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className=" font-medium text-gray-800">Our Address:</h4>
+                <p className="text-gray-600">
+                  ElliotGang, Chandina, Comilla
+                </p>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-start space-x-4">
+              <div className="bg-blue-100 p-3 rounded-full">
+              <MdOutlineAddIcCall className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-800">Call Us:</h4>
+                <p className="text-gray-600">+8801818186676</p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start space-x-4">
+              <div className="bg-blue-100 p-3 rounded-full">
+              <MdOutlineMailOutline className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-800">Email Us:</h4>
+                <p className="text-gray-600">shopper@gmail.com</p>
+              </div>
+            </div>
+
+            {/* Opening Hours */}
+            <div className="flex items-start space-x-4">
+              <div className="bg-blue-100 p-3 rounded-full">
+              <FaRegClock className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-800">Opening Hours:</h4>
+                <p className="text-gray-600">
+                  Mon - Fri: 8am - 11pm, Sat - Sun: 8am - 12pm
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Contact Form Section */}
-        <div className="bg-gray-100 p-3 md:p-6 rounded-lg">
+        <div className="bg-gray-100 p-3 md:p-6 rounded-md">
           <h2 className="text-xl font-semibold mb-4">Get In Touch</h2>
           <form>
             <div className="grid grid-cols-2 gap-4">
