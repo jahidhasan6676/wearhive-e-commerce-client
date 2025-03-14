@@ -27,7 +27,7 @@ const TopSellerProduct = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                 {topSellerProduct?.map(product => (
                     <div key={product._id} className="">
-                        <Link to={`/productDetails/${product?._id}`}><img src={product?.photo} alt="" className="h-auto max-h-[350px] object-contain" /></Link>
+                        <Link to={`/productDetails/${product?._id}`}><img src={product?.photo} alt="" className="w-full object-cover" /></Link>
                         <div className="mt-2">
                             <h2 className="">{product?.productName}</h2>
                             <div className="flex items-center gap-10">

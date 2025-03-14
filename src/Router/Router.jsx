@@ -32,6 +32,7 @@ import ProfileUpdate from "../Pages/Dashboard/allRole/ProfileUpdate";
 import Dashboard from "../Pages/Dashboard/admin/Dashboard";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
+import SellerDashboard from "../Pages/Dashboard/sellerHome/SellerDashboard";
 
 
 
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
             
             // seller route
 
+            {
+                path:"sellerDashboard",
+                element:<PrivateRoute><SellerRoute><SellerDashboard/></SellerRoute></PrivateRoute>
+            },
             {
                 path:"addProduct",
                 element:<PrivateRoute><SellerRoute><AddProduct/></SellerRoute></PrivateRoute>

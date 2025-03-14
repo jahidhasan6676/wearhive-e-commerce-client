@@ -5,7 +5,7 @@ const WomenProductCard = ({womenProduct}) => {
     const {photo,productName,price,_id} = womenProduct || {};
     return (
         <div>
-            <img src={photo} alt="" className="h-auto max-h-[350px] object-contain" />
+            <img src={photo} alt="" className="w-full object-cover" />
             <div className="mt-2">
                 <h2>{productName}</h2>
                 <p>${price}</p>

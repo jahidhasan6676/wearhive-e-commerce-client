@@ -6,15 +6,16 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/Assets/logo.png";
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
-import useWishlist from "../../Hooks/useWishlist";
 import { IoMdArrowDropdown } from "react-icons/io";
+import useCount from "../../Hooks/useCount";
 
 
 
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
     const [role] = useRole();
-    const [wishlist] = useWishlist();
+    const [count] = useCount();
+    // const [count,setCount] = useState(0);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -23,6 +24,7 @@ const Navbar = () => {
         signOutUser();
         navigate("/login");
     };
+ 
 
     const handleCartClick = () => {
         if (!user) {
@@ -34,6 +36,16 @@ const Navbar = () => {
         }
     };
 
+    const handleWishClick = () => {
+        if (!user) {
+            setShowLoginModal(true);
+        }
+
+        else {
+            navigate("/wishlist");
+        }
+    };
+   
     return (
         <>
             <nav className="border-b sticky top-0 backdrop:blur-sm bg-white z-50">
@@ -100,7 +112,7 @@ const Navbar = () => {
 
                             {user?.email && role === "customer" && <li><NavLink to="/dashboard/cart" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
-                            {user?.email && role === "seller" && <li><NavLink to="/dashboard/addProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
+                            {user?.email && role === "seller" && <li><NavLink to="/dashboard/sellerDashboard" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
                             {user?.email && role === "moderator" && <li><NavLink to="/dashboard/pendingProduct" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Dashboard</NavLink></li>}
 
@@ -108,21 +120,19 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-
-
                     {/* icon section */}
                     <div className="flex items-center gap-3 ">
                         <div className="relative">
-                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleCartClick} className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50">
+                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleCartClick}  className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50">
                                 <PiShoppingCartThin />
                             </button>
-                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
+                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{user ? count?.cartCount : 0}</p>
                         </div>
 
-                        <Link to="/wishlist"><div className="relative">
-                            <button className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200"><ion-icon name="heart-outline"></ion-icon></button>
-                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{wishlist?.length}</p>
-                        </div></Link>
+                        <div className="relative">
+                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleWishClick} className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50"><ion-icon name="heart-outline"></ion-icon></button>
+                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{user ? count?.wishCount : 0}</p>
+                        </div>
                         {user ? (
                             <button onClick={handleUserLogOut} className="hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white">Logout</button>
                         ) : (
@@ -158,6 +168,8 @@ const Navbar = () => {
                                 <li><NavLink to="/men" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Men</NavLink></li>
                                 <li><NavLink to="/women" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Women</NavLink></li>
                                 <li><NavLink to="/kid" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Kids</NavLink></li>
+                                <li><NavLink to="/about" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>About</NavLink></li>
+                                <li><NavLink to="/contact" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Contact</NavLink></li>
 
                                 {user?.email && role === "customer" && <li><NavLink to="/dashboard/cart" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`} onClick={() => setOpen(false)}>Dashboard</NavLink></li>}
 

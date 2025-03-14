@@ -5,15 +5,15 @@ import LoadingSpinner from "../components/loadingSpinner/LoadingSpinner";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
-import useWishlist from "../Hooks/useWishlist";
 import useRole from "../Hooks/useRole";
 import { useState } from "react";
 import LoginModal from "../Modal/LoginModal";
+import useCount from "../Hooks/useCount";
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const [, , refetch] = useWishlist();
+    const [, , refetch] = useCount();
     const { user } = useAuth();
     const { id } = useParams();
     const [role] = useRole();
@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
     const product = products[0];
 
-    // product item add
+    // product cart item add
     const handleAddProduct = async (product) => {
 
         if (!user) {
@@ -50,7 +50,7 @@ const ProductDetails = () => {
         }
 
         // product item add database
-        const item = await axiosSecure.post(`/productItem`, productItem)
+        const item = await axiosSecure.post(`/cartItem`, productItem)
 
         if (item.data.insertedId) {
             toast.success(`${product?.productName} Successfully Added`)
@@ -77,7 +77,7 @@ const ProductDetails = () => {
         }
 
         // product item add database
-        const wishlist = await axiosPublic.post(`/wishlistItem`, wishlistItem)
+        const wishlist = await axiosSecure.post(`/wishlistItem`, wishlistItem)
         if (wishlist.data.insertedId) {
             toast.success(`${product?.productName} Successfully Added`)
             refetch();
@@ -128,11 +128,11 @@ const ProductDetails = () => {
                     <div className="flex gap-3">
                         {/* Add to Cart Button */}
                         <button disabled={role === "seller" || role === "moderator" || role === "admin"
-                        } onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
+                        } onClick={() => handleAddProduct(product)} className="mt-8 w-fit bg-black text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed disabled:opacity-50">
                             ADD TO CART
                         </button>
                         {/* Add to wishlist Button */}
-                        <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed">
+                        <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed disabled:opacity-50">
                             Add Wishlist
                         </button>
                     </div>

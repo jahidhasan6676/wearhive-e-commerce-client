@@ -33,13 +33,13 @@ const OurTeam = () => {
                 </p>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {teamMembers.map((member, index) => (
-                    <div key={index} className=" rounded-lg p-5">
+                    <div key={index} className=" rounded-md">
                         <img
                             src={member.image}
                             alt={member.name}
-                            className="w-full rounded-lg object-cover"
+                            className="w-full rounded-md object-cover"
                         />
                         <div className="flex justify-between items-center">
                             <div>

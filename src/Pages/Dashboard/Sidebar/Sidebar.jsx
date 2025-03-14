@@ -97,6 +97,13 @@ const Sidebar = () => {
                             {/* seller */}
                             {
                                 role === "seller" && <>
+                                    <NavLink to="/dashboard/sellerDashboard" className={({ isActive }) =>
+                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><BiSolidDashboard className=" w-[18px] h-[18px]" />Dashboard</NavLink>
+
                                     <NavLink to="/dashboard/addProduct" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
