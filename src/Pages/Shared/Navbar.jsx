@@ -53,7 +53,7 @@ const Navbar = () => {
                     {/* logo section */}
                     <div className="flex items-center gap-2">
                         <img className="w-[30px]" src={logo} alt="" />
-                        <p className="text-[24px] font-bold uppercase">Shop<span className="text-secondary">Per</span></p>
+                        <p className="text-[24px] font-semibold uppercase">Wear<span className="text-secondary">Hive</span></p>
                     </div>
 
                     {/* Menu section for larger screens */}

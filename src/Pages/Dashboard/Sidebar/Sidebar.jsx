@@ -36,7 +36,7 @@ const Sidebar = () => {
                     <div className="block cursor-pointer font-bold">
                         <Link to="/"><div className=" flex items-center gap-1">
                             <img className="w-[25px]" src={logo} alt="" />
-                            <p className="text-[20px] font-semibold uppercase">Shop<span className="text-secondary">Per</span></p>
+                            <p className="text-[20px] font-semibold uppercase">wear<span className="text-secondary">hive</span></p>
 
                         </div></Link>
                     </div>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                 <div>
                     <div className="px-4 items-center gap-1 hidden md:flex">
                         <img className="w-[25px]" src={logo} alt="" />
-                        <p className="text-[20px] font-semibold uppercase">Shop<span className="text-secondary">Per</span></p>
+                        <p className="text-[20px] font-semibold uppercase">wear<span className="text-secondary">hive</span></p>
 
                     </div>
 

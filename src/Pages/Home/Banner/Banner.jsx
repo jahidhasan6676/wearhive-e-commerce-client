@@ -3,6 +3,15 @@ import arrow_icon from "../../../assets/Assets/arrow.png"
 import hero_image from "../../../assets/Assets/hero_image.png"
 import { motion } from "framer-motion";
 const Banner = () => {
+
+    // Smooth scroll function
+    const scrollToLatestProducts = () => {
+        const section = document.getElementById("latest-products");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <div
             style={{ background: "linear-gradient(180deg, #fde1ff, #e1ffea22)" }}
@@ -20,7 +29,7 @@ const Banner = () => {
                         <p className="text-[40px] md:text-[60px] font-semibold text-text_secondary leading-[50px] md:leading-[70px]">Collections</p>
                         <p className="text-[40px] md:text-[60px] font-semibold text-text_secondary leading-[50px] md:leading-[70px]">for everyone</p>
                     </div>
-                    <div className=" flex justify-center items-center bg-secondary text-white gap-2 w-fit px-6 py-2 rounded-xl cursor-pointer hover:bg-primary">
+                    <div onClick={scrollToLatestProducts} className=" flex justify-center items-center bg-secondary text-white gap-2 w-fit px-6 py-2 rounded-xl cursor-pointer hover:bg-primary">
                         <div className="">Latest Collections</div>
                         <img src={arrow_icon} alt="" className="w-[20px]" />
                     </div>

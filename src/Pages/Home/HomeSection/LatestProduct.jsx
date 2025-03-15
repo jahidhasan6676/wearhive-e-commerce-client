@@ -20,7 +20,7 @@ const LatestProduct = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className="w-11/12 mx-auto pb-20">
+        <div id="latest-products" className="w-11/12 mx-auto pb-20">
             <div className="mb-10 text-center">
                 <h2 className="text-2xl md:text-3xl font-medium uppercase relative w-fit inline">
                     <span className="text-gray-500">LATEST</span> COLLECTION

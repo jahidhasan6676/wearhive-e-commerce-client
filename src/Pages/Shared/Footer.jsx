@@ -9,14 +9,14 @@ const Footer = () => {
 
                 {/* About ShopCart */}
                 <div>
-                    <p className="text-[24px] font-bold uppercase">Shop<span className="text-secondary">Per</span></p>
+                    <p className="text-[24px] font-semibold uppercase">Wear<span className="text-secondary">Hive</span></p>
                     <p className="text-gray-400 text-sm">
                         Shop stylish and affordable boys' and girls' dresses, perfect for students and young fashion enthusiasts. Trendy, comfortable, and high-quality outfits for every occasion.
                     </p>
                     <div className="mt-3 space-y-1 text-gray-400 text-sm">
                         <p className="flex items-center gap-1"><IoLocation className="text-white" /> Dhaka,Bangladesh.</p>
                         <p className="flex items-center gap-1"><IoCall className="text-white" /> +8801818186676</p>
-                        <p className="flex items-center gap-1"><MdEmail className="text-white" /> shopper@gmail.com</p>
+                        <p className="flex items-center gap-1"><MdEmail className="text-white" /> wearhive@gmail.com</p>
                     </div>
                     <div className="flex space-x-3 mt-4">
                         <Link className="text-blue-500"><i className="fab fa-facebook"></i></Link>

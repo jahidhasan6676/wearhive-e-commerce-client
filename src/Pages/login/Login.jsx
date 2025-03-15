@@ -63,14 +63,14 @@ const Login = () => {
               type="email"
               defaultValue={mail}
               placeholder="Email Address *"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none  "
+              className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
             />
             <input
               name="password"
               type="password"
               defaultValue={pass}
               placeholder="Password *"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none "
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-gray-500"
             />
           </div>
 
@@ -99,7 +99,7 @@ const Login = () => {
         </div>
 
         {/* Social Login */}
-        <p className="text-center font-medium mb-3">Login With Social Media</p>
+        
         <SocialLogin />
       </div>
     </div>

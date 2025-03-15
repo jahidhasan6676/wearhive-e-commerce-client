@@ -48,28 +48,28 @@ const Register = () => {
                             name="name"
                             type="text"
                             placeholder="user name *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none  "
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
                         />
                         {/* Email Input */}
                         <input
                             name="email"
                             type="email"
                             placeholder="Email Address *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none  "
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
                         />
                         {/* Image Upload Input */}
                         <input
                             name="image"
                             type="file"
                             accept="image/*"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none"
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-gray-500"
                         />
                         {/* Password Input */}
                         <input
                             name="password"
                             type="password"
                             placeholder="Password *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none "
+                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
                         />
                     </div>
 
@@ -81,7 +81,7 @@ const Register = () => {
                 </form>
                 {/* Sign Up Link */}
                 <p className="text-center text-sm mt-3">
-                    Don't Have an Account? <Link to="/login" className="text-secondary hover:underline">Login</Link>
+                    Already Have an Account? <Link to="/login" className="text-secondary hover:underline">Login</Link>
                 </p>
 
                 {/* OR Divider */}
@@ -92,7 +92,6 @@ const Register = () => {
                 </div>
 
                 {/* Social Login */}
-                <p className="text-center font-medium mb-3">Login With Social Media</p>
                 <SocialLogin />
             </div>
         </div>

@@ -5,6 +5,7 @@ import LatestProduct from './HomeSection/LatestProduct';
 import Service from './HomeSection/Service';
 import SubscriptionForm from './HomeSection/SubscriptionForm';
 import TopSellerProduct from './HomeSection/TopSellerProduct';
+import BrandPartner from './HomeSection/BrandPartner';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <CategorySection></CategorySection>
             <LatestProduct></LatestProduct>
             <TopSellerProduct></TopSellerProduct>
+            <BrandPartner></BrandPartner>
             <Service></Service>
             <SubscriptionForm></SubscriptionForm>
             
