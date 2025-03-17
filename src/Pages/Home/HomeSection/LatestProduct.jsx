@@ -8,7 +8,7 @@ import React from "react";
 const LatestProduct = () => {
     const axiosPublic = useAxiosPublic();
 
-    // user products data load
+    // latest products data load
     const { data: latestProducts = [], isLoading } = useQuery({
         queryKey: ['latestProducts'],
         queryFn: async () => {

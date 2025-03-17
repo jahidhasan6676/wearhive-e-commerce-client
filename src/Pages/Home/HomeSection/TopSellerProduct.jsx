@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 
 const TopSellerProduct = () => {
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
-    // customer payments data load
+    // top seller product data load
     const { data: topSellerProduct = [], isLoading } = useQuery({
         queryKey: ["topSellerProduct"],
         queryFn: async () => {
-            const data = await axiosSecure.get(`/top-seller-product`);
+            const data = await axiosPublic.get(`/top-seller-product`);
             return data.data;
         },
     });

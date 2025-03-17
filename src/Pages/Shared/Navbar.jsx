@@ -9,13 +9,10 @@ import useRole from "../../Hooks/useRole";
 import { IoMdArrowDropdown } from "react-icons/io";
 import useCount from "../../Hooks/useCount";
 
-
-
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
     const [role] = useRole();
-    const [count] = useCount();
-    // const [count,setCount] = useState(0);
+     const [count] = useCount();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -131,7 +128,7 @@ const Navbar = () => {
 
                         <div className="relative">
                             <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleWishClick} className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50"><ion-icon name="heart-outline"></ion-icon></button>
-                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{user ? count?.wishCount : 0}</p>
+                            <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{user ? count.wishCount : 0}</p>
                         </div>
                         {user ? (
                             <button onClick={handleUserLogOut} className="hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white">Logout</button>
