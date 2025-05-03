@@ -12,7 +12,7 @@ import useCount from "../../Hooks/useCount";
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
     const [role] = useRole();
-     const [count] = useCount();
+    const [count] = useCount();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -21,7 +21,7 @@ const Navbar = () => {
         signOutUser();
         navigate("/login");
     };
- 
+
 
     const handleCartClick = () => {
         if (!user) {
@@ -42,7 +42,7 @@ const Navbar = () => {
             navigate("/wishlist");
         }
     };
-   
+
     return (
         <>
             <nav className="border-b sticky top-0 backdrop:blur-sm bg-white z-50">
@@ -59,49 +59,7 @@ const Navbar = () => {
                             <li><NavLink to="/" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Home</NavLink></li>
 
                             {/* Shop Link with Hover and Icon */}
-                            <li className="relative group">
-                                <div className="flex items-center">
-                                    {/* Shop Text */}
-                                    <button
-                                        to="#"
-                                        className="font-medium text-[17px] hover:text-secondary">
-                                        Shop
-                                    </button>
-
-                                    {/* Icon next to Shop */}
-                                    <span className=" transition-transform duration-300 ease-in-out  group-hover:rotate-180">
-                                        <IoMdArrowDropdown className="text-[20px]" />
-                                    </span>
-                                </div>
-
-                                {/* Dropdown Menu */}
-                                <ul className="absolute pb-4 left-0 w-[140px] hidden space-y-2 bg-white group-hover:block">
-                                    <li className="mt-5">
-                                        <NavLink
-                                            to="/men"
-                                            className={({ isActive }) => `block px-4 font-medium text-[17px]  ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}
-                                        >
-                                            Men
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/women"
-                                            className={({ isActive }) => `block px-4 font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}
-                                        >
-                                            Women
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/kid"
-                                            className={({ isActive }) => `block px-4 font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}
-                                        >
-                                            Kids
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li><NavLink to="/shop" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Shop</NavLink></li>
 
                             {/* Other links */}
                             <li><NavLink to="/about" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>About</NavLink></li>
@@ -120,7 +78,7 @@ const Navbar = () => {
                     {/* icon section */}
                     <div className="flex items-center gap-3 ">
                         <div className="relative">
-                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleCartClick}  className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50">
+                            <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={handleCartClick} className="text-xl flex items-center hover:bg-secondary p-1 rounded-full hover:text-white duration-200 disabled:cursor-not-allowed disabled:opacity-50">
                                 <PiShoppingCartThin />
                             </button>
                             <p className="absolute -right-[2px] -top-[4px] bg-black p-1 rounded-full text-xs text-white w-4 h-4 flex justify-center items-center">{user ? count?.cartCount : 0}</p>

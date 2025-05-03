@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-const MenProductCard = ({ menProduct }) => {
-    const { photo, productName, price, _id } = menProduct || {};
-
+const ShopProductCard = ({product}) => {
+    const { photo, productName, price, _id } = product || {};
     return (
         <div className="">
                 <img src={photo} alt="" className="w-full object-cover" />
@@ -18,4 +17,4 @@ const MenProductCard = ({ menProduct }) => {
     );
 };
 
-export default MenProductCard;
+export default ShopProductCard;

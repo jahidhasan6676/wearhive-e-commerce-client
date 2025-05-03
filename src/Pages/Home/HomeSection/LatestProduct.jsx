@@ -20,11 +20,11 @@ const LatestProduct = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div id="latest-products" className="w-11/12 mx-auto pb-20">
+        <div id="latest-products" className="w-11/12 mx-auto py-20">
             <div className="mb-10 text-center">
                 <h2 className="text-2xl md:text-3xl font-medium uppercase relative w-fit inline">
                     <span className="text-gray-500">LATEST</span> COLLECTION
-                    <hr className="absolute top-[17px] md:top-[20px] left-[245px] md:left-[306px] border-[1px] border-gray-600 w-[20px] sm:w-[50px]" />
+                    
                 </h2>
                 <p className="text-gray-500 mt-3">Discover the trendiest picks of the season, handpicked just for you!</p>
             </div>

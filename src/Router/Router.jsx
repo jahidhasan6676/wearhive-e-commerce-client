@@ -11,9 +11,6 @@ import Cart from "../Pages/Dashboard/customer/Cart";
 import PrivateRoute from "./PrivateRoute";
 import MyProductUpdate from "../components/Dashboard/sellerHome/MyProductUpdate";
 import Shop from "../Pages/Shop/Shop";
-import Men from "../Pages/Men/Men";
-import Women from "../Pages/Women/Women";
-import Kids from "../Pages/Kids/Kids";
 import PendingProduct from "../Pages/Dashboard/moderator/PendingProduct";
 import ModeratorRoute from "./ModeratorRoute";
 import ApproveProduct from "../Pages/Dashboard/moderator/ApproveProduct";
@@ -50,18 +47,7 @@ export const router = createBrowserRouter([
                 path:"/shop",
                 element:<Shop/>
             },
-            {
-                path:"/men",
-                element:<Men/>
-            },
-            {
-                path:"/women",
-                element:<Women/>
-            },
-            {
-                path:"/kid",
-                element:<Kids/>
-            },
+            
             {
                 path:"/productDetails/:id",
                 element:<ProductDetails/>
