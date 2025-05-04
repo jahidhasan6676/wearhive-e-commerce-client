@@ -30,6 +30,8 @@ import Dashboard from "../Pages/Dashboard/admin/Dashboard";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import SellerDashboard from "../Pages/Dashboard/sellerHome/SellerDashboard";
+import Blog from "../Pages/Blogs/Blog";
+import AddBlogs from "../Pages/Dashboard/admin/AddBlogs";
 
 
 
@@ -64,6 +66,10 @@ export const router = createBrowserRouter([
                 path:"/contact",
                 element:<Contact/>
             },
+            {
+                path:"/blog",
+                element:<Blog/>
+            }
             
             
         ]
@@ -154,6 +160,10 @@ export const router = createBrowserRouter([
             {
                 path:"adminDashboard",
                 element:<PrivateRoute><AdminRoute><Dashboard/></AdminRoute></PrivateRoute>
+            },
+            {
+                path:"addBlog",
+                element:<PrivateRoute><AdminRoute><AddBlogs/></AdminRoute></PrivateRoute>
             },
 
             // all role

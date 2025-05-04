@@ -175,12 +175,12 @@ const Sidebar = () => {
                                         }`
                                     }><FaUsers className=" w-[18px] h-[18px]" />Manage Users</NavLink>
 
-                                    <NavLink to="/" className={({ isActive }) =>
+                                    <NavLink to="/dashboard/addBlog" className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaTicketAlt className=" w-[18px] h-[18px]" />Manage Coupon</NavLink>
+                                    }><FaTicketAlt className=" w-[18px] h-[18px]" />Add Blog</NavLink>
                                 </>
                             }
 
