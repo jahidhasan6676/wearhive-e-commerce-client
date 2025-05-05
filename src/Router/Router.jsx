@@ -32,6 +32,7 @@ import Contact from "../Pages/Contact/Contact";
 import SellerDashboard from "../Pages/Dashboard/sellerHome/SellerDashboard";
 import Blog from "../Pages/Blogs/Blog";
 import AddBlogs from "../Pages/Dashboard/admin/AddBlogs";
+import BlogDetails from "../Pages/Blogs/BlogDetails";
 
 
 
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
             {
                 path:"/blog",
                 element:<Blog/>
+            },
+            {
+                path:"/blogDetails/:id",
+                element:<BlogDetails/>
             }
             
             

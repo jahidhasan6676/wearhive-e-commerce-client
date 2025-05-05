@@ -81,7 +81,7 @@ const Slider = () => {
                             </div>
                             
                             {/* Content */}
-                            <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 max-w-3xl">
+                            <div className="relative z-10 h-full flex flex-col justify-center w-11/12 mx-auto">
                                 <span className="text-lg font-medium text-white bg-white/20 px-4 py-1.5 rounded-full inline-block mb-6 w-fit backdrop-blur-sm border border-white/20">
                                     {slide.subtitle}
                                 </span>

@@ -7,6 +7,7 @@ import TopSellerProduct from './HomeSection/TopSellerProduct';
 import BrandPartner from './HomeSection/BrandPartner';
 import Test from "./HomeSection/Test";
 import Slider from './Slider/Slider';
+import BlogSection from './HomeSection/BlogSection';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
             <TopSellerProduct></TopSellerProduct>
            
             <BrandPartner></BrandPartner>
+            <BlogSection/>
             <Service></Service>
             <SubscriptionForm></SubscriptionForm>
             
