@@ -22,19 +22,21 @@ const Shop = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 16;
 
-    const { data: products = [], isLoading, error } = useQuery({
+    const { data = {}, isLoading, error } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
             const res = await axiosPublic.get("/allProduct");
-
-            return res.data;
+            return res?.data;
         },
     });
 
-    console.log("products:", products)
+    console.log("products:", data)
+    const allProducts = data?.products || [];
+    const total = data?.total || 0;
+    //console.log("all products",allProducts)
 
     // Filter, Search, Sort
-    const filteredProducts = products
+    const filteredProducts = allProducts
         .filter((product) => {
             const matchesCategory =
                 activeCategory === "all" || product?.manCategory === activeCategory;
@@ -55,7 +57,7 @@ const Shop = () => {
 
     // Pagination
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-    const paginatedProducts = filteredProducts.slice(
+    const paginatedProducts = filteredProducts?.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
@@ -106,9 +108,9 @@ const Shop = () => {
 
                         <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200">
                             <span className="text-gray-600">Showing</span>
-                            <span className="font-medium">{filteredProducts.length}</span>
+                            <span className="font-medium">{filteredProducts?.length}</span>
                             <span className="text-gray-600">of</span>
-                            <span className="font-medium">{products.length}</span>
+                            <span className="font-medium">{total}</span>
                             <span className="text-gray-600">products</span>
                         </div>
                     </div>

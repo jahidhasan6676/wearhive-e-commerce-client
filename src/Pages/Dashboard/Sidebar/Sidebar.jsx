@@ -10,7 +10,7 @@ import { BiSolidDashboard } from "react-icons/bi";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { Clock, CheckCircle, XCircle,ClipboardList,CreditCard,Package     } from "lucide-react";
+import { Clock, CheckCircle, XCircle,ClipboardList,CreditCard,Package, PenLine     } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
 const Sidebar = () => {
     const [isActive, setActive] = useState(false);
@@ -125,6 +125,13 @@ const Sidebar = () => {
                                         }`
                                     }><Package className=" w-[18px] h-[18px]" />New Orders</NavLink>
 
+                                    <NavLink to="/dashboard/chat" className={({ isActive }) =>
+                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><Package className=" w-[18px] h-[18px]" />Chat</NavLink>
+
                                 </>
                             }
 
@@ -180,7 +187,7 @@ const Sidebar = () => {
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaTicketAlt className=" w-[18px] h-[18px]" />Add Blog</NavLink>
+                                    }><PenLine  className=" w-[18px] h-[18px]" />Add Blog</NavLink>
                                 </>
                             }
 

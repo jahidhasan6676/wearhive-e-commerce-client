@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Pages/Shared/Navbar";
 import Footer from "../Pages/Shared/Footer";
+import AIChat from "../components/AIChatBot/AIChat";
 
 
 const MainLayout = () => {
     return (
         <div>
+            <AIChat/>
             <Navbar></Navbar>
             <div className="min-h-[calc(100vh-464px)]">
                 <Outlet></Outlet>
