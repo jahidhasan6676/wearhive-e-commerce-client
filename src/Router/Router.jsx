@@ -34,8 +34,6 @@ import Blog from "../Pages/Blogs/Blog";
 import AddBlogs from "../Pages/Dashboard/admin/AddBlogs";
 import BlogDetails from "../Pages/Blogs/BlogDetails";
 import Chat from "../Pages/Dashboard/Chat/Chat";
-import AIChat from "../components/AIChatBot/AIChat";
-
 
 
 export const router = createBrowserRouter([
@@ -77,10 +75,6 @@ export const router = createBrowserRouter([
                 path:"/blogDetails/:id",
                 element:<BlogDetails/>
             },
-            {
-                path:"/aiChatBot",
-                element:<AIChat/>
-            }
             
             
         ]

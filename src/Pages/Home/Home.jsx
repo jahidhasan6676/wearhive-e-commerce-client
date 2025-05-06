@@ -8,12 +8,14 @@ import BrandPartner from './HomeSection/BrandPartner';
 import Test from "./HomeSection/Test";
 import Slider from './Slider/Slider';
 import BlogSection from './HomeSection/BlogSection';
+import Popup from '../../components/Popup/Popup';
 
 
 const Home = () => {
     return (
         <div>
              {/* <Test/> */}
+             <Popup/>
             <Slider/>
             <CategorySection></CategorySection>
             

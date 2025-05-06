@@ -68,8 +68,6 @@ const Navbar = () => {
                             <li><NavLink to="/contact" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Contact</NavLink></li>
                             <li><NavLink to="/blog" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>Blogs</NavLink></li>
 
-                            <li><NavLink to="/aiChatBot" className={({ isActive }) => `font-medium text-[17px] ${isActive ? 'text-secondary' : 'hover:text-secondary'}`}>AIChatBot</NavLink></li>
-                            
                         </ul>
                     </div>
 
