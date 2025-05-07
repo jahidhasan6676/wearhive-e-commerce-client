@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ChatBotIcon from "./ChatBotIcon";
 import ChatForm from "./ChatForm";
 import ChatMessage from "./ChatMessage";
-import { shopInfo } from "./shop";
+import { shopInfo } from "./shopInfo";
 
 const AIChat = () => {
     const [chatHistory, setChatHistory] = useState([{

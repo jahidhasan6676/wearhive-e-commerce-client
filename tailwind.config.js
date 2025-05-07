@@ -10,7 +10,13 @@ export default {
         primary: "#ff8901",
         secondary: "#fb923c",
         text_primary:"#090909",
-        text_secondary: "#171717"
+        text_secondary: "#171717",
+        'puma-red': '#E41E26',
+        'adidas-blue': '#0066CC',
+        'nike-orange': '#FF6B00',
+        'reebok-red': '#E41E26',
+        'ua-purple': '#5D0FBA',
+        'chanel-black': '#000000',
 
       }
     },

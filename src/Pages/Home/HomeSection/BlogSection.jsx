@@ -22,7 +22,7 @@ const BlogSection = () => {
     return (
         <div className="w-11/12 mx-auto pb-20">
             <div className="flex items-center gap-6 mb-8">
-                <h1 className="text-xl font-semibold">Latest Blogs</h1>
+                <h1 className=" text-2xl md:text-3xl font-medium">Latest Blogs</h1>
                 <Link to="/blog"><p href="#" className="text-sm text-gray-900 hover:underline flex items-center gap-1">View All <IoIosArrowForward className="text-[14px]" /></p></Link>
             </div>
 

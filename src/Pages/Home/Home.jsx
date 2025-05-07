@@ -1,5 +1,4 @@
 import React from 'react';
-import CategorySection from './HomeSection/CategorySection';
 import LatestProduct from './HomeSection/LatestProduct';
 import Service from './HomeSection/Service';
 import SubscriptionForm from './HomeSection/SubscriptionForm';
@@ -9,7 +8,7 @@ import Test from "./HomeSection/Test";
 import Slider from './Slider/Slider';
 import BlogSection from './HomeSection/BlogSection';
 import Popup from '../../components/Popup/Popup';
-
+import CollectionBanner from './HomeSection/CollectionCard';
 
 const Home = () => {
     return (
@@ -17,8 +16,7 @@ const Home = () => {
              {/* <Test/> */}
              <Popup/>
             <Slider/>
-            {/* <CategorySection></CategorySection> */}
-            
+            <CollectionBanner/>
             <LatestProduct></LatestProduct>
             <TopSellerProduct></TopSellerProduct>
            

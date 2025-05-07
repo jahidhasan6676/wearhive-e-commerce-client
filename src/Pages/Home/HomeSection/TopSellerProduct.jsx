@@ -22,7 +22,7 @@ const TopSellerProduct = () => {
         <div className="w-11/12 mx-auto pb-20">
             {/* Section Header */}
             <div className="text-center mb-10">
-                <h2 className="text-3xl font-medium uppercase relative mb-2 ">
+                <h2 className="text-2xl md:text-3xl font-medium uppercase relative mb-2 ">
                     <span className="text-gray-500">BEST</span> SELLER
                 </h2>
                 <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
@@ -33,9 +33,9 @@ const TopSellerProduct = () => {
             {/* Products Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
                 {topSellerProduct?.map(product => (
-                    <div key={product._id} className="group relative bg-white rounded-lg overflow-hidden transition-all duration-300">
+                    <div key={product._id} className="group relative bg-white overflow-hidden transition-all duration-300">
                         {/* Product Image */}
-                        <div className="relative overflow-hidden aspect-square">
+                        <div className="relative overflow-hidden ">
                             <Link to={`/productDetails/${product._id}`}>
                                 <img
                                     src={product?.photo}
@@ -52,40 +52,31 @@ const TopSellerProduct = () => {
                         </div>
 
                         {/* Product Info */}
-                        <div className="p-3">
-                            <h3 className="font-semibold text-gray-800 mb-1transition-colors line-clamp-1">
+                        <div className="mt-2">
+                            {/* Rating */}
+                            <div className="flex items-center space-x-2">
+                                {product?.ratingCount > 0 ? (
+                                    <>
+                                        <span className="text-yellow-400 text-xl">
+                                            {'★'.repeat(Math.floor(product?.averageRating))}
+                                            {'☆'.repeat(5 - Math.floor(product?.averageRating))}
+                                        </span>
+                                        <span className="text-gray-500 text-sm">({product?.ratingCount})</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-yellow-400 text-xl">{'☆'.repeat(5)}</span>
+                                        <span className="text-gray-500 text-sm">(0)</span>
+                                    </>
+                                )}
+                            </div>
+                            <h3 className="font-medium text-gray-700">
                                 {product?.productName}
                             </h3>
                             {/* Price */}
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <span className="font-medium">
-                                        ${product?.price.toFixed(2)}
-                                    </span>
-                                    {product?.originalPrice && (
-                                        <span className="text-sm text-gray-400 line-through ml-2">
-                                            ${product.originalPrice.toFixed(2)}
-                                        </span>
-                                    )}
-                                </div>
-                                {/* Rating */}
-                                <div className="flex items-center space-x-1">
-                                    {product?.ratingCount > 0 ? (
-                                        <>
-                                            <span className="text-yellow-400 text-sm">
-                                                {'★'.repeat(Math.floor(product?.averageRating))}
-                                                {'☆'.repeat(5 - Math.floor(product?.averageRating))}
-                                            </span>
-                                            <span className="text-gray-500 text-xs">({product?.ratingCount})</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="text-yellow-400 text-sm">{'☆'.repeat(5)}</span>
-                                            <span className="text-gray-500 text-xs">(0)</span>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
+                            <p className="font-medium text-gray-500">
+                                ${product?.price.toFixed(2)}
+                            </p>
                         </div>
                     </div>
                 ))}

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Cover = () => {
+    //#eaf1f9
     return (
         <div className='w-full h-[250px] bg-[#fcf6f6]'>
             <div className='w-full h-full flex flex-col justify-center items-center'>

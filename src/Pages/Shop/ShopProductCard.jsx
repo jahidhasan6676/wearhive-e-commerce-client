@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiHeart, FiShoppingCart, FiEye } from 'react-icons/fi';
 
 const ShopProductCard = ({ product }) => {
-    const { photo, productName, price, _id } = product || {};
+    const { photo, productName, price, _id, averageRating, ratingCount } = product || {};
     const [isHovered, setIsHovered] = useState(false);
     const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -47,14 +47,28 @@ const ShopProductCard = ({ product }) => {
             </div>
 
             {/* Product Info */}
-            <div className="mt-3">
-                <Link to={`/productDetails/${_id}`}>
-                    <h3 className="font-medium text-gray-800 hover:text-primary transition line-clamp-1">
-                        {productName}
-                    </h3>
-                </Link>
-
-                <p className="text-lg font-medium text-gray-900">
+            <div className="mt-2">
+                {/* rating */}
+                <div className="flex items-center space-x-2">
+                    {product?.ratingCount > 0 ? (
+                        <>
+                            <span className="text-yellow-400 text-xl">
+                                {'★'.repeat(Math.floor(averageRating))}
+                                {'☆'.repeat(5 - Math.floor(averageRating))}
+                            </span>
+                            <span className="text-gray-500 text-sm">({ratingCount})</span>
+                        </>
+                    ) : (
+                        <>
+                            <span className="text-yellow-400 text-xl">{'☆'.repeat(5)}</span>
+                            <span className="text-gray-500 text-sm">(0)</span>
+                        </>
+                    )}
+                </div>
+                <h3 className="font-medium text-gray-700">
+                    {productName}
+                </h3>
+                <p className="font-medium text-gray-500">
                     ${price.toFixed(2)}
                 </p>
 

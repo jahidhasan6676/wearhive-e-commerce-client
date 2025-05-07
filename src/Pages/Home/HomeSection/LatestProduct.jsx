@@ -42,16 +42,16 @@ const LatestProduct = () => {
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
                             <div className="relative overflow-hidden">
-                                <img 
-                                    src={latestProduct?.photo} 
-                                    alt="" 
+                                <img
+                                    src={latestProduct?.photo}
+                                    alt=""
                                     className="w-full object-cover transition-transform duration-500"
                                     style={{ transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)' }}
                                 />
                                 {hoveredIndex === index && (
-                                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-4 transition-opacity duration-300">
-                                       
-                                        <motion.button 
+                                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-300">
+
+                                        <motion.button
                                             className="p-2 bg-white rounded-full text-gray-800 hover:bg-primary hover:text-white transition"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
@@ -61,30 +61,29 @@ const LatestProduct = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="mt-2">
-                                <h2 className="text-lg font-semibold">{latestProduct?.productName}</h2>
+                            {/* Rating */}
+                            <div className="flex items-center space-x-2 mt-2">
+                                {latestProduct?.ratingCount > 0 ? (
+                                    <>
+                                        <span className="text-yellow-400 text-xl">
+                                            {'★'.repeat(Math.floor(latestProduct?.averageRating))}
+                                            {'☆'.repeat(5 - Math.floor(latestProduct?.averageRating))}
+                                        </span>
+                                        <span className="text-gray-500 text-sm">({latestProduct?.ratingCount})</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-yellow-400 text-xl">{'☆'.repeat(5)}</span>
+                                        <span className="text-gray-500 text-sm">(0)</span>
+                                    </>
+                                )}
                             </div>
-                            <div className="flex items-center justify-between">
-                                {/* price */}
-                                <p className="text-gray-600 text-sm">${latestProduct?.price}</p>
-                                {/* Rating */}
-                                <div className="flex items-center space-x-2 mt-2">
-                                    {latestProduct?.ratingCount > 0 ? (
-                                        <>
-                                            <span className="text-yellow-400 text-lg">
-                                                {'★'.repeat(Math.floor(latestProduct?.averageRating))}
-                                                {'☆'.repeat(5 - Math.floor(latestProduct?.averageRating))}
-                                            </span>
-                                            <span className="text-gray-500 text-sm">({latestProduct?.ratingCount})</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="text-yellow-400 text-lg">{'☆'.repeat(5)}</span>
-                                            <span className="text-gray-500 text-sm">(0)</span>
-                                        </>
-                                    )}
-                                </div>
+                            <div className="">
+                                <h3 className=" font-medium text-gray-700">{latestProduct?.productName}</h3>
                             </div>
+                            {/* price */}
+                            <p className="text-gray-500 font-medium">${latestProduct?.price}</p>
+
                         </motion.div>
                     </Link>
                 ))}
