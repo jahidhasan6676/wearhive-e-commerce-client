@@ -69,7 +69,7 @@ const TopSellerProduct = () => {
                                 </div>
                                 <Link to={`/productDetails/${product?._id}`}>
                                     <button className="text-sm font-medium hover:underline">
-                                        View Details
+                                        View
                                     </button>
                                 </Link>
                             </div>

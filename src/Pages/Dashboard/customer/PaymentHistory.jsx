@@ -1,9 +1,7 @@
-
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
-import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
+import DashboardSpinner from "../../../components/loadingSpinner/DashboardSpinner";
 
 const PaymentHistory = () => {
     const { user } = useAuth();
@@ -18,7 +16,7 @@ const PaymentHistory = () => {
         },
     });
 
-    if (isLoading) return <LoadingSpinner />;
+    if (isLoading) return <DashboardSpinner/>;
 
 
     return (

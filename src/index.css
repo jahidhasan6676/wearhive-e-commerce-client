@@ -21,6 +21,10 @@ body {
     @apply flex items-center space-x-2 border border-gray-300 px-4 py-2 rounded-md cursor-pointer hover:shadow-md;
 }
 
+/* loading span */
+.rotate-square {
+    transform-origin: center;
+  }
 
 
 #chatbot-toggler {
@@ -260,7 +264,7 @@ body {
     .chatbot-popup {
       right: 0;
       bottom: 0;
-      height: 90%;
+      height: 85%;
       border-radius: 0;
       width: 90%;
     }

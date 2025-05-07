@@ -1,6 +1,6 @@
-const LoadingSpinner = () => {
+const DashboardSpinner = () => {
     return (
-        <div className='flex items-center justify-center w-full min-h-[calc(100vh-470px)]'>
+        <div className='flex items-center justify-center w-full min-h-[calc(100vh-60px)]'>
             <div
                 aria-label='Loading...'
                 role='status'
@@ -90,4 +90,4 @@ const LoadingSpinner = () => {
     );
 };
 
-export default LoadingSpinner;
+export default DashboardSpinner;
