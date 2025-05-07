@@ -16,7 +16,7 @@ const ShopProductCard = ({ product }) => {
             {/* Wishlist Button */}
             <button
                 onClick={() => setIsWishlisted(!isWishlisted)}
-                className={`absolute top-3 right-3 z-10 p-2 rounded-full ${isWishlisted ? 'text-red-500' : 'text-gray-400 hover:text-red-500'} bg-white bg-opacity-80 hover:bg-opacity-100 transition`}
+                className={`absolute top-3 right-3 z-10 p-2 text-[15px] rounded-full ${isWishlisted ? 'text-red-500' : 'text-gray-400 hover:text-red-500'} bg-white bg-opacity-80 hover:bg-opacity-100 transition`}
             >
                 <FiHeart className={isWishlisted ? 'fill-current' : ''} />
             </button>
@@ -34,13 +34,13 @@ const ShopProductCard = ({ product }) => {
                 {isHovered && (
                     <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-4 transition-opacity duration-300">
                         <button className="p-2 bg-white rounded-full text-gray-800 hover:bg-primary hover:text-white transition">
-                            <FiShoppingCart size={18} />
+                            <FiShoppingCart size={15} />
                         </button>
                         <Link
                             to={`/productDetails/${_id}`}
                             className="p-2 bg-white rounded-full text-gray-800 hover:bg-primary hover:text-white transition"
                         >
-                            <FiEye size={18} />
+                            <FiEye size={15} />
                         </Link>
                     </div>
                 )}

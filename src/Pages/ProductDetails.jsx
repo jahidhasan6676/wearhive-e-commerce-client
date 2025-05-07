@@ -9,6 +9,7 @@ import useRole from "../Hooks/useRole";
 import { useState } from "react";
 import LoginModal from "../Modal/LoginModal";
 import useCount from "../Hooks/useCount";
+import ProductReviewList from "../components/productReview/ProductReviewList";
 
 const ProductDetails = () => {
     const axiosPublic = useAxiosPublic();
@@ -103,8 +104,20 @@ const ProductDetails = () => {
 
                     {/* Rating */}
                     <div className="flex items-center space-x-2 mt-2">
-                        <span className="text-yellow-500 text-lg">★★★★★</span>
-                        <span className="text-gray-500 text-sm">(122)</span>
+                        {product?.ratingCount > 0 ? (
+                            <>
+                                <span className="text-yellow-400 text-lg">
+                                    {'★'.repeat(Math.floor(product?.averageRating))}
+                                    {'☆'.repeat(5 - Math.floor(product?.averageRating))}
+                                </span>
+                                <span className="text-gray-500 text-sm">({product?.ratingCount})</span>
+                            </>
+                        ) : (
+                            <>
+                                <span className="text-yellow-400 text-lg">{'☆'.repeat(5)}</span>
+                                <span className="text-gray-500 text-sm">(0)</span>
+                            </>
+                        )}
                     </div>
 
                     {/* Price */}
@@ -147,8 +160,12 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            {/* product review list added */}
+            <ProductReviewList productId={product?._id} />
+
             {/* Modal */}
             <LoginModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} />
+
         </div>
     );
 };

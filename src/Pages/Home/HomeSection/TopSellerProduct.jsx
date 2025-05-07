@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/loadingSpinner/LoadingSpinner";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-// import { IoBagAddOutline } from "react-icons/io5";
-
+import { FaEye } from "react-icons/fa";
 
 const TopSellerProduct = () => {
     const axiosPublic = useAxiosPublic();
@@ -36,29 +35,31 @@ const TopSellerProduct = () => {
                 {topSellerProduct?.map(product => (
                     <div key={product._id} className="group relative bg-white rounded-lg overflow-hidden transition-all duration-300">
                         {/* Product Image */}
-                        <div className="relative overflow-hidden">
-
-                            <img
-                                src={product?.photo}
-                                alt={product?.productName}
-                                className="w-full  object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-
-                            {/* Quick Add Button */}
-                            {/* <button className="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-indigo-600 hover:text-white">
-                                <IoBagAddOutline className="text-xl" />
-                            </button> */}
+                        <div className="relative overflow-hidden aspect-square">
+                            <Link to={`/productDetails/${product._id}`}>
+                                <img
+                                    src={product?.photo}
+                                    alt={product?.productName}
+                                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                {/* Eye Icon on Hover */}
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                                    <div className="p-2 bg-white rounded-full text-gray-800 hover:bg-primary hover:text-white transition">
+                                        <FaEye size={15} />
+                                    </div>
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Product Info */}
-                        <div className="mt-3">
-                            <h3 className=" font-semibold text-gray-800 mb-1 transition-colors">
+                        <div className="p-3">
+                            <h3 className="font-semibold text-gray-800 mb-1transition-colors line-clamp-1">
                                 {product?.productName}
                             </h3>
                             {/* Price */}
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <span className=" font-medium">
+                                    <span className="font-medium">
                                         ${product?.price.toFixed(2)}
                                     </span>
                                     {product?.originalPrice && (
@@ -67,17 +68,28 @@ const TopSellerProduct = () => {
                                         </span>
                                     )}
                                 </div>
-                                <Link to={`/productDetails/${product?._id}`}>
-                                    <button className="text-sm font-medium hover:underline">
-                                        View
-                                    </button>
-                                </Link>
+                                {/* Rating */}
+                                <div className="flex items-center space-x-1">
+                                    {product?.ratingCount > 0 ? (
+                                        <>
+                                            <span className="text-yellow-400 text-sm">
+                                                {'★'.repeat(Math.floor(product?.averageRating))}
+                                                {'☆'.repeat(5 - Math.floor(product?.averageRating))}
+                                            </span>
+                                            <span className="text-gray-500 text-xs">({product?.ratingCount})</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="text-yellow-400 text-sm">{'☆'.repeat(5)}</span>
+                                            <span className="text-gray-500 text-xs">(0)</span>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

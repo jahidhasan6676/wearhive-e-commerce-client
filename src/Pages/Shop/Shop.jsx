@@ -30,7 +30,7 @@ const Shop = () => {
         },
     });
 
-    console.log("products:", data)
+    //console.log("products:", data)
     const allProducts = data?.products || [];
     const total = data?.total || 0;
     //console.log("all products",allProducts)
@@ -53,7 +53,7 @@ const Shop = () => {
             return 0;
         });
 
-    console.log("filterProduct", filteredProducts)
+    //console.log("filterProduct", filteredProducts)
 
     // Pagination
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);

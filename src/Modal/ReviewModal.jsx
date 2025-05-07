@@ -32,7 +32,7 @@ const ReviewModal = ({ isOpen, onClose, order }) => {
         try {
             const res = await axiosSecure.post("/review", reviewData)
             if (res.data.insertedId) {
-                toast.success("Review successfully added", {
+                toast.success("Review successful", {
                     position: "top-center",
                     autoClose: 3000,
                 })
