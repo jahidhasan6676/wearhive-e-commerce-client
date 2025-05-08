@@ -145,11 +145,11 @@ const ProductDetails = () => {
                             ADD TO CART
                         </button>
                         {/* Add to wishlist Button */}
-                        <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={() => handleWishlistProduct(product)} className="mt-8 w-fit border border-black hover:bg-black hover:text-white py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed disabled:opacity-50">
-                            Add Wishlist
+                        <button disabled={role === "seller" || role === "moderator" || role === "admin"} onClick={() => handleWishlistProduct(product)} className="relative mt-8 w-fit border border-black py-3 px-6 text-sm rounded-sm disabled:cursor-not-allowed disabled:opacity-50  overflow-hidden font-medium text-black bg-white uppercase transition-all duration-500 before:content-[''] before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-black before:transition-all before:duration-1000 hover:before:left-0 hover:text-white">
+                            <span className="relative z-10">Add Wishlist</span>
                         </button>
                     </div>
-
+                        
                     <hr className="mt-8" />
 
                     {/* Additional Info */}

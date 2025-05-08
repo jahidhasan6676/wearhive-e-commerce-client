@@ -10,7 +10,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import useCount from "../../Hooks/useCount";
 
 const Navbar = () => {
-    const { user, signOutUser } = useAuth();
+    const { user, signOutUser, loading } = useAuth();
     const [role] = useRole();
     const [count] = useCount();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -86,18 +86,25 @@ const Navbar = () => {
                         </div>
 
                         {
-                            user && user?.email ? <button onClick={toggleDropdown} className="md:flex items-center text-sm rounded-full hidden">
-                                <img
-                                    referrerPolicy='no-referrer'
-                                    src={user?.photoURL}
-                                    alt="User"
-                                    className="w-[42px] h-[42px] rounded-full"
-                                />
-                            </button> : <Link to="/login">
-                                <button className='hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white'>Login</button>
-                            </Link>
+                            loading ? (
+                                <div className="skeleton w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div> // অথবা শুধু null
+                            ) : user?.email ? (
+                                <button onClick={toggleDropdown} className="md:flex items-center text-sm rounded-full hidden">
+                                    <img
+                                        referrerPolicy="no-referrer"
+                                        src={user?.photoURL}
+                                        alt="User"
+                                        className="w-[42px] h-[42px] rounded-full"
+                                    />
+                                </button>
+                            ) : (
+                                <Link to="/login">
+                                    <button className='hidden md:block font-semibold rounded-md border-2 px-3 py-1 border-secondary hover:bg-secondary hover:text-white'>
+                                        Login
+                                    </button>
+                                </Link>
+                            )
                         }
-
                         {
                             isDropdownOpen && user && (
                                 <div className="z-50 my-4 text-base list-none bg-white rounded-sm shadow w-44 absolute top-[58px] right-[64px]">

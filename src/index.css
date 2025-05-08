@@ -21,6 +21,15 @@ body {
     @apply flex items-center space-x-2 border border-gray-300 px-4 py-2 rounded-md cursor-pointer hover:shadow-md;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out forwards;
+  }
+
 /* loading span */
 .rotate-square {
     transform-origin: center;

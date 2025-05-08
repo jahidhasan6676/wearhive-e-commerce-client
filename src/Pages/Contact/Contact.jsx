@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div className="">
       {/* banner */}
-      <div className="bg-gray-100 w-full h-[250px]">
+      <div className="bg-[#fcf6f6] w-full h-[250px]">
         <div className="h-full flex flex-col justify-center items-center">
           <h2 className="text-2xl md:text-3xl font-medium mb-2">About Our Store</h2>
           <p className="flex items-center"><Link to="/">Homepage</Link><span><IoIosArrowForward className="text-gray-500 text-sm" /></span> <span className="text-gray-500">Contact Our</span></p>

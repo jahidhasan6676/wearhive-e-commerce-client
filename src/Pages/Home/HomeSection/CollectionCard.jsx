@@ -47,13 +47,17 @@ const CollectionCard = () => {
                             <h2 className="text-xl font-semibold">{item.title}</h2>
                             <p className="text-lg mb-4">{item.subtitle}</p>
                             <Link to="/shop">
-                                <button className="bg-white font-medium hover:bg-gray-800 text-black hover:text-white text-sm px-6 py-2 rounded-full w-fit transition">
-                                    {item.buttonText}
+                                <button className="relative overflow-hidden font-medium text-black bg-white text-sm px-6 py-2 rounded-full w-fit transition-all duration-500 
+                                before:content-[''] before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gray-800 before:transition-all before:duration-1000 hover:before:left-0 hover:text-white">
+                                    <span className="relative z-10">{item.buttonText}</span>
                                 </button>
                             </Link>
                         </div>
+
+
                     </div>
                 ))}
+
             </div>
         </div>
     );

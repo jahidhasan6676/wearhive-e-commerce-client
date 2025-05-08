@@ -3,94 +3,83 @@ import { useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { FaBox, FaChartPie, FaPlus, FaTicketAlt, FaUsers } from "react-icons/fa";
-import { IoIosLogOut, IoMdHome } from "react-icons/io";
+import { IoIosArrowForward, IoIosLogOut, IoMdHome } from "react-icons/io";
 import { IoHome } from "react-icons/io5";
-import {  MdReportProblem } from "react-icons/md";
+import { MdReportProblem } from "react-icons/md";
 import { BiSolidDashboard } from "react-icons/bi";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { Clock, CheckCircle, XCircle,ClipboardList,CreditCard,Package, PenLine     } from "lucide-react";
+import { Clock, CheckCircle, XCircle, ClipboardList, CreditCard, Package, PenLine } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
+import { AiOutlineClose } from "react-icons/ai";
 const Sidebar = () => {
     const [isActive, setActive] = useState(false);
     const [role, isLoading] = useRole();
     const { signOutUser } = useAuth();
     const navigate = useNavigate();
 
-    // Sidebar Responsive Handler
-    const handleToggle = () => {
-        setActive(!isActive);
-    };
-
     const handleUserLogOut = () => {
         signOutUser()
         navigate("/login")
     }
+    const handleToggle = () => setActive(!isActive);
 
     return (
         <div className="">
-            {/* Small Screen Navbar */}
-            <div className="fixed top-0 z-50 w-full bg-white h-[60px] md:hidden flex items-center border-b">
-                <div className="w-11/12 mx-auto flex justify-between items-center">
-                    <div className="block cursor-pointer font-bold">
-                        <Link to="/"><div className=" flex items-center gap-1">
-                            <img className="w-[25px]" src={logo} alt="" />
-                            <p className="text-[20px] font-semibold uppercase">wear<span className="text-secondary">hive</span></p>
 
-                        </div></Link>
-                    </div>
-
-
-                    <button
-                        onClick={handleToggle}
-                        className="mobile-menu-button focus:outline-none "
-                    >
-                        <AiOutlineBars className="h-5 w-5" />
-                    </button>
-                </div>
-            </div>
-
-            {/* Sidebar */}
             <div
-                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-white w-64 border-r  space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
-                    } md:translate-x-0 transition duration-200 ease-in-out`}
-            >
+                className={`z-50 fixed flex flex-col justify-between overflow-x-hidden bg-white w-64 border-r  space-y-6 px-2 py-4 inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+                    } md:translate-x-0 transition duration-200 ease-in-out`} >
                 <div>
-                    <div className="px-4 items-center gap-1 hidden md:flex">
+                    <div className="px-4 flex items-center gap-1">
                         <img className="w-[25px]" src={logo} alt="" />
                         <p className="text-[20px] font-semibold uppercase">wear<span className="text-secondary">hive</span></p>
 
                     </div>
 
+                    <hr className="mt-[13px] w-full" />
+
                     {/* Nav Items */}
                     <div>
-                        <nav className="mt-10  space-y-4 text-[16px] font-medium flex flex-col">
+                        <nav className="mt-[39px] space-y-4 text-[16px] font-medium flex flex-col">
 
 
                             {/* customer */}
                             {
                                 role === "customer" && <>
                                     <NavLink to="/dashboard/cart" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
-                                            ? "bg-gray-100"
-                                            : "hover:bg-gray-100"
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive ? "bg-gray-100" : "hover:bg-gray-100"
                                         }`
-                                    }><IoCartOutline className=" w-[18px] h-[18px]" />My Cart</NavLink>
+                                    }>
+                                        <div className="flex items-center gap-2">
+                                            <IoCartOutline className="w-[18px] h-[18px]" />
+                                            My Cart
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" />
+                                    </NavLink>
 
                                     <NavLink to="/dashboard/myOrder" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><ClipboardList  className=" w-[18px] h-[18px]" />My Order</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <ClipboardList className="w-[18px] h-[18px]" />
+                                            My Order
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/paymentHistory" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><CreditCard    className=" w-[18px] h-[18px]" />Payment History</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <CreditCard className="w-[18px] h-[18px]" />
+                                            Payment History
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
                                 </>
                             }
 
@@ -98,39 +87,59 @@ const Sidebar = () => {
                             {
                                 role === "seller" && <>
                                     <NavLink to="/dashboard/sellerDashboard" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><BiSolidDashboard className=" w-[18px] h-[18px]" />Dashboard</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <BiSolidDashboard className="w-[18px] h-[18px]" />
+                                            Dashboard
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/addProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaPlus className=" w-[18px] h-[18px]" />Add Product</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <FaPlus className="w-[18px] h-[18px]" />
+                                            Add Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/myProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaBox className=" w-[18px] h-[18px]" />My Product</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <FaBox className="w-[18px] h-[18px]" />
+                                            My Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/newOrders" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><Package className=" w-[18px] h-[18px]" />New Orders</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <Package className="w-[18px] h-[18px]" />
+                                            New Orders
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/chat" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><Package className=" w-[18px] h-[18px]" />Chat</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <IoCartOutline className="w-[18px] h-[18px]" />
+                                            Chat
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                 </>
                             }
@@ -139,29 +148,48 @@ const Sidebar = () => {
                             {
                                 role === "moderator" && <>
                                     <NavLink to="/dashboard/pendingProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><Clock className="text-yellow-500 w-[18px] h-[18px]" /> Pending Product</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <Clock className="w-[18px] h-[18px]" />
+                                            Pending Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+
                                     <NavLink to="/dashboard/approveProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }> <CheckCircle className="text-green-600 w-[18px] h-[18px]" /> Approve Product</NavLink>
+                                    }> <div className="flex items-center gap-2">
+                                            <CheckCircle className="w-[18px] h-[18px]" />
+                                            Approve Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+
                                     <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }>  <XCircle className="text-red-600 w-[18px] h-[18px]" /> Rejected Product</NavLink>
+                                    }>  <div className="flex items-center gap-2">
+                                            <XCircle className="w-[18px] h-[18px]" />
+                                            Rejected Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+
                                     <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><MdReportProblem className="w-[18px] h-[18px]" /> Report Product</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <MdReportProblem className="w-[18px] h-[18px]" />
+                                            Report Product
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
                                 </>
                             }
 
@@ -169,52 +197,93 @@ const Sidebar = () => {
                             {
                                 role === "admin" && <>
                                     <NavLink to="/dashboard/adminDashboard" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><BiSolidDashboard className=" w-[18px] h-[18px]" />Dashboard</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <BiSolidDashboard className="w-[18px] h-[18px]" />
+                                            Dashboard
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/manageUsers" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><FaUsers className=" w-[18px] h-[18px]" />Manage Users</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <FaUsers className="w-[18px] h-[18px]" />
+                                            Manage Users
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                     <NavLink to="/dashboard/addBlog" className={({ isActive }) =>
-                                        `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
                                         }`
-                                    }><PenLine  className=" w-[18px] h-[18px]" />Add Blog</NavLink>
+                                    }><div className="flex items-center gap-2">
+                                            <PenLine className="w-[18px] h-[18px]" />
+                                            Add Blog
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
                                 </>
                             }
 
 
                             <div className="space-y-4">
                                 <NavLink to="/dashboard/profile" className={({ isActive }) =>
-                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                    `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                         ? "bg-gray-100"
                                         : "hover:bg-gray-100"
                                     }`
-                                }><CgProfile className="w-[18px] h-[18px]" /> Profile</NavLink>
+                                }><div className="flex items-center gap-2">
+                                <CgProfile className="w-[18px] h-[18px]" />
+                                Profile
+                            </div>
+                            <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                 <NavLink to="/" className={({ isActive }) =>
-                                    `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive
+                                    `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                         ? "bg-gray-100"
                                         : "hover:bg-gray-100"
                                     }`
-                                }><IoMdHome className="w-[18px] h-[18px]" /> Home</NavLink>
+                                }><div className="flex items-center gap-2">
+                                <IoMdHome className="w-[18px] h-[18px]" />
+                                Home
+                            </div>
+                            <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                 <button onClick={handleUserLogOut} className="
-                                    flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full"><IoIosLogOut className="w-[18px] h-[18px]" /> LogOut</button>
+                                    flex items-center justify-between gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full"><div className="flex items-center gap-2">
+                                    <IoIosLogOut className="w-[18px] h-[18px]" />
+                                    LogOut
+                                </div>
+                                <IoIosArrowForward className="text-gray-400" /></button>
 
                             </div>
                         </nav>
                     </div>
                 </div>
+                {/* Sidebar Footer */}
+                <div className="px-4 pt-4 border-t border-gray-300">
+                    <div className="text-sm text-gray-500">
+                        © {new Date().getFullYear()} WearHive Fashion
+                    </div>
+                </div>
             </div>
+            {/* Mobile Toggle Button - Bottom Right */}
+            <button
+                onClick={handleToggle}
+                className="md:hidden fixed bottom-6 right-6 z-50 bg-[#6D4FC2] text-white p-[10px] rounded-full"
+            >
+                {isActive ? (
+                    <AiOutlineBars className="h-5 w-5" />
+                ) : (
+                    <AiOutlineClose className="h-5 w-5" />
+                )}
+            </button>
         </div>
     );
 };
