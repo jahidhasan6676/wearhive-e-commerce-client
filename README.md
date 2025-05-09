@@ -12,10 +12,10 @@ From user authentication using Firebase to JWT-secured APIs, from powerful produ
 ---
 
 
-![WearHive](https://ibb.co.com/d0kLTh3X)
+![WearHive](https://i.ibb.co.com/KjVLP1QB/Screenshot-2025-05-09-002950.png)
 
 ## 🌐 Live Site URL
-[Visit the live site here!](https://shopper-application-3cae2.web.app)
+[Visit the live site here!](https://shopper-application-3cae2.web.app/)
 
 ## ✨ Features
 
