@@ -1,60 +1,216 @@
-import { Package, PackageIcon } from 'lucide-react';
-import React from 'react';
-import { FaBox, FaDollarSign, FaUserPlus, FaSmile, FaMoneyBill, FaMoneyBillWave } from 'react-icons/fa';
-import { GrMoney } from "react-icons/gr";
+import { FaBox, FaDollarSign, FaChartLine, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import { FiPackage, FiTrendingUp } from 'react-icons/fi';
+import { BsGraphUp } from 'react-icons/bs';
+import { RiRefund2Line } from 'react-icons/ri';
+import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
+const chartData = [
+  { name: 'Jan', sales: 4000, orders: 2400 },
+  { name: 'Feb', sales: 3000, orders: 1398 },
+  { name: 'Mar', sales: 2000, orders: 9800 },
+  { name: 'Apr', sales: 2780, orders: 3908 },
+  { name: 'May', sales: 1890, orders: 4800 },
+  { name: 'Jun', sales: 2390, orders: 3800 },
+  { name: 'Jul', sales: 3490, orders: 4300 },
+];
+
+const recentOrders = [
+  { id: '#ORD-001', customer: 'John Doe', amount: '$120', status: 'Shipped' },
+  { id: '#ORD-002', customer: 'Jane Smith', amount: '$85', status: 'Processing' },
+  { id: '#ORD-003', customer: 'Robert Johnson', amount: '$220', status: 'Delivered' },
+  { id: '#ORD-004', customer: 'Emily Davis', amount: '$64', status: 'Pending' },
+  { id: '#ORD-005', customer: 'Michael Wilson', amount: '$153', status: 'Shipped' },
+];
 
 const Count = () => {
-    return (
-        <div className=" py-10">
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {/* product  */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#1e9ff2]">50</p>
-                        <h2 className=" font-medium mt-2 text-gray-500">Total Products</h2>
-                    </div>
-                    <div className="bg-blue-100 p-3 rounded-full mr-4">
-                        <FaBox className="text-[#1e9ff2] w-6 h-6" />
-                        
-                    </div>
-                </div>
-
-                {/* total sales */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#ff9149]">57</p>
-                        <h2 className="text-gray-500 font-medium mt-2">Total Sales</h2>
-                    </div>
-                    <div className="bg-green-100 p-3 rounded-full mr-4">
-                    <GrMoney className="text-[#ff9149] w-6 h-6" />
-                    </div>
-                </div>
-
-                {/* Total orders */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-purple-500">85</p>
-                        <h2 className=" font-medium mt-2 text-gray-500">Total Orders</h2>
-                    </div>
-                    <div className="bg-purple-100 p-3 rounded-full mr-4">
-                        <Package className="text-purple-500 w-6 h-6" />
-                    </div>
-                </div>
-
-                {/* net profit */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#46d4a2]">$850</p>
-                        <h2 className="text-gray-500 font-medium mt-2">Net Profit</h2>
-                    </div>
-                    <div className="bg-purple-100 p-3 rounded-full mr-4">
-                    <FaDollarSign className="text-[#ff9149] w-6 h-6" />
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="py-6 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Total Products */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-blue-600">50</p>
+            <h2 className="text-gray-600 font-medium mt-1">Total Products</h2>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-xl">
+            <FaBox className="text-blue-600 w-6 h-6" />
+          </div>
         </div>
-    );
+
+        {/* Total Sales */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-orange-500">57</p>
+            <h2 className="text-gray-600 font-medium mt-1">Total Sales</h2>
+          </div>
+          <div className="bg-orange-50 p-4 rounded-xl">
+            <FiTrendingUp className="text-orange-500 w-6 h-6" />
+          </div>
+        </div>
+
+        {/* Total Orders */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-purple-600">85</p>
+            <h2 className="text-gray-600 font-medium mt-1">Total Orders</h2>
+          </div>
+          <div className="bg-purple-50 p-4 rounded-xl">
+            <FiPackage className="text-purple-600 w-6 h-6" />
+          </div>
+        </div>
+
+        {/* Net Profit */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-green-500">$850</p>
+            <h2 className="text-gray-600 font-medium mt-1">Net Profit</h2>
+          </div>
+          <div className="bg-green-50 p-4 rounded-xl">
+            <FaDollarSign className="text-green-500 w-6 h-6" />
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Sales Chart */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-800">Sales Overview</h3>
+            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>Last 7 Days</option>
+              <option>Last Month</option>
+              <option>Last Year</option>
+            </select>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <Tooltip />
+                <Area type="monotone" dataKey="sales" stroke="#3B82F6" fillOpacity={1} fill="url(#colorSales)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Orders Chart */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-800">Orders Overview</h3>
+            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>Last 7 Days</option>
+              <option>Last Month</option>
+              <option>Last Year</option>
+            </select>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="orders" fill="#8B5CF6" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Orders and Stats */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Recent Orders */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold text-gray-800">Recent Orders</h3>
+            <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View All</button>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead>
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {recentOrders.map((order) => (
+                  <tr key={order.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{order.id}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order.customer}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order.amount}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        ${order.status === 'Delivered' ? 'bg-green-100 text-green-800' : 
+                          order.status === 'Shipped' ? 'bg-blue-100 text-blue-800' :
+                          order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
+                          'bg-gray-100 text-gray-800'}`}>
+                        {order.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Stats</h3>
+          <div className="space-y-4">
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 rounded-lg bg-blue-100 text-blue-600 mr-4">
+                <FaShoppingCart className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Pending Orders</p>
+                <p className="text-lg font-semibold">12</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 rounded-lg bg-green-100 text-green-600 mr-4">
+                <BsGraphUp className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">This Month Sales</p>
+                <p className="text-lg font-semibold">$1,250</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 rounded-lg bg-purple-100 text-purple-600 mr-4">
+                <FaUsers className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">New Customers</p>
+                <p className="text-lg font-semibold">8</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="p-3 rounded-lg bg-red-100 text-red-600 mr-4">
+                <RiRefund2Line className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Refund Requests</p>
+                <p className="text-lg font-semibold">2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Count;

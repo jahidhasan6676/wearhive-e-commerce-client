@@ -1,56 +1,53 @@
-import React from 'react';
-import { FaBox, FaDollarSign, FaUserPlus, FaSmile } from 'react-icons/fa';
+import { FaBox, FaUserPlus, FaUsers } from 'react-icons/fa';
+import { FiTrendingUp } from 'react-icons/fi';
 
 const UserCount = () => {
     return (
-        <div className=" py-10">
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {/* Products Sold */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#1e9ff2]">$850</p>
-                        <h2 className=" font-medium mt-2 text-gray-500">Products Sold</h2>
-                    </div>
-                    <div className="bg-blue-100 p-3 rounded-full mr-4">
-                        <FaBox className="text-[#1e9ff2] w-6 h-6" />
-                    </div>
-                </div>
-
-                {/* Net Profit */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#ff9149]">$850</p>
-                        <h2 className="text-gray-500 font-medium mt-2">Revenue</h2>
-                    </div>
-                    <div className="bg-green-100 p-3 rounded-full mr-4">
-                        <FaDollarSign className="text-[#ff9149] w-6 h-6" />
-                    </div>
-                </div>
-
-                {/* New Customers */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-purple-500">85</p>
-                        <h2 className=" font-medium mt-2 text-gray-500">Total Customer</h2>
-                    </div>
-                    <div className="bg-purple-100 p-3 rounded-full mr-4">
-                        <FaUserPlus className="text-purple-500 w-6 h-6" />
-                    </div>
-                </div>
-
-                {/* Customer Satisfaction */}
-                <div className="bg-white p-6 rounded-md shadow-sm flex justify-between items-center">
-                    <div>
-                        <p className="text-xl font-medium text-[#46d4a2]">50</p>
-                        <h2 className="text-gray-500 font-medium mt-2">Total Seller</h2>
-                    </div>
-                    <div className="bg-purple-100 p-3 rounded-full mr-4">
-                        <FaUserPlus className="text-[#46d4a2] w-6 h-6" />
-                    </div>
-                </div>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Products Sold */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-blue-600">$4,850</p>
+            <h2 className="text-gray-600 font-medium mt-1">Products Sold</h2>
+          </div>
+          <div className="bg-blue-50 p-4 rounded-xl">
+            <FaBox className="text-blue-600 w-6 h-6" />
+          </div>
         </div>
+  
+        {/* Revenue */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-green-500">$12,450</p>
+            <h2 className="text-gray-600 font-medium mt-1">Revenue</h2>
+          </div>
+          <div className="bg-green-50 p-4 rounded-xl">
+            <FiTrendingUp className="text-green-500 w-6 h-6" />
+          </div>
+        </div>
+  
+        {/* Total Customer */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-purple-600">1,285</p>
+            <h2 className="text-gray-600 font-medium mt-1">Total Customers</h2>
+          </div>
+          <div className="bg-purple-50 p-4 rounded-xl">
+            <FaUserPlus className="text-purple-600 w-6 h-6" />
+          </div>
+        </div>
+  
+        {/* Total Seller */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+          <div>
+            <p className="text-2xl font-semibold text-amber-500">342</p>
+            <h2 className="text-gray-600 font-medium mt-1">Total Sellers</h2>
+          </div>
+          <div className="bg-amber-50 p-4 rounded-xl">
+            <FaUsers className="text-amber-500 w-6 h-6" />
+          </div>
+        </div>
+      </div>
     );
 };
 

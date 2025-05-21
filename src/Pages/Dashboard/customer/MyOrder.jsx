@@ -68,7 +68,7 @@ const MyOrder = () => {
                                                 style={{
                                                     backgroundColor:
                                                         order?.status === "Pending"
-                                                            ? "yellow"
+                                                            ? "black"
                                                             : order?.status === "Packing"
                                                             ? "orange"
                                                             : order?.status === "Shipped"

@@ -22,7 +22,7 @@ const SocialLogin = () => {
 
     return (
         <div className="flex justify-center ">
-            <div onClick={handleGoogleLogin} className="border rounded-md hover:bg-gray-100 p-1 w-full flex justify-center items-center gap-6">
+            <div onClick={handleGoogleLogin} className="border cursor-pointer rounded-md hover:bg-gray-100 p-1 w-full flex justify-center items-center gap-6">
                 <img  src={google_icon} alt="google-icon" className="w-8 cursor-pointer" />
                 <p className="font-medium">Sign in with Google</p>
             </div>

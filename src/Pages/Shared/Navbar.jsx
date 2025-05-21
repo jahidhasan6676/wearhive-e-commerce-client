@@ -113,7 +113,7 @@ const Navbar = () => {
                                     </div>
                                     <ul className="py-1">
                                         {user?.email && role === 'admin' && <li><Link to="/dashboard/adminDashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link></li>}
-                                        {user?.email && role === 'moderator' && <li><Link to="/dashboard/pendingProducts" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link></li>}
+                                        {user?.email && role === 'moderator' && <li><Link to="/dashboard/pendingProduct" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link></li>}
                                         {user?.email && role === 'customer' && <li><Link to="/dashboard/cart" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link></li>}
                                         {user?.email && role === 'seller' && <li><Link to="/dashboard/sellerDashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link></li>}
                                         <hr />
@@ -139,8 +139,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 200 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed top-0 right-0 w-64 h-full mt-[68px] bg-white shadow-lg z-50"
-                    >
+                        className="fixed top-0 right-0 w-64 h-full mt-[68px] bg-white shadow-lg z-50">
                         <div className="relative w-full h-full p-6">
                             <button onClick={() => setOpen(false)} className="absolute top-4 left-4 text-2xl">
                                 <MdClose />
