@@ -3,6 +3,10 @@ import { FiPackage, FiTrendingUp } from 'react-icons/fi';
 import { BsGraphUp } from 'react-icons/bs';
 import { RiRefund2Line } from 'react-icons/ri';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useQuery } from "@tanstack/react-query";
+import useAuth from '../../../../Hooks/useAuth';
+import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import DashboardSpinner from '../../../loadingSpinner/DashboardSpinner';
 
 const chartData = [
   { name: 'Jan', sales: 4000, orders: 2400 },
@@ -14,22 +18,49 @@ const chartData = [
   { name: 'Jul', sales: 3490, orders: 4300 },
 ];
 
-const recentOrders = [
-  { id: '#ORD-001', customer: 'John Doe', amount: '$120', status: 'Shipped' },
-  { id: '#ORD-002', customer: 'Jane Smith', amount: '$85', status: 'Processing' },
-  { id: '#ORD-003', customer: 'Robert Johnson', amount: '$220', status: 'Delivered' },
-  { id: '#ORD-004', customer: 'Emily Davis', amount: '$64', status: 'Pending' },
-  { id: '#ORD-005', customer: 'Michael Wilson', amount: '$153', status: 'Shipped' },
-];
 
 const Count = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+
+  // count data
+  const { data: sellerCount = [], isLoading } = useQuery({
+    queryKey: ['sellerCount', user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/seller-activity-count/${user?.email}`);
+      return res.data;
+    }
+  });
+
+  // recent order data
+  const { data: newOrders = [] } = useQuery({
+    queryKey: ['newOrders', user?.email],
+    queryFn: async () => {
+      const data = await axiosSecure.get(`/new-orders/${user?.email}`)
+      return data.data;
+    }
+  })
+
+  // chart data
+  const { data: sellerChartData = [] } = useQuery({
+    queryKey: ['sellerChartData', user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/seller-chart-stats/${user?.email}`);
+      return res.data;
+    }
+  });
+  
+
+  if (isLoading) return DashboardSpinner();
+  //console.log("chart data:", sellerChartData)
+
   return (
-    <div className="py-6 px-4">
+    <div className="py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Total Products */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
           <div>
-            <p className="text-2xl font-semibold text-blue-600">50</p>
+            <p className="text-2xl font-semibold text-blue-600">{sellerCount?.totalProducts || 0}</p>
             <h2 className="text-gray-600 font-medium mt-1">Total Products</h2>
           </div>
           <div className="bg-blue-50 p-4 rounded-xl">
@@ -40,7 +71,7 @@ const Count = () => {
         {/* Total Sales */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
           <div>
-            <p className="text-2xl font-semibold text-orange-500">57</p>
+            <p className="text-2xl font-semibold text-orange-500">{sellerCount?.totalSales || 0}</p>
             <h2 className="text-gray-600 font-medium mt-1">Total Sales</h2>
           </div>
           <div className="bg-orange-50 p-4 rounded-xl">
@@ -51,7 +82,7 @@ const Count = () => {
         {/* Total Orders */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
           <div>
-            <p className="text-2xl font-semibold text-purple-600">85</p>
+            <p className="text-2xl font-semibold text-purple-600">{sellerCount?.totalOrders || 0}</p>
             <h2 className="text-gray-600 font-medium mt-1">Total Orders</h2>
           </div>
           <div className="bg-purple-50 p-4 rounded-xl">
@@ -62,7 +93,7 @@ const Count = () => {
         {/* Net Profit */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
           <div>
-            <p className="text-2xl font-semibold text-green-500">$850</p>
+            <p className="text-2xl font-semibold text-green-500">${sellerCount?.totalProfit || 0}</p>
             <h2 className="text-gray-600 font-medium mt-1">Net Profit</h2>
           </div>
           <div className="bg-green-50 p-4 rounded-xl">
@@ -77,7 +108,7 @@ const Count = () => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-800">Sales Overview</h3>
-            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:border-gray-400">
               <option>Last 7 Days</option>
               <option>Last Month</option>
               <option>Last Year</option>
@@ -85,11 +116,11 @@ const Count = () => {
           </div>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <AreaChart data={sellerChartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="name" />
@@ -106,7 +137,7 @@ const Count = () => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-800">Orders Overview</h3>
-            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select className="bg-gray-50 border border-gray-300 text-gray-700 py-1 px-3 rounded-lg focus:outline-none focus:border-gray-400">
               <option>Last 7 Days</option>
               <option>Last Month</option>
               <option>Last Year</option>
@@ -114,7 +145,7 @@ const Count = () => {
           </div>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
+              <BarChart data={sellerChartData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="name" />
                 <YAxis />
@@ -132,7 +163,7 @@ const Count = () => {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold text-gray-800">Recent Orders</h3>
-            <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View All</button>
+            {/* <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View All</button> */}
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -145,18 +176,18 @@ const Count = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {recentOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{order.id}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order.customer}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order.amount}</td>
+                {newOrders?.map((order,index) => (
+                  <tr key={order._id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order?.name}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{order?.price}</td>
                     <td className="px-4 py-3 whitespace-nowrap text-sm">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                        ${order.status === 'Delivered' ? 'bg-green-100 text-green-800' : 
+                        ${order.status === 'Delivered' ? 'bg-green-100 text-green-800' :
                           order.status === 'Shipped' ? 'bg-blue-100 text-blue-800' :
-                          order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-gray-100 text-gray-800'}`}>
-                        {order.status}
+                            order.status === 'Processing' ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-gray-100 text-gray-800'}`}>
+                        {order?.status}
                       </span>
                     </td>
                   </tr>
@@ -176,7 +207,7 @@ const Count = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Pending Orders</p>
-                <p className="text-lg font-semibold">12</p>
+                <p className="text-lg font-semibold">3</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-gray-50 rounded-lg">
