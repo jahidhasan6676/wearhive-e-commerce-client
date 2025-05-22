@@ -3,19 +3,22 @@ import {  FaCalendarAlt } from 'react-icons/fa';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import DashboardSpinner from "../../../loadingSpinner/DashboardSpinner";
 
 const RechartsAndCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [timeRange, setTimeRange] = useState('monthly');
 
   const earningsData = [
-    { month: "Jan", earnings: 4000, revenue: 2400 },
-    { month: "Feb", earnings: 3000, revenue: 1398 },
-    { month: "Mar", earnings: 5000, revenue: 9800 },
-    { month: "Apr", earnings: 7000, revenue: 3908 },
-    { month: "May", earnings: 6000, revenue: 4800 },
-    { month: "Jun", earnings: 8000, revenue: 3800 },
-    { month: "Jul", earnings: 9000, revenue: 4300 },
+    { month: "Jan", products: 4000, revenue: 2400 },
+    { month: "Feb", products: 3000, revenue: 1398 },
+    { month: "Mar", products: 5000, revenue: 9800 },
+    { month: "Apr", products: 7000, revenue: 3908 },
+    { month: "May", products: 6000, revenue: 4800 },
+    { month: "Jun", products: 8000, revenue: 3800 },
+    { month: "Jul", products: 9000, revenue: 4300 },
   ];
 
   const userGrowthData = [
@@ -28,13 +31,35 @@ const RechartsAndCalendar = () => {
     { month: "Jul", users: 1600, sellers: 320 },
   ];
 
+  const axiosSecure = useAxiosSecure();
+
+  // user growth data
+  const { data: userGrowth = [], isLoading} = useQuery({
+    queryKey: ['userGrowth'],
+    queryFn: async () => {
+      const data = await axiosSecure.get(`/user-growth`)
+      return data.data;
+    }
+  })
+
+  // financial growth data
+  const { data: financialGrowth = []} = useQuery({
+    queryKey: ['financialGrowth'],
+    queryFn: async () => {
+      const data = await axiosSecure.get(`/financial-growth`)
+      return data.data;
+    }
+  })
+  if(isLoading) return <DashboardSpinner/>
+  console.log("financial data:", financialGrowth)
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Earnings Chart */}
       <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-gray-800">Financial Overview</h2>
-          <div className="flex space-x-2">
+          <div className="hidden sm:flex space-x-2">
             <button
               onClick={() => setTimeRange('weekly')}
               className={`px-3 py-1 text-sm rounded-lg ${timeRange === 'weekly' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}
@@ -57,7 +82,7 @@ const RechartsAndCalendar = () => {
         </div>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={earningsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <AreaChart data={financialGrowth} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorEarnings" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.8} />
@@ -72,8 +97,8 @@ const RechartsAndCalendar = () => {
               <YAxis />
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <Tooltip />
-              <Area type="monotone" dataKey="earnings" stroke="#4F46E5" fillOpacity={1} fill="url(#colorEarnings)" />
-              <Area type="monotone" dataKey="revenue" stroke="#10B981" fillOpacity={1} fill="url(#colorRevenue)" />
+              <Area type="monotone" dataKey="totalSoldProducts" stroke="#4F46E5" fillOpacity={1} fill="url(#colorEarnings)" />
+              <Area type="monotone" dataKey="totalRevenue" stroke="#10B981" fillOpacity={1} fill="url(#colorRevenue)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -123,12 +148,12 @@ const RechartsAndCalendar = () => {
         <h2 className="text-xl font-semibold text-gray-800 mb-6">User Growth</h2>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={userGrowthData}>
+            <BarChart data={userGrowth}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis dataKey="month" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="users" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="customers" fill="#3B82F6" radius={[4, 4, 0, 0]} />
               <Bar dataKey="sellers" fill="#10B981" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>

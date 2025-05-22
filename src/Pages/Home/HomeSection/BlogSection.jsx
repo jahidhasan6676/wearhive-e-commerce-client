@@ -35,7 +35,7 @@ const BlogSection = () => {
                             {post?.date} | {"0 comment"}
                         </p>
                         <p className="text-sm text-gray-700 mb-4">{post?.description.slice(0, 100)}...</p>
-                        <p className="text-gray-900 hover:underline font-medium flex items-center gap-1">Read More <IoIosArrowForward className="text-[14px]" /></p>
+                        <Link to={`/blogDetails/${post?._id}`}><p className="text-gray-900 hover:underline font-medium flex items-center gap-1">Read More <IoIosArrowForward className="text-[14px]" /></p></Link>
                     </div>
                 ))}
             </div>

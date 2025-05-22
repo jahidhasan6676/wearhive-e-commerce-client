@@ -34,7 +34,7 @@ const ManageUsers = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className="p-6 min-h-screen flex flex-col items-center">
+        <div className="w-11/12 mx-auto py-10 min-h-screen flex flex-col items-center">
             <div className="overflow-x-auto bg-white rounded-lg p-4 w-full">
                 <table className="w-full border-collapse">
                     <thead>
