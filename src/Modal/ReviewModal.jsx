@@ -25,6 +25,7 @@ const ReviewModal = ({ isOpen, onClose, order }) => {
             image: user?.photoURL,
             productIds: order?.productIds,
             date,
+            
         }
         //console.log(reviewData)
 

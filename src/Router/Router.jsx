@@ -35,6 +35,7 @@ import AddBlogs from "../Pages/Dashboard/admin/AddBlogs";
 import BlogDetails from "../Pages/Blogs/BlogDetails";
 import Chat from "../Pages/Dashboard/Chat/Chat";
 import OrderHistory from "../Pages/Dashboard/sellerHome/OrderHistory";
+import MyOrderHistory from "../Pages/Dashboard/customer/MyOrderHistory";
 
 
 export const router = createBrowserRouter([
@@ -113,6 +114,10 @@ export const router = createBrowserRouter([
             {
                 path:"myOrder",
                 element:<PrivateRoute><MyOrder/></PrivateRoute>
+            },
+            {
+                path:"myOrderHistory",
+                element:<PrivateRoute><MyOrderHistory/></PrivateRoute>
             },
             {
                 path:"paymentHistory",

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import ShopProductCard from "./ShopProductCard";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     FiFilter,
     FiX,
@@ -16,12 +16,34 @@ const Shop = () => {
 
     const [activeCategory, setActiveCategory] = useState("all");
     const [priceRange, setPriceRange] = useState([0, 1000]);
-    const [showFilters, setShowFilters] = useState(false);
+    const [showFilters, setShowFilters] = useState(true);
     const [searchText, setSearchText] = useState("");
     const [sortOption, setSortOption] = useState("featured");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 16;
 
+    // filter responsive
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setShowFilters(false);
+            } else {
+                setShowFilters(true);
+            }
+        };
+
+        // Initial check
+        handleResize();
+
+        // Listen to resize
+        window.addEventListener("resize", handleResize);
+
+        // Cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
+    // shop data load
     const { data = {}, isLoading, error } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
@@ -76,8 +98,7 @@ const Shop = () => {
                     <div className="flex items-center gap-3">
                         <button
                             onClick={() => setShowFilters(!showFilters)}
-                            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50"
-                        >
+                            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50">
                             {showFilters ? <FiX size={18} /> : <FiFilter size={18} />}
                             <span>{showFilters ? "Hide Filters" : "Filters"}</span>
                         </button>
@@ -85,7 +106,7 @@ const Shop = () => {
                         <div className="relative">
                             <select
                                 onChange={(e) => setSortOption(e.target.value)}
-                                className="appearance-none px-4 py-2 pr-8 bg-white border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:border-gray-400">
+                                className="appearance-none px-4 py-2 pr-5 sm:pr-8 bg-white border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:border-gray-400">
                                 <option value="featured">Featured</option>
                                 <option value="price-low">Price: Low to High</option>
                                 <option value="price-high">Price: High to Low</option>

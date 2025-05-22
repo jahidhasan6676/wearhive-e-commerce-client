@@ -10,26 +10,7 @@ import DashboardSpinner from "../../../loadingSpinner/DashboardSpinner";
 const RechartsAndCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [timeRange, setTimeRange] = useState('monthly');
-
-  const earningsData = [
-    { month: "Jan", products: 4000, revenue: 2400 },
-    { month: "Feb", products: 3000, revenue: 1398 },
-    { month: "Mar", products: 5000, revenue: 9800 },
-    { month: "Apr", products: 7000, revenue: 3908 },
-    { month: "May", products: 6000, revenue: 4800 },
-    { month: "Jun", products: 8000, revenue: 3800 },
-    { month: "Jul", products: 9000, revenue: 4300 },
-  ];
-
-  const userGrowthData = [
-    { month: "Jan", users: 400, sellers: 100 },
-    { month: "Feb", users: 600, sellers: 120 },
-    { month: "Mar", users: 800, sellers: 150 },
-    { month: "Apr", users: 1000, sellers: 180 },
-    { month: "May", users: 1200, sellers: 220 },
-    { month: "Jun", users: 1400, sellers: 280 },
-    { month: "Jul", users: 1600, sellers: 320 },
-  ];
+  
 
   const axiosSecure = useAxiosSecure();
 

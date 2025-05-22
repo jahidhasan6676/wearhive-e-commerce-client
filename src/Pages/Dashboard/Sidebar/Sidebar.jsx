@@ -80,6 +80,28 @@ const Sidebar = () => {
                                             Payment History
                                         </div>
                                         <IoIosArrowForward className="text-gray-400" /></NavLink>
+
+                                    <NavLink to="/dashboard/chat" className={({ isActive }) =>
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><div className="flex items-center gap-2">
+                                            <HiOutlineChatBubbleLeftRight className="w-[18px] h-[18px]" />
+                                            Chat
+                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+
+                                    <NavLink to="/dashboard/myOrderHistory" className={({ isActive }) =>
+                                        `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
+                                            ? "bg-gray-100"
+                                            : "hover:bg-gray-100"
+                                        }`
+                                    }><div className="flex items-center gap-2">
+                                            <FaHistory className="w-[18px] h-[18px]" />
+                                            Order History                                        </div>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+
                                 </>
                             }
 
@@ -147,7 +169,7 @@ const Sidebar = () => {
                                             : "hover:bg-gray-100"
                                         }`
                                     }><div className="flex items-center gap-2">
-                                            <HiOutlineChatBubbleLeftRight  className="w-[18px] h-[18px]" />
+                                            <HiOutlineChatBubbleLeftRight className="w-[18px] h-[18px]" />
                                             Chat
                                         </div>
                                         <IoIosArrowForward className="text-gray-400" /></NavLink>
@@ -191,7 +213,7 @@ const Sidebar = () => {
                                         </div>
                                         <IoIosArrowForward className="text-gray-400" /></NavLink>
 
-                                    <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
+                                    {/* <NavLink to="/dashboard/rejectProduct" className={({ isActive }) =>
                                         `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
                                             ? "bg-gray-100"
                                             : "hover:bg-gray-100"
@@ -200,7 +222,7 @@ const Sidebar = () => {
                                             <MdReportProblem className="w-[18px] h-[18px]" />
                                             Report Product
                                         </div>
-                                        <IoIosArrowForward className="text-gray-400" /></NavLink>
+                                        <IoIosArrowForward className="text-gray-400" /></NavLink> */}
                                 </>
                             }
 
@@ -250,10 +272,10 @@ const Sidebar = () => {
                                         : "hover:bg-gray-100"
                                     }`
                                 }><div className="flex items-center gap-2">
-                                <CgProfile className="w-[18px] h-[18px]" />
-                                Profile
-                            </div>
-                            <IoIosArrowForward className="text-gray-400" /></NavLink>
+                                        <CgProfile className="w-[18px] h-[18px]" />
+                                        Profile
+                                    </div>
+                                    <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                 <NavLink to="/" className={({ isActive }) =>
                                     `flex items-center justify-between gap-2 px-4 py-2 rounded-lg ${isActive
@@ -261,17 +283,17 @@ const Sidebar = () => {
                                         : "hover:bg-gray-100"
                                     }`
                                 }><div className="flex items-center gap-2">
-                                <IoMdHome className="w-[18px] h-[18px]" />
-                                Home
-                            </div>
-                            <IoIosArrowForward className="text-gray-400" /></NavLink>
+                                        <IoMdHome className="w-[18px] h-[18px]" />
+                                        Home
+                                    </div>
+                                    <IoIosArrowForward className="text-gray-400" /></NavLink>
 
                                 <button onClick={handleUserLogOut} className="
                                     flex items-center justify-between gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 w-full"><div className="flex items-center gap-2">
-                                    <IoIosLogOut className="w-[18px] h-[18px]" />
-                                    LogOut
-                                </div>
-                                <IoIosArrowForward className="text-gray-400" /></button>
+                                        <IoIosLogOut className="w-[18px] h-[18px]" />
+                                        LogOut
+                                    </div>
+                                    <IoIosArrowForward className="text-gray-400" /></button>
 
                             </div>
                         </nav>
