@@ -41,7 +41,7 @@ const SellerDashboard = () => {
   });
   
 
-  if (isLoading) return DashboardSpinner();
+  if (isLoading) return <DashboardSpinner/>;
   //console.log("chart data:", sellerChartData)
 
   return (

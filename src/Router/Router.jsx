@@ -34,6 +34,7 @@ import Blog from "../Pages/Blogs/Blog";
 import AddBlogs from "../Pages/Dashboard/admin/AddBlogs";
 import BlogDetails from "../Pages/Blogs/BlogDetails";
 import Chat from "../Pages/Dashboard/Chat/Chat";
+import OrderHistory from "../Pages/Dashboard/sellerHome/OrderHistory";
 
 
 export const router = createBrowserRouter([
@@ -143,6 +144,10 @@ export const router = createBrowserRouter([
             {
                 path:"newOrders",
                 element:<PrivateRoute><SellerRoute><NewOrders/></SellerRoute></PrivateRoute>
+            },
+            {
+                path:"orderHistory",
+                element:<PrivateRoute><SellerRoute><OrderHistory/></SellerRoute></PrivateRoute>
             },
 
             // moderator route
