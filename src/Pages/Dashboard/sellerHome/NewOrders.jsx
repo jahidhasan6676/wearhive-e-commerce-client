@@ -32,10 +32,10 @@ const NewOrders = () => {
 
     return (
         <div className="w-11/12 mx-auto py-10">
-            <div className="rounded-md bg-white min-h-[calc(100vh-140px)] flex justify-center items-center">
+            <div className="rounded-md bg-white min-h-[calc(100vh-140px)] ">
                 {
                     newOrders?.length === 0 ? (
-                        <p className="text-gray-500 text-lg font-medium text-center">No new orders found.</p>
+                        <p className="text-gray-500 text-lg font-medium flex justify-center items-center">No new orders found.</p>
                     ) : (
                         <div className="p-3 md:p-4 lg:p-6 w-full">
                             {

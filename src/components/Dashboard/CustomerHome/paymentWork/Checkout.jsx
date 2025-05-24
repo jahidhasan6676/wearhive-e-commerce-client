@@ -3,12 +3,17 @@ import usePrice from "../../../../Hooks/usePrice";
 import { useNavigate } from "react-router-dom"
 import useCart from "../../../../Hooks/useCart";
 import { toast } from "react-toastify";
+import useAuth from "../../../../Hooks/useAuth";
+import axios from "axios";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 
 const Checkout = () => {
+    const { user } = useAuth();
     const [total, shippingFee, subTotal] = usePrice();
     const [cart] = useCart();
     const [paymentMethod, setPaymentMethod] = useState("");
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const [deliveryInfo, setDeliveryInfo] = useState({
         phone: "",
@@ -42,9 +47,34 @@ const Checkout = () => {
             navigate("/dashboard/stripePayment");
         } else if (paymentMethod === "sslCommerce") {
             localStorage.setItem("deliveryInfo", JSON.stringify(deliveryInfo));
-            navigate("/dashboard/sslCommerce");
+            //navigate("/dashboard/sslCommerce");
+            await handleSslPayment();
         }
     };
+
+    // ssl commerce payment
+    const handleSslPayment = async (e) => {
+        const storedDeliveryInfo = JSON.parse(localStorage.getItem("deliveryInfo"));
+        const paymentInfo = {
+            email: user?.email,
+            name: user?.displayName,
+            price: total,
+            transactionId: "",
+            date: new Date(),
+            cartIds: cart.map(item => item._id),
+            productIds: cart.map(item => item.productId),
+            status: 'Pending',
+            deliveryInfo: storedDeliveryInfo,
+            method: "SSLCommerce",
+            payment: "pending",
+        }
+
+        const response = await axiosPublic.post("/create-ssl-payment", paymentInfo)
+        console.log("response info", response)
+        if(response?.data?.gatewayUrl){
+            window.location.replace(response.data.gatewayUrl)
+        }
+    }
 
     return (
         <div className="w-11/12 mx-auto py-10">
@@ -115,8 +145,7 @@ const Checkout = () => {
                             onClick={handlePlaceOrder}
                             className={`mt-8 w-fit text-sm bg-black text-white py-3 px-10 
                                 ${paymentMethod === "" ? "opacity-50 cursor-not-allowed" : ""}`}
-                            disabled={paymentMethod === ""}
-                        >
+                            disabled={paymentMethod === ""}>
                             PLACE ORDER
                         </button>
                     </div>
