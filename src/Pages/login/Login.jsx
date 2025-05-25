@@ -12,26 +12,26 @@ const Login = () => {
 
   const handleLoginUser = (e) => {
     e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    // user login
     loginUser(email, password)
       .then(result => {
         setUser(result.user)
         navigate(location?.state ? location.state : "/")
-        toast.success("Successfully Login")
+        toast.success("Login successful!")
       })
       .catch(err => {
         toast.error(err.message)
       })
-
   }
 
-  // handle seller, moderator and admin email
-  const handleSeller = () =>{
+  // Demo account handlers
+  const handleCustomer = () => {
+    setPass("123456")
+    setMail("customer2@gmail.com")
+  }
+  const handleSeller = () => {
     setPass("123456")
     setMail("seller@gmail.com")
   }
@@ -45,62 +45,90 @@ const Login = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#fde1ff]">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl text-center font-semibold  mb-6">Login Now</h2>
-
-        <div className="flex justify-center items-center gap-2 mb-4">
-          <button onClick={handleSeller}>Seller</button>
-          <button onClick={handleModerator}>Moderator</button>
-          <button onClick={handleAdmin}>Admin</button>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-100">
+      <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-sm ">
+        <div className="text-center mb-5">
+          <h2 className="text-xl font-semibold text-gray-800">Welcome Back</h2>
+          <p className="text-sm text-gray-500 mt-1">Login to your WearHive account</p>
         </div>
 
-        <form onSubmit={handleLoginUser}>
-          {/* Email & Password Input */}
-          <div className="space-y-4">
+        {/* Demo account buttons */}
+        <div className="flex justify-center gap-2 mb-4">
+          <button 
+            onClick={handleCustomer}
+            className="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100 transition">
+            Customer
+          </button>
+          <button 
+            onClick={handleSeller}
+            className="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100 transition">
+            Seller
+          </button>
+          <button 
+            onClick={handleModerator}
+            className="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100 transition">
+            Moderator
+          </button>
+          <button 
+            onClick={handleAdmin}
+            className="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100 transition">
+            Admin
+          </button>
+        </div>
+
+        <form onSubmit={handleLoginUser} className="space-y-3">
+          <div>
             <input
               name="email"
               type="email"
               defaultValue={mail}
-              placeholder="Email Address *"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
+              placeholder="Email address"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              required
             />
+          </div>
+          
+          <div>
             <input
               name="password"
               type="password"
               defaultValue={pass}
-              placeholder="Password *"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-gray-500"
+              placeholder="Password"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              required
             />
           </div>
 
-          {/* Remember Me & Forgot Password */}
-          <div className="flex justify-end items-center mt-4 text-sm">
-
-            <Link className="text-secondary hover:underline">Forgot Password?</Link>
+          <div className="flex justify-end">
+            <Link to="/forgot-password" className="text-xs text-indigo-600 hover:underline">
+              Forgot password?
+            </Link>
           </div>
 
-          {/* Submit Button */}
-          <button type="submit" className="w-full bg-secondary text-white py-2 rounded-md mt-4 hover:bg-primary transition">
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded shadow-sm transition"
+          >
             Login
           </button>
         </form>
 
-        {/* Sign Up Link */}
-        <p className="text-center text-sm mt-3">
-          Don't Have an Account? <Link to="/register" className="text-secondary hover:underline">Register</Link>
+        <p className="text-xs text-center text-gray-500 mt-4">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-indigo-600 hover:underline">Register</Link>
         </p>
 
-        {/* OR Divider */}
         <div className="flex items-center my-4">
-          <hr className="w-full border-gray-300" />
-          <span className="mx-2 bg-white px-3 text-gray-500 font-semibold">OR</span>
-          <hr className="w-full border-gray-300" />
+          <hr className="flex-grow border-gray-300" />
+          <span className="mx-2 text-xs text-gray-400">OR</span>
+          <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Social Login */}
-        
         <SocialLogin />
+
+        <p className="text-xs text-center text-gray-400 mt-4">
+          By logging in, you agree to our Terms and Privacy Policy
+        </p>
       </div>
     </div>
   );

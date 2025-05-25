@@ -37,6 +37,7 @@ import Chat from "../Pages/Dashboard/Chat/Chat";
 import OrderHistory from "../Pages/Dashboard/sellerHome/OrderHistory";
 import MyOrderHistory from "../Pages/Dashboard/customer/MyOrderHistory";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import SslPaymentError from "../components/ErrorPage/SslPaymentError";
 
 
 
@@ -94,6 +95,7 @@ export const router = createBrowserRouter([
         path:"/register",
         element:<Register/>
     },
+    
     
 
     // dashboard route

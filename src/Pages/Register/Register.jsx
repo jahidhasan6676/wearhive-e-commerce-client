@@ -1,17 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import google_icon from "../../assets/social_icon/google.png"
 import SocialLogin from "../Shared/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
 import { photoUpload, userSave } from "../../utilities/utils";
 import { toast } from "react-toastify";
 
-
 const Register = () => {
-    const { createUser, setUser,updateUserProfile } = useAuth();
+    const { createUser, setUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
-    const handleRegisterUser =async (e) => {
+    
+    const handleRegisterUser = async (e) => {
         e.preventDefault();
-
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -19,80 +17,90 @@ const Register = () => {
         const image = form.image.files[0];
         const photo = await photoUpload(image);
 
-        
-        try{
-            // create user
-            const result = await createUser(email,password)
-            setUser(result.user)
-            // update user profile
-            await updateUserProfile({displayName: name, photoURL: photo})
-            // user save database
-            await userSave({...result?.user, displayName: name, photoURL: photo})
-            navigate(location?.state ? location.state : "/")
-            toast.success("Successfully Register")
-        }catch(err){
-            toast.error(err.message)
-        }  
-
+        try {
+            const result = await createUser(email, password);
+            setUser(result.user);
+            await updateUserProfile({ displayName: name, photoURL: photo });
+            await userSave({ ...result?.user, displayName: name, photoURL: photo });
+            navigate(location?.state ? location.state : "/");
+            toast.success("Registration successful!");
+        } catch (err) {
+            toast.error(err.message);
+        }
     }
-    return (
-        <div className="flex justify-center items-center min-h-screen bg-[#fde1ff]">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-                <h2 className="text-2xl text-center font-semibold  mb-6">Register Now</h2>
 
-                <form onSubmit={handleRegisterUser}>
-                    
-                    <div className="space-y-4">
-                        {/* name Input */}
+    return (
+        <div className="min-h-screen flex items-center justify-center p-4 bg-gray-100">
+            <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-sm ">
+                <div className="text-center mb-5">
+                    <h2 className="text-xl font-semibold text-gray-800">Join WearHive</h2>
+                    <p className="text-sm text-gray-500 mt-1">Create your account in seconds</p>
+                </div>
+
+                <form onSubmit={handleRegisterUser} className="space-y-3">
+                    <div>
                         <input
                             name="name"
                             type="text"
-                            placeholder="user name *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
+                            placeholder="Full name"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                            required
                         />
-                        {/* Email Input */}
+                    </div>
+                    
+                    <div>
                         <input
                             name="email"
                             type="email"
-                            placeholder="Email Address *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
+                            placeholder="Email address"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                            required
                         />
-                        {/* Image Upload Input */}
+                    </div>
+                    
+                    <div>
                         <input
                             name="image"
                             type="file"
                             accept="image/*"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-gray-500"
+                            className="w-full text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:border-0 file:text-xs file:font-medium file:bg-indigo-50 file:text-indigo-700 rounded hover:file:bg-indigo-100"
                         />
-                        {/* Password Input */}
+                    </div>
+                    
+                    <div>
                         <input
                             name="password"
                             type="password"
-                            placeholder="Password *"
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none  focus:border-gray-500"
+                            placeholder="Password"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                            required
                         />
                     </div>
-
-                    {/* Submit Button */}
-                    <button type="submit" className="w-full bg-secondary text-white py-2 rounded-md mt-4 hover:bg-primary transition">
+                    
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded shadow-sm transition"
+                    >
                         Register
                     </button>
-
                 </form>
-                {/* Sign Up Link */}
-                <p className="text-center text-sm mt-3">
-                    Already Have an Account? <Link to="/login" className="text-secondary hover:underline">Login</Link>
+
+                <p className="text-xs text-center text-gray-500 mt-4">
+                    Already have an account?{" "}
+                    <Link to="/login" className="text-indigo-600 hover:underline">Sign in</Link>
                 </p>
 
-                {/* OR Divider */}
                 <div className="flex items-center my-4">
-                    <hr className="w-full border-gray-300" />
-                    <span className="mx-2 bg-white px-3 text-gray-500 font-semibold">OR</span>
-                    <hr className="w-full border-gray-300" />
+                    <hr className="flex-grow border-gray-300" />
+                    <span className="mx-2 text-xs text-gray-400">OR</span>
+                    <hr className="flex-grow border-gray-300" />
                 </div>
 
-                {/* Social Login */}
                 <SocialLogin />
+
+                <p className="text-xs text-center text-gray-400 mt-4">
+                    By registering, you agree to our Terms and Privacy Policy
+                </p>
             </div>
         </div>
     );
