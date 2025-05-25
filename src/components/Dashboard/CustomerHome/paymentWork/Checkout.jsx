@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom"
 import useCart from "../../../../Hooks/useCart";
 import { toast } from "react-toastify";
 import useAuth from "../../../../Hooks/useAuth";
-import axios from "axios";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 
 const Checkout = () => {
@@ -13,7 +12,7 @@ const Checkout = () => {
     const [total, shippingFee, subTotal] = usePrice();
     const [cart] = useCart();
     const [paymentMethod, setPaymentMethod] = useState("");
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const [deliveryInfo, setDeliveryInfo] = useState({
         phone: "",
@@ -69,7 +68,7 @@ const Checkout = () => {
             payment: "pending",
         }
 
-        const response = await axiosPublic.post("/create-ssl-payment", paymentInfo)
+        const response = await axiosSecure.post("/create-ssl-payment", paymentInfo)
         console.log("response info", response)
         if(response?.data?.gatewayUrl){
             window.location.replace(response.data.gatewayUrl)

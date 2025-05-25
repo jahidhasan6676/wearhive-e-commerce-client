@@ -36,6 +36,8 @@ import BlogDetails from "../Pages/Blogs/BlogDetails";
 import Chat from "../Pages/Dashboard/Chat/Chat";
 import OrderHistory from "../Pages/Dashboard/sellerHome/OrderHistory";
 import MyOrderHistory from "../Pages/Dashboard/customer/MyOrderHistory";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
+
 
 
 export const router = createBrowserRouter([
@@ -43,6 +45,7 @@ export const router = createBrowserRouter([
     {
         path:"/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage/>,
         children:[
             {
                 path:"/",
@@ -91,11 +94,13 @@ export const router = createBrowserRouter([
         path:"/register",
         element:<Register/>
     },
+    
 
     // dashboard route
     {
         path:"/dashboard",
         element:<DashboardLayout></DashboardLayout>,
+        //errorElement: <DashboardErrorPage/>,
         children:[
             // customer route
             

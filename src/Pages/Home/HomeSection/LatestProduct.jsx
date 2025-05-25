@@ -39,15 +39,13 @@ const LatestProduct = () => {
                             viewport={{ once: false, amount: 0.3 }}
                             className="relative"
                             onMouseEnter={() => setHoveredIndex(index)}
-                            onMouseLeave={() => setHoveredIndex(null)}
-                        >
+                            onMouseLeave={() => setHoveredIndex(null)}>
                             <div className="relative overflow-hidden">
                                 <img
                                     src={latestProduct?.photo}
                                     alt=""
                                     className="w-full object-cover transition-transform duration-500"
-                                    style={{ transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)' }}
-                                />
+                                    style={{ transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)' }}/>
                                 {hoveredIndex === index && (
                                     <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-300">
 

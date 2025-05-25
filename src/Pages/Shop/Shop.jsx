@@ -217,8 +217,7 @@ const Shop = () => {
                                     setPriceRange([0, 1000]);
                                     setSearchText("");
                                 }}
-                                className="w-full py-2 text-sm font-medium text-primary border border-primary rounded hover:bg-primary hover:text-white"
-                            >
+                                className="w-full py-2 text-sm font-medium text-primary border border-primary rounded hover:bg-primary hover:text-white">
                                 Reset Filters
                             </button>
                         </div>
@@ -242,8 +241,7 @@ const Shop = () => {
                                         className={`px-4 py-2 rounded border ${currentPage === 1
                                             ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                                             : "bg-white text-gray-600 hover:bg-gray-100"
-                                            }`}
-                                    >
+                                            }`}>
                                         Prev
                                     </button>
 
